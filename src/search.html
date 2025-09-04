@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>搜索 - 大学生职业竞争力赋能平台</title>
+  <a href="login.html" id="navLogin">登录/注册</a>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: #333;
+    }
+
+    .navbar {
+      height: 66px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1002;
+    }
+
+    /* 滚动时阴影效果 */
+    .navbar.scrolled {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar>div:first-child {
+      margin-right: auto;
+      /* 将标题推到最左侧 */
+      padding-left: 60px;
+      /* 增加左侧间距 */
+    }
+
+
+    .navbar a {
+      color: rgb(110, 105, 105);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+
+    .welcome-text {
+      order: 2;
+      /* 欢迎文字第二个 */
+    }
+
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    .main-content {
+      margin-top: 60px;
+      /* 顶栏高度 */
+      padding: 20px;
+    }
+
+
+    .nav-item {
+      display: block;
+      padding: 12px 2px !important;
+      margin: 8px 0;
+      border-radius: 8px;
+      color: rgb(110, 105, 105);
+      text-decoration: none;
+      transition: all 0.3s;
+      white-space: nowrap
+    }
+
+    .nav-item:hover {
+      background: #0073e610;
+      transform: translateX(5px);
+    }
+
+
+
+    /* 修正侧边栏样式 */
+    .sidebar {
+      width: 310px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1003;
+      background: white;
+    }
+
+    .sidebar-title {
+      font-size: 1.2rem;
+      color: #4d4c4c;
+      /* 始终显示平台标题 */
+      display: block !important;
+      /* 删除过渡动画 */
+      transition: none !important;
+    }
+
+    .sidebar.active {
+      left: 0;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar.active+.navbar {
+      transform: translateX(280px);
+    }
+
+
+    .sidebar-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    /* 新增动画相关样式 */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+      margin-top: 60px;
+    }
+
+    .navbar .sidebar-toggle {
+      display: block !important;
+    }
+
+    /* 添加遮罩层样式 */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+      display: none;
+    }
+
+
+    /* 新增侧边栏图标样式 */
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar-toggle {
+      height: 100%;
+      padding: 0 rem;
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #313131;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar.compact {
+      width: 60px;
+      left: 0;
+      align-items: center;
+      /* 新增水平居中 */
+    }
+
+
+    /* 修复紧凑模式图标显示 */
+    .sidebar.compact .material-icons {
+      margin: 0 auto;
+      /* 图标居中 */
+      display: block !important;
+      transform: scale(1.2);
+    }
+
+
+    /* 新增精确控制 */
+    .sidebar.compact .nav-item span:not(.material-icons) {
+      display: none !important;
+    }
+
+
+    /* 展开状态下的图标定位 */
+    .sidebar:not(.compact) .material-icons {
+      margin-right: 12px;
+    }
+
+    /* 添加标题显示控制 */
+    .sidebar.compact .sidebar-title {
+      display: none !important;
+    }
+
+
+
+    /* 新增用户控制按钮 */
+    .user-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: static;
+      /* 移除绝对定位 */
+      order: 1;
+      /* 确保在flex容器中排在搜索框之后 */
+    }
+
+    .material-icons {
+      margin-right: -40px;
+    }
+
+    /* 登录按钮美化 */
+    .btn-login {
+      background: transparent;
+      border: 1px solid #0073e6;
+      color: #0073e6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+    }
+
+    .btn-login:hover::before {
+      left: 100%;
+    }
+
+    .btn-login:hover {
+      background: #0073e610;
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(0, 115, 230, 0.3);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #0073e6;
+      color: #0073e6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 50px;
+      margin-right: 40px;
+    }
+
+
+    .btn-logout:hover {
+      background: #0073e610;
+    }
+
+
+    /* 新增 Material Icons 样式 */
+    .material-icons {
+      vertical-align: middle;
+      font-size: 1.5rem;
+      color: inherit;
+    }
+
+    .search-container {
+      margin-right: 30px;
+      width: 300px;
+    }
+
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* + 新增搜索框美化样式 */
+    .search-container {
+      position: relative;
+      margin-right: 100px;
+      width: 800px;
+      background: #f8f9fa;
+      border-radius: 25px;
+      padding: 8px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+
+    .search-icon {
+      color: #666;
+      right: 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container:focus-within::after {
+      opacity: 1;
+    }
+
+    /* + 调整个人中心位置 */
+    .nav-dynamic {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: absolute;
+      right: 200px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+
+    .chat-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* 聊天框美化 */
+    .chat-box {
+      height: 60vh;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background-image:
+        linear-gradient(rgba(0, 115, 230, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 115, 230, 0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      overflow-y: auto; /* 允许垂直滚动 */
+    }
+
+    /* 消息气泡样式 */
+    .chat-message {
+      margin-bottom: 1.5rem;
+      max-width: 80%;
+      animation: messageAppear 0.3s ease-out;
+    }
+
+    .chat-message.user {
+      margin-left: auto;
+      background: linear-gradient(135deg, #0073e6, #00a3ff);
+      color: white;
+      border-radius: 18px 18px 4px 18px;
+      padding: 12px 18px;
+      box-shadow: 0 4px 6px rgba(0, 115, 230, 0.1);
+    }
+
+    .chat-message.bot {
+      background: white;
+      color: #333;
+      border-radius: 18px 18px 18px 4px;
+      padding: 12px 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .chat-message.bot::before {
+      content: "🤖";
+      position: absolute;
+      left: -40px;
+      top: 0;
+      font-size: 24px;
+    }
+
+    /* 输入框美化 */
+    .chat-input {
+      display: flex;
+      gap: 12px;
+      position: relative;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 16px 24px;
+      border: 2px solid #e0e0e0;
+      border-radius: 30px;
+      font-size: 16px;
+      transition: all 0.3s;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .chat-input input:focus {
+      outline: none;
+      border-color: #0073e6;
+      box-shadow: 0 4px 12px rgba(0, 115, 230, 0.2);
+    }
+
+    .chat-input button {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #0073e6, #00a3ff);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 6px rgba(0, 115, 230, 0.2);
+    }
+
+    .chat-input button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 115, 230, 0.3);
+    }
+
+    /* 自定义滚动条 */
+    .chat-box::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .chat-box::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+    }
+
+    .chat-box::-webkit-scrollbar-thumb {
+      background: #0073e6;
+      border-radius: 4px;
+    }
+
+
+
+
+    .data-header {
+      padding: 32px 5% 16px;
+      border-bottom: none;
+    }
+
+    .data-header h1 {
+      font-size: 40px;
+      margin-bottom: 8px;
+      margin-top: 1px;
+      margin-left: 15px;
+      color: #1a1a1a;
+    }
+
+    .description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-left: 15px;
+      max-width: 560px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div>大学生职业竞争力赋能平台</div>
+    <div class="user-controls" id="navAuth"></div>
+    <div class="nav-dynamic" id="navDynamic">
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="搜索" class="search-input">
+        <button class="search-icon" onclick="handleSearch()">
+          <span class="material-icons">search</span>
+        </button>
+      </div>
+      <div class="post-login" id="postLogin">
+        <a href="profile.html" class="profile-link">
+          <span class="material-icons">person</span>
+        </a>
+      </div>
+    </div>
+    <div class="sidebar compact">
+      <div class="sidebar-header">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="sidebar-title">菜单</div>
+      </div>
+      <a href="index.html" class="nav-item">
+        <span class="material-icons">home</span>
+        <span>首页</span>
+      </a>
+
+      <a href="courses.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span>课程</span>
+      </a>
+
+      <a href="assessment.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">assignment</span>
+        <span>测评</span>
+      </a>
+
+      <a href="career-library.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">business_center</span>
+        <span>职业库</span>
+      </a>
+
+      <a href="community.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">forum</span>
+        <span>社区</span>
+      </a>
+
+      <a href="search.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">search</span>
+        <span>搜索</span>
+      </a>
+
+      <a href="profile.html" class="nav-item">
+
+        <span class="material-icons" aria-hidden="true">person</span>
+        <span>个人中心</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="data-header" style="display: flex; align-items: center;">
+      <div>
+        <h1>AI智库</h1>
+        <p class="description">基于深度学习的职业能力评估系统<br>解答你的疑惑，发现职业发展新可能。</p>
+      </div>
+      <div style="flex: 1;">
+        <img src="images/courese.webp" alt="卡通狮子头像"
+          style="width: 25%; height: auto; border-radius: 8px;margin-left: 70%;">
+      </div>
+
+    </div>
+
+
+    <div class="chat-container">
+      <div class="chat-box" id="chatBox">
+        <div class="chat-message bot">
+          🎉 欢迎使用AI智库！我可以帮助您：
+          <ul style="margin: 10px 0 0 20px; color: #666">
+            <li>分析职业发展路径</li>
+            <li>解读岗位能力要求</li>
+            <li>提供学习资源建议</li>
+            <li>模拟面试场景练习</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="请输入您的问题（例如：如何准备数据分析师面试？）">
+        <button onclick="sendMessage()">
+          <span class="material-icons">send</span>
+          发送
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2023 大学生职业竞争力赋能平台. 保留所有权利.</p>
+      <p>联系我们: info@careerempower.com</p>
+    </div>
+  </div>
+  <script>
+    const careers = [
+      { title: "软件开发工程师", description: "负责设计、开发和维护软件系统。" },
+      { title: "数据科学家", description: "通过数据分析为企业提供决策支持。" },
+      { title: "网络安全工程师", description: "保护企业网络系统免受攻击。" },
+      { title: "市场营销经理", description: "制定并执行市场推广策略。" },
+      { title: "品牌经理", description: "负责品牌建设和推广。" },
+      { title: "数字营销专家", description: "通过数字渠道进行营销推广。" },
+      { title: "项目经理", description: "负责项目的规划、执行和监控。" },
+      { title: "产品经理", description: "负责产品的全生命周期管理。" },
+      { title: "运营经理", description: "优化企业运营流程，提升效率。" },
+      { title: "投资银行家", description: "负责企业融资和并购业务。" },
+      { title: "财务分析师", description: "分析企业财务状况，提供决策支持。" },
+      { title: "风险管理师", description: "评估和管理企业风险。" },
+      { title: "保险精算师", description: "设计和管理保险产品。" },
+      { title: "税务顾问", description: "提供税务规划和咨询服务。" },
+      { title: "教师", description: "负责教学和学生学习指导。" },
+      { title: "教育顾问", description: "提供教育规划和咨询服务。" },
+      { title: "医生", description: "诊断和治疗疾病。" },
+      { title: "护士", description: "提供护理和健康管理服务。" },
+      { title: "药剂师", description: "负责药品的调配和管理。" },
+      { title: "平面设计师", description: "负责视觉设计和创意表达。" },
+      { title: "UI/UX设计师", description: "设计用户界面和用户体验。" },
+      { title: "摄影师", description: "拍摄和编辑照片。" },
+      { title: "机械工程师", description: "设计和维护机械设备。" },
+      { title: "电气工程师", description: "设计和维护电气系统。" },
+      { title: "律师", description: "提供法律咨询和代理服务。" },
+      { title: "法官", description: "审理案件并作出判决。" },
+      { title: "物流经理", description: "优化物流流程，降低成本。" },
+      { title: "供应链分析师", description: "分析供应链数据，提供优化建议。" }
+    ];
+
+
+    // 修正后的切换函数
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      const overlay = document.querySelector('.sidebar-overlay');
+
+      // 仅切换active状态
+      const isActive = sidebar.classList.toggle('active');
+
+      // 同步紧凑模式
+      sidebar.classList.toggle('compact', !isActive);
+
+      // 遮罩层控制
+      overlay.style.display = isActive ? 'block' : 'none';
+    }
+
+    // 增强登录状态检查
+    function checkLoginStatus() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const navAuth = document.getElementById('navAuth');
+
+      if (isLoggedIn) {
+        navAuth.innerHTML = `
+      <span style="color:#666">欢迎回来！</span>
+      <button class="btn-logout" onclick="logout()">退出登录</button>
+    `;
+      } else {
+        navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
+      }
+    }
+
+    // 退出登录功能
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      checkLoginStatus();
+      window.location.reload();
+    }
+
+    // 初始化执行
+    document.addEventListener('DOMContentLoaded', () => {
+      checkLoginStatus();
+      loadUserData();
+    });
+
+    function handleSearch() {
+      const searchTerm = document.getElementById('searchInput').value;
+      const encodedTerm = encodeURIComponent(searchTerm);
+      window.location.href = `search.html?q=${encodedTerm}`;
+    }
+
+    document.getElementById('searchInput')
+      .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
+    // 解析URL参数
+    function getSearchTerm() {
+      const params = new URLSearchParams(window.location.search);
+      return decodeURIComponent(params.get('q') || '');
+    }
+
+    // 页面加载时填充搜索框
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('searchInput').value = getSearchTerm();
+    });
+
+    // 使用示例
+    const searchTerm = decodeURIComponent(getSearchTerm());
+    console.log('搜索关键词:', searchTerm);
+    // 这里可以调用你的搜索函数
+
+
+    async function sendMessage() {
+      const input = document.getElementById("chatInput").value;
+      if (!input) return;
+
+      // 显示用户消息
+      const chatBox = document.getElementById("chatBox");
+      const userMessage = document.createElement("div");
+      userMessage.className = "chat-message user";
+      userMessage.innerHTML = `<strong>你:</strong> ${input}`;
+      chatBox.appendChild(userMessage);
+
+      // 清空输入框
+      document.getElementById("chatInput").value = "";
+
+      try {
+        // 调用后端 API 获取 AI 响应             
+        const response = await fetch("/api/chat ", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: input }),
+        });
+
+        const data = await response.json();
+
+        //匹配链接
+        const urlRegex = /(https?:\/\/[^\s<>"'，。；：、【】（）()【】\[\]{}]+)(?=[\s<>"'。，；：、））））】】]|$)/g;
+
+        // 显示 AI 响应
+        if (data.response) {
+          const botMessage = document.createElement("div");
+          botMessage.className = "chat-message bot";
+          const aiText = data.response.replace(
+            urlRegex,
+            '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:blue;text-decoration:underline;">$1</a>'
+          );
+          botMessage.innerHTML = `<strong>AI:</strong> ${aiText}`;
+          chatBox.appendChild(botMessage);
+        } else if (data.error) {
+          const errorMessage = document.createElement("div");
+          errorMessage.className = "chat-message bot";
+          errorMessage.innerHTML = `<strong>AI:</strong> ${data.error}`;
+          chatBox.appendChild(errorMessage);
+        }
+      } catch (error) {
+        const errorMessage = document.createElement("div");
+        errorMessage.className = "chat-message bot";
+        errorMessage.innerHTML = `<strong>AI:</strong> 无法获取回复，请稍后重试。`;
+        chatBox.appendChild(errorMessage);
+      }
+      // 滚动到最新消息
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+    }
+    //回车也会发送消息
+    document.getElementById("chatInput").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+    
+    // 获取当前页面路径
+    const currentPath = window.location.pathname.split('/').pop();
+
+    document.querySelectorAll('.nav-item').forEach(link => {
+      // 移除所有激活状态
+      link.classList.remove('active');
+
+      // 匹配当前页面
+      if (link.getAttribute('href') === currentPath) {
+        link.classList.add('active');
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社区 - 大学生职业竞争力赋能平台</title>
+  <title>课程 - 大学生职业竞争力赋能平台</title>
+  <a href="login.html" id="navLogin">登录/注册</a>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: #333;
+    }
+
+    .navbar {
+      height: 66px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1002;
+    }
+
+    /* 滚动时阴影效果 */
+    .navbar.scrolled {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar>div:first-child {
+      margin-right: auto;
+      /* 将标题推到最左侧 */
+      padding-left: 60px;
+      /* 增加左侧间距 */
+    }
+
+
+    .navbar a {
+      color: rgb(110, 105, 105);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+
+    .welcome-text {
+      order: 2;
+      /* 欢迎文字第二个 */
+    }
+
+    .community-list {
+      display: flex;
+      justify-content: space-around;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+
+    .community-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      text-align: center;
+    }
+
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    .main-content {
+      margin-top: 60px;
+      /* 顶栏高度 */
+      padding: 20px;
+    }
+
+
+
+    .nav-item {
+      display: block;
+      padding: 12px 2px !important;
+      margin: 8px 0;
+      border-radius: 8px;
+      color: rgb(110, 105, 105);
+      text-decoration: none;
+      transition: all 0.3s;
+      white-space: nowrap
+    }
+
+    .nav-item:hover {
+      background: #0073e610;
+      transform: translateX(5px);
+    }
+
+
+
+    /* 修正侧边栏样式 */
+    .sidebar {
+      width: 310px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1003;
+      background: white;
+    }
+
+    .sidebar-title {
+      font-size: 1.2rem;
+      color: #4d4c4c;
+      /* 始终显示平台标题 */
+      display: block !important;
+      /* 删除过渡动画 */
+      transition: none !important;
+    }
+
+    .sidebar.active {
+      left: 0;
+      box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar.active+.navbar {
+      transform: translateX(280px);
+    }
+
+
+    .sidebar-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+    }
+
+    /* 新增动画相关样式 */
+    .layout-container {
+      display: flex;
+      min-height: 100vh;
+      margin-top: 60px;
+    }
+
+    .navbar .sidebar-toggle {
+      display: block !important;
+    }
+
+    /* 添加遮罩层样式 */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+      display: none;
+    }
+
+
+
+    /* 新增侧边栏图标样式 */
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sidebar-toggle {
+      height: 100%;
+      padding: 0 rem;
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #313131;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar.compact {
+      width: 60px;
+      left: 0;
+      align-items: center;
+      /* 新增水平居中 */
+    }
+
+
+    /* 修复紧凑模式图标显示 */
+    .sidebar.compact .material-icons {
+      margin: 0 auto;
+      /* 图标居中 */
+      display: block !important;
+      transform: scale(1.2);
+    }
+
+
+    /* 新增精确控制 */
+    .sidebar.compact .nav-item span:not(.material-icons) {
+      display: none !important;
+    }
+
+
+    /* 展开状态下的图标定位 */
+    .sidebar:not(.compact) .material-icons {
+      margin-right: 12px;
+    }
+
+    /* 添加标题显示控制 */
+    .sidebar.compact .sidebar-title {
+      display: none !important;
+    }
+
+
+    /* 新增用户控制按钮 */
+    .user-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: static;
+      /* 移除绝对定位 */
+      order: 1;
+      /* 确保在flex容器中排在搜索框之后 */
+    }
+
+    .material-icons {
+      margin-right: -40px;
+    }
+
+    /* 登录按钮美化 */
+    .btn-login {
+      background: transparent;
+      border: 1px solid #0073e6;
+      color: #0073e6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+    }
+
+    .btn-login:hover::before {
+      left: 100%;
+    }
+
+    .btn-login:hover {
+      background: #0073e610;
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 8px rgba(0, 115, 230, 0.3);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid #0073e6;
+      color: #0073e6;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 50px;
+      margin-right: 40px;
+    }
+
+
+    .btn-logout:hover {
+      background: #0073e610;
+    }
+
+
+    /* 新增 Material Icons 样式 */
+    .material-icons {
+      vertical-align: middle;
+      font-size: 1.5rem;
+      color: inherit;
+    }
+
+    .search-container {
+      margin-right: 30px;
+      width: 300px;
+    }
+
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* + 新增搜索框美化样式 */
+    .search-container {
+      position: relative;
+      margin-right: 100px;
+      width: 800px;
+      background: #f8f9fa;
+      border-radius: 25px;
+      padding: 8px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+
+    .search-icon {
+      color: #666;
+      right: 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container:focus-within::after {
+      opacity: 1;
+    }
+
+    /* + 调整个人中心位置 */
+    .nav-dynamic {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: absolute;
+      right: 200px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+
+    .data-header {
+      padding: 32px 5% 16px;
+      border-bottom: none;
+    }
+
+    .data-header h1 {
+      font-size: 40px;
+      margin-bottom: 8px;
+      margin-top: 1px;
+      margin-left: 15px;
+      color: #1a1a1a;
+    }
+
+    .description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-left: 15px;
+      max-width: 560px;
+    }
+
+    /* 主色调定义 */
+    :root {
+      --primary-blue: #2A5CAA;
+      --secondary-blue: #4B86C2;
+      --accent-orange: #FF7E4F;
+      --text-dark: #2D3748;
+    }
+
+    main {
+      position: relative;
+      z-index: 50;
+    }
+
+    /* 社区主容器 */
+    .community-container {
+      max-width: 1280px;
+      margin: 30px auto 20px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 30px;
+      align-items: start;
+      /* 保证侧边栏对齐顶部 */
+    }
+
+    /* 右侧边栏容器 */
+    .community-container>aside {
+      position: sticky;
+      top: 100px;
+      /* 从顶部导航栏下方开始 */
+      align-self: flex-start;
+      height: calc(100vh - 120px);
+      /* 视口高度减去顶部和底部间距 */
+      overflow-y: auto;
+    }
+
+
+    /* 分类导航 */
+    .category-nav {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 60px;
+      /* 根据导航栏高度调整 */
+      background: white;
+      z-index: 100;
+      padding: 15px 0;
+      margin-bottom: 15px !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .category-tag {
+      flex-shrink: 0;
+      padding: 6px 16px;
+      color: #666;
+      border-radius: 16px;
+      background: #f5f5f5;
+      font-size: 13px;
+      white-space: nowrap;
+      text-decoration: none;
+      /* 新增过渡动画 */
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: 1px solid transparent;
+      /* 为边框变化做准备 */
+    }
+
+    .category-tag.active {
+      background: var(--primary-blue);
+      color: white;
+      /* 添加激活态微动效 */
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px rgba(0, 115, 230, 0.2);
+    }
+
+    /* 添加悬停效果 */
+    .category-tag:hover {
+      background: #e0e0e0;
+      transform: translateY(-1px);
+    }
+
+    /* 帖子卡片设计 */
+    .post-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+
+      transition: transform 0.2s;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+
+    .user-info {
+      flex-grow: 1;
+    }
+
+    .user-name {
+      font-weight: 500;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .user-badge {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #f4f9ff;
+      color: #6788ae;
+    }
+
+    /* 互动数据 */
+    .post-stats {
+      display: flex;
+      gap: 25px;
+      color: #718096;
+      margin-top: 15px;
+    }
+
+    .post-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 右侧边栏 */
+    .sidebar-widget {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 右侧固定边栏 */
+    .fixed-sidebar {
+      position: fixed;
+      top: 100px;
+      /* 根据导航栏高度调整 */
+      right: 20px;
+      width: 300px;
+      height: calc(100vh - 120px);
+      /* 留出上下边距 */
+      overflow-y: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      z-index: 999;
+    }
+
+
+    .hot-posts-list {
+      margin-top: 15px;
+    }
+
+    .hot-post-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      transition: background 0.3s;
+      border-bottom: 1px solid #EDF2F7;
+    }
+
+    .hot-post-item:hover {
+      background: #f8f9fa;
+    }
+
+    /* 发帖按钮 - 美化版 */
+    .create-post-btn {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: linear-gradient(135deg,
+          var(--primary-blue) 20%,
+          var(--secondary-blue) 80%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 35px;
+      box-shadow: 0 8px 24px rgba(42, 92, 170, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 17px;
+      cursor: pointer;
+      border: none;
+
+    }
+
+
+    /* 标签云样式优化 */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      border-radius: 15px;
+      background: #e9ecef;
+      font-size: 0.9em;
+    }
+
+    /* 帖子分类系统 */
+    .post-category {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .category-resume {
+      background: #E3F2FD;
+      color: #1976D2;
+    }
+
+    .category-interview {
+      background: #F8BBD0;
+      color: #C2185B;
+    }
+
+    .category-career {
+      background: #C8E6C9;
+      color: #388E3C;
+    }
+
+    .post-category.category-industry {
+      background: #D1C4E9;
+      color: #512DA8;
+    }
+
+
+    .shadow-line {
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 60px 0;
+      width: 1000px;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div>大学生职业竞争力赋能平台</div>
+    <div class="user-controls" id="navAuth"></div>
+    <div class="nav-dynamic" id="navDynamic">
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="搜索" class="search-input">
+        <button class="search-icon" onclick="handleSearch()">
+          <span class="material-icons">search</span>
+        </button>
+      </div>
+      <div class="post-login" id="postLogin">
+        <a href="profile.html" class="profile-link">
+          <span class="material-icons">person</span>
+        </a>
+      </div>
+    </div>
+    <div class="sidebar compact">
+      <div class="sidebar-header">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="sidebar-title">菜单</div>
+      </div>
+      <a href="index.html" class="nav-item">
+        <span class="material-icons">home</span>
+        <span>首页</span>
+      </a>
+
+      <a href="courses.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">menu_book</span>
+        <span>课程</span>
+      </a>
+
+      <a href="assessment.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">assignment</span>
+        <span>测评</span>
+      </a>
+
+      <a href="career-library.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">business_center</span>
+        <span>职业库</span>
+      </a>
+
+      <a href="community.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">forum</span>
+        <span>社区</span>
+      </a>
+
+      <a href="search.html" class="nav-item">
+        <span class="material-icons" aria-hidden="true">search</span>
+        <span>搜索</span>
+      </a>
+
+      <a href="profile.html" class="nav-item">
+
+        <span class="material-icons" aria-hidden="true">person</span>
+        <span>个人中心</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="data-header" style="display: flex; align-items: center;">
+      <div>
+        <h1>社区</h1>
+        <p class="description">探索、交流和分享职业洞见<br>了解社区动态、参与讨论及获取行业资讯的更多信息。</p>
+      </div>
+      <div style="flex: 1;">
+        <img src="images/courese.webp" alt="卡通狮子头像"
+          style="width: 25%; height: auto; border-radius: 8px;margin-left: 70%;">
+      </div>
+
+    </div>
+
+    <div class="community-container">
+      <main>
+        <div class="category-nav">
+          <div class="category-tag active">全部</div>
+          <div class="category-tag">求职技巧</div>
+          <div class="category-tag">面试经验</div>
+          <div class="category-tag">行业动态</div>
+          <div class="category-tag">简历优化</div>
+          <div class="category-tag">职业规划</div>
+        </div>
+
+        <div class="post-card" data-post-id="0" data-category="resume">
+          <div class="post-header">
+            <img src="images/avatar1.jpg" class="user-avatar">
+            <div class="user-info">
+              <div class="user-name">
+                李晓明
+                <span class="user-badge">职场达人</span>
+              </div>
+              <div class="post-time">2小时前 · 互联网行业</div>
+            </div>
+          </div>
+          <span class="post-category category-interview">面试经验</span>
+          <h3>腾讯产品经理岗三轮面试全记录</h3>
+          <p>刚刚结束腾讯的终面，分享我的完整面经...</p>
+          <div class="post-stats">
+            <div class="post-stat-item">
+              <i class="far fa-thumbs-up"></i> 892
+            </div>
+            <div class="post-stat-item">
+              <i class="far fa-comment"></i> 134
+            </div>
+            <div class="post-stat-item">
+              <i class="fas fa-eye"></i> 3.4k
+            </div>
+          </div>
+        </div>
+        <div class="shadow-line"></div>
+
+
+        <!-- 简历优化案例 -->
+        <div class="post-card" data-post-id="1" data-category="resume">
+          <div class="post-header">
+            <img src="avatar2.jpg" class="user-avatar">
+            <div class="user-info">
+              <div class="user-name">
+                陈思雨
+                <span class="user-badge">简历顾问</span>
+              </div>
+              <div class="post-time">5小时前 · 快消行业</div>
+            </div>
+          </div>
+          <span class="post-category category-resume">简历优化</span>
+          <h3>世界500强HR偏好的简历模板解析</h3>
+          <p>整理了宝洁、联合利华等快消巨头的成功简历案例，重点解析STAR法则的应用技巧，附赠可编辑模板...</p>
+          <div class="post-stats">
+            <div class="post-stat-item">
+              <i class="far fa-thumbs-up"></i> 892
+            </div>
+            <div class="post-stat-item">
+              <i class="far fa-comment"></i> 134
+            </div>
+            <div class="post-stat-item">
+              <i class="fas fa-eye"></i> 3.4k
+            </div>
+          </div>
+        </div>
+        <div class="shadow-line"></div>
+
+        <!-- 薪资谈判指南 -->
+        <div class="post-card" data-post-id="2" data-category="resume">
+          <div class="post-header">
+            <img src="avatar3.jpg" class="user-avatar">
+            <div class="user-info">
+              <div class="user-name">
+                张伟
+                <span class="user-badge">签约导师</span>
+              </div>
+              <div class="post-time">1天前 · 金融行业</div>
+            </div>
+          </div>
+          <span class="post-category category-career">职业规划</span>
+          <h3>应届生必看的薪资谈判策略</h3>
+          <p>如何合理评估自身市场价值？当HR说"这是我们能给的最高薪资"时，应该怎样应对？揭秘企业薪资结构...</p>
+          <div class="post-stats">
+            <div class="post-stat-item">
+              <i class="far fa-thumbs-up"></i> 1.2k
+            </div>
+            <div class="post-stat-item">
+              <i class="far fa-comment"></i> 287
+            </div>
+            <div class="post-stat-item">
+              <i class="fas fa-eye"></i> 5.6k
+            </div>
+          </div>
+        </div>
+        <div class="shadow-line"></div>
+
+        <!-- 行业趋势分析 -->
+        <div class="post-card" data-post-id="3" data-category="resume">
+          <div class="post-header">
+            <img src="avatar4.jpg" class="user-avatar">
+            <div class="user-info">
+              <div class="user-name">
+                王志远
+                <span class="user-badge">行业观察员</span>
+              </div>
+              <div class="post-time">3小时前 · 人工智能</div>
+            </div>
+          </div>
+          <span class="post-category category-industry">行业动态</span>
+          <h3>2024年最具发展潜力的10个新兴岗位</h3>
+          <p>基于LinkedIn最新数据，解读AIGC训练师、元宇宙架构师等新兴职业的核心技能要求和发展路径...</p>
+          <div class="post-stats">
+            <div class="post-stat-item">
+              <i class="far fa-thumbs-up"></i> 1.8k
+            </div>
+            <div class="post-stat-item">
+              <i class="far fa-comment"></i> 422
+            </div>
+            <div class="post-stat-item">
+              <i class="fas fa-eye"></i> 7.9k
+            </div>
+          </div>
+        </div>
+        <div class="shadow-line"></div>
+
+        <!-- 群面实战记录 -->
+        <div class="post-card" data-post-id="4" data-category="resume">
+          <div class="post-header">
+            <img src="avatar5.jpg" class="user-avatar">
+            <div class="user-info">
+              <div class="user-name">
+                林晓雯
+                <span class="user-badge">面霸</span>
+              </div>
+              <div class="post-time">6小时前 · 咨询行业</div>
+            </div>
+          </div>
+          <span class="post-category category-interview">面试经验</span>
+          <h3>麦肯锡无领导小组讨论生存指南</h3>
+          <p>真实还原Case Study全流程，分享如何从沉默者变身关键意见领袖的3个话术公式...</p>
+          <div class="post-stats">
+            <div class="post-stat-item">
+              <i class="far fa-thumbs-up"></i> 672
+            </div>
+            <div class="post-stat-item">
+              <i class="far fa-comment"></i> 189
+            </div>
+            <div class="post-stat-item">
+              <i class="fas fa-eye"></i> 2.8k
+            </div>
+          </div>
+        </div>
+        <div class="shadow-line"></div>
+
+        <!-- 实习避坑指南 -->
+        <div class="post-card" data-post-id="5" data-category="resume">
+          <div class="post-header">
+            <img src="avatar6.jpg" class="user-avatar">
+            <div class="user-info">
+              <div class="user-name">
+                赵天宇
+                <span class="user-badge">实习达人</span>
+              </div>
+              <div class="post-time">8小时前 · 互联网行业</div>
+            </div>
+          </div>
+          <span class="post-category category-career">职业规划</span>
+          <h3>大厂实习黑话词典｜小心这些暗坑！</h3>
+          <p>解密「有转正机会」的真实概率、「弹性工作」的实际时长，帮你看清招聘JD的潜台词...</p>
+          <div class="post-stats">
+            <div class="post-stat-item">
+              <i class="far fa-thumbs-up"></i> 2.3k
+            </div>
+            <div class="post-stat-item">
+              <i class="far fa-comment"></i> 658
+            </div>
+            <div class="post-stat-item">
+              <i class="fas fa-eye"></i> 9.2k
+            </div>
+          </div>
+        </div>
+        <div class="shadow-line"></div>
+      </main>
+
+      <!-- 右侧边栏 -->
+      <aside>
+        <div class="sidebar-widget">
+          <h3 class="widget-title">
+            <span class="material-icons" style="color: #FF7E4F;margin-right: 5px;">whatshot</span>
+            <span style="vertical-align: middle;">今日热帖</span>
+          </h3>
+          <div class="post-card hot-post-card" data-post-id="0" onclick="window.location.href='posting/post.html?id=0'"
+            style="cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform='none'">
+            <!-- 卡片内容保持不变 -->
+            <p class="hot-post-title">1.腾讯产品经理岗三轮面试全记录</p>
+          </div>
+
+        </div>
+
+        <div class="sidebar-widget">
+          <h3 class="widget-title">
+            <span class="material-icons" style="margin-right: 5px;color: #4B86C2;">local_offer</span>
+            <span style="vertical-align: middle;">热门标签</span>
+          </h3>
+          <div class="tag-cloud">
+            <span class="tag">简历模板</span>
+            <span class="tag">群面技巧</span>
+            <span class="tag">薪资谈判</span>
+            <!-- 更多标签 -->
+          </div>
+        </div>
+
+        <div class="sidebar-widget user-card">
+          <div class="user-profile">
+            <img src="images/user-avatar.jpg" class="user-avatar">
+            <div class="user-level">Lv.12</div>
+            <h4>王小红</h4>
+            <div class="user-stats">
+              <div>积分：1200</div>
+              <div>帖子：23</div>
+              <div>粉丝：456</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="create-post-btn" onclick="handleCreatePost()">
+          <i class="fas fa-plus"></i>
+          发布新帖
+        </button>
+      </aside>
+
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 大学生职业竞争力赋能平台. 保留所有权利.</p>
+    <p>联系我们: info@careerempower.com</p>
+  </div>
+  </div>
+</body>
+<script>
+  // 修正后的切换函数
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+
+    // 仅切换active状态
+    const isActive = sidebar.classList.toggle('active');
+
+    // 同步紧凑模式
+    sidebar.classList.toggle('compact', !isActive);
+
+    // 遮罩层控制
+    overlay.style.display = isActive ? 'block' : 'none';
+  }
+
+  // 增强登录状态检查
+  function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const navAuth = document.getElementById('navAuth');
+
+    if (isLoggedIn) {
+      navAuth.innerHTML = `
+      <span style="color:#666">欢迎回来！</span>
+      <button class="btn-logout" onclick="logout()">退出登录</button>
+    `;
+    } else {
+      navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
+    }
+  }
+
+  // 退出登录功能
+  function logout() {
+    localStorage.removeItem('isLoggedIn');
+    checkLoginStatus();
+    window.location.reload();
+  }
+
+  // 初始化执行
+  document.addEventListener('DOMContentLoaded', () => {
+    checkLoginStatus();
+    loadUserData();
+  });
+
+  function handleSearch() {
+    const searchTerm = document.getElementById('searchInput').value;
+    const encodedTerm = encodeURIComponent(searchTerm);
+    window.location.href = `search.html?q=${encodedTerm}`;
+  }
+
+  document.getElementById('searchInput')
+    .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
+
+  // 实现分类切换
+  document.querySelectorAll('.category-tag').forEach(tag => {
+    tag.addEventListener('click', function () {
+      document.querySelector('.category-tag.active').classList.remove('active');
+      this.classList.add('active');
+      // 这里可以添加筛选帖子的逻辑
+    });
+  });
+
+  // 发帖模态框控制
+  const createPostBtn = document.querySelector('.create-post-btn');
+  createPostBtn.addEventListener('click', () => {
+    // 显示发帖模态框
+    showPostModal();
+  });
+
+  function showPostModal() {
+    // 实现模态框弹出逻辑
+  }
+
+  // 跳转逻辑
+  document.querySelectorAll('.post-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const postId = this.dataset.postId;
+      window.location.href = `posting/post.html?id=${postId}`;
+    });
+  });
+
+  // 修改跳转逻辑（在community.html的script中）
+  document.addEventListener('click', function (e) {
+    // 处理主贴点击
+    const postCard = e.target.closest('.post-card')
+    if (postCard) {
+      const postId = postCard.dataset.postId
+      window.location.href = `posting/post.html?id=${postId}`
+      return
+    }
+
+    // 处理热帖点击
+    const hotPost = e.target.closest('.hot-post-card')
+    if (hotPost) {
+      const postId = hotPost.dataset.postId
+      window.location.href = `posting/post.html?id=${postId}`
+    }
+  })
+
+  function handleCreatePost() {
+
+    window.location.href = './posting/create-post.html';
+  }
+
+  // 在文档4的<script>中添加：
+  document.addEventListener('DOMContentLoaded', async () => {
+    checkLoginStatus();
+    loadUserData();
+
+    try {
+      // 从服务器获取帖子列表
+      const response = await fetch('/posting/_data/list-posts.php');
+      const posts = await response.json();
+
+      // 清空现有帖子容器
+      const container = document.querySelector('.community-container main');
+      container.querySelectorAll('.post-card').forEach(el => el.remove());
+
+      // 动态生成帖子列表
+      posts.forEach(post => {
+        const postHTML = `
+                <div class="post-card" data-post-id="${post.meta.id}">
+                    <div class="post-header">
+                        <img src="${post.meta.avatar}" class="user-avatar">
+                        <div class="user-info">
+                            <div class="user-name">
+                                ${post.meta.author}
+                                <span class="user-badge">${post.meta.category}</span>
+                            </div>
+                            <div class="post-time">${post.meta.postTime}</div>
+                        </div>
+                    </div>
+                    <span class="post-category category-${post.meta.category}">${post.meta.category}</span>
+                    <h3>${post.meta.title}</h3>
+                    <p>${post.meta.description}</p>
+                    <div class="post-stats">
+                        <div class="post-stat-item">
+                            <i class="far fa-thumbs-up"></i> ${post.meta.likes}
+                        </div>
+                        <div class="post-stat-item">
+                            <i class="far fa-comment"></i> ${post.meta.comments.length}
+                        </div>
+                        <div class="post-stat-item">
+                            <i class="fas fa-eye"></i> ${post.meta.views}
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow-line"></div>
+            `;
+        container.insertAdjacentHTML('beforeend', postHTML);
+      });
+    } catch (error) {
+      console.error('加载帖子失败:', error);
+    }
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const previewId = urlParams.get('preview');
+
+  if (previewId) {
+    setTimeout(() => {
+      alert('发帖成功！帖子ID: ' + previewId.replace('.json', ''));
+      history.replaceState(null, '', window.location.pathname);
+    }, 500);
+  }
+
+  // 修改帖子内容渲染逻辑
+  function renderContent(content) {
+    const container = document.querySelector('.post-content');
+    container.innerHTML = '';
+
+    content.forEach(item => {
+      let element;
+      switch (item.type) {
+        case 'paragraph':
+          element = document.createElement('p');
+          element.innerHTML = item.content;
+          break;
+        case 'header':
+          element = document.createElement('h2');
+          element.textContent = item.text;
+          break;
+        case 'list':
+          element = document.createElement('ul');
+          item.items.forEach(text => {
+            const li = document.createElement('li');
+            li.innerHTML = text;
+            element.appendChild(li);
+          });
+          break;
+        case 'image':
+          element = document.createElement('img');
+          element.src = item.src;
+          element.alt = item.alt;
+          element.classList.add('content-image');
+          break;
+      }
+      if (element) container.appendChild(element);
+    });
+  }
+
+
+</script>
+
+</html>

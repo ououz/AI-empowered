@@ -1,0 +1,55 @@
+{
+    "meta": {
+        "id": 1,
+        "title": "世界500强HR偏好的简历模板解析",
+        "author": "陈思雨",
+        "postTime": "2024-03-10 14:30",
+        "category": "resume",
+        "level": 3,
+        "avatar": "./images/avatar2.jpg",
+        "views": 3400,
+        "likes": 892,
+        "comments": 134,
+        "description": "整理了宝洁、联合利华等快消巨头的成功简历案例，重点解析STAR法则的应用技巧，附赠可编辑模板..."
+    },
+    "content": [
+        {
+            "type": "header",
+            "text": "STAR法则核心要点"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Situation（情境）: 精简描述项目背景",
+                "Task（任务）: 突出你的职责范围",
+                "Action（行动）: 使用动词量化行为",
+                "Result（结果）: 数据化展示成果"
+            ]
+        },
+        {
+            "type": "image",
+            "src": "./images/resume-template.jpg",
+            "alt": "快消行业简历模板"
+        },
+        {
+            "type": "quote",
+            "text": "优秀简历的共同特点：一页原则、关键词匹配、结果导向"
+        }
+    ],
+    "comments": [
+        {
+            "avatar": "./images/user-avatar1.jpg",
+            "author": "李娜",
+            "time": "2小时前",
+            "text": "模板非常实用，修改后已收到宝洁面试邀请！",
+            "likes": 24
+        },
+        {
+            "avatar": "./images/user-avatar2.jpg",
+            "author": "王浩",
+            "time": "5小时前",
+            "text": "STAR法则的电商运营案例很有参考价值",
+            "likes": 15
+        }
+    ]
+}

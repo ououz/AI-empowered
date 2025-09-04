@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>霍兰德职业兴趣测评</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .test-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .option {
+      padding: 10px 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .option:hover {
+      background: #f0f0f0;
+    }
+
+    .option.selected {
+      background: #0073e6;
+      color: white;
+      border-color: #0073e6;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #0073e6;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: #eee;
+      color: #333;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress {
+      height: 100%;
+      background: #0073e6;
+      width: 0;
+      transition: width 0.3s;
+    }
+
+    #resultContainer {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .result-type {
+      font-size: 24px;
+      color: #0073e6;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>霍兰德职业兴趣测评</h1>
+    <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+    <div id="questionContainer"></div>
+    <div style="text-align:center">
+      <button class="btn btn-secondary" id="prevBtn">上一页</button>
+      <button class="btn btn-secondary" id="nextBtn">下一页</button>
+      <button class="btn btn-primary" id="submitBtn" style="display:none;">提交</button>
+    </div>
+    <div id="resultContainer">
+      <h2>测评结果</h2>
+      <div class="result-type" id="resultType"></div>
+      <div class="result-description" id="resultDescription"></div>
+      <div class="job-recommendations" id="jobRecommendations"></div>
+      <table id="scoreTable">
+        <thead><tr><th>类型</th><th>得分</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const typeNames = {
+      R: "现实型 Realistic",
+      I: "研究型 Investigative",
+      A: "艺术型 Artistic",
+      S: "社会型 Social",
+      E: "企业型 Enterprising",
+      C: "常规型 Conventional"
+    };
+
+    const personalityTypes = {
+      R: { jobs: ["工程师", "技师", "建筑师", "农业技术员", "机械师"] },
+      I: { jobs: ["科研人员", "数据分析师", "医生", "程序员", "实验室技术员"] },
+      A: { jobs: ["设计师", "作家", "音乐家", "演员", "摄影师"] },
+      S: { jobs: ["教师", "心理咨询师", "社工", "人力资源专员", "护士"] },
+      E: { jobs: ["企业管理者", "销售经理", "创业者", "市场营销专员", "房地产经纪人"] },
+      C: { jobs: ["会计", "行政助理", "图书管理员", "银行职员", "文秘"] }
+    };
+
+    const idealcareer = {
+    // 现实型（R）主导组合（15组）
+    RIA: ["牙科技术员","陶工","建筑设计员","模型工","细木工","制作链条人员"],
+    RIS: ["厨师","林务员","跳水员","潜水员","染色员","电器修理","眼镜制作","电工","纺织机器装配工","服务员","装玻璃工人","发电厂工人","焊接工"],
+    RIE: ["建筑和桥梁工程","环境工程","航空工程","公路工程","电力工程","信号工程","电话工程","一般机械工程","自动工程","矿业工程","海洋工程","交通工程技术人员","制图员","家政经济人员","计量员","农民","农场工人","农业机械操作","清洁工","无线电修理","汽车修理","手表修理","管工","线路装配工","工具仓库管理员"],
+    RIC: ["船上工作人员","接待员","杂志保管员","牙医助手","制帽工","磨坊工","石匠","机器制造","机车(火车头)制造","农业机器装配","汽车装配工","缝纫机装配工","钟表装配和检验","电动器具装配","鞋匠","锁匠","货物检验员","电梯机修工","托儿所所长","钢琴调音员","装配工","印刷工","建筑钢铁工作","卡车司机"],
+    RAI: ["手工雕刻","玻璃雕刻","制作模型人员","家具木工","制作皮革品","手工绣花","手工钩针纺织","排字工作","印刷工作","图画雕刻","装订工"],
+    RSE: ["消防员","交通巡警","警察","门卫","理发师","房间清洁工","屠夫","锻工","开凿工人","管道安装工","出租汽车驾驶员","货物搬运工","送报员","勘探员","娱乐场所的服务员","起卸机操作工","灭害虫者","电梯操作工","厨房助手"],
+    RSI: ["纺织工","编织工","农业学校教师","某些职业课程教师（诸如艺术、商业、技术、工艺课程）","雨衣上胶工"],
+    REC: ["抄水表员","保姆","实验室动物饲养员","动物管理员"],
+    REI: ["轮船船长","航海领航员","大副","试管实验员"],
+    RES: ["旅馆服务员","家畜饲养员","渔民","渔网修补工","水手长","收割机操作工","搬运行李工人","公园服务员","救生员","登山导游","火车工程技术员","建筑工作","铺轨工人"],
+    RCI: ["测量员","勘测员","仪表操作者","农业工程技术","化学工程技师","民用工程技师","石油工程技师","资料室管理员","探矿工","煅烧工","烧窖工","矿工","保养工","磨床工","取样工","样品检验员","纺纱工","炮手","漂洗工","电焊工","锯木工","刨床工","制帽工","手工缝纫工","油漆工","染色工","按摩工","木匠","农民建筑工作","电影放映员","勘测员助手"],
+    RCS: ["公共汽车驾驶员","一等水手","游泳池服务员","裁缝","建筑工作","石匠","烟囱修建工","混凝土工","电话修理工","爆炸手","邮递员","矿工","裱糊工人","纺纱工"],
+    RCE: ["打井工","吊车驾驶员","农场工人","邮件分类员","铲车司机","拖拉机司机"],
+    RAE: ["模型","时装设计师","商业和工业设计师","广告销售代理"], 
+    RAS: ["演员","音乐家和歌手","编舞","艺术、戏剧和音乐教师"], 
+
+    // 研究型（I）主导组合（20组）
+    IAS: ["普通经济学家","农场经济学家","财政经济学家","国际贸易经济学家","实验心理学家","工程心理学家","心理学家","哲学家","内科医生","数学家"],
+    IAR: ["人类学家","天文学家","化学家","物理学家","医学病理","动物标本剥制者","化石修复者","艺术品管理者"],
+    ISE: ["营养学家","饮食顾问","火灾检查员","邮政服务检查员"],
+    ISC: ["侦察员","电视播音室修理员","电视修理服务员","验尸室人员","编目录者","医学实验定技师","调查研究者"],
+    ISR: ["水生生物学者","昆虫学者","微生物学家","配镜师","矫正视力者","细菌学家","牙科医生","骨科医生"],
+    ISA: ["实验心理学家","普通心理学家","发展心理学家","教育心理学家","社会心理学家","临床心理学家","目标学家","皮肤病学家","精神病学家","妇产科医师","眼科医生","五官科医生","医学实验室技术专家","民航医务人员","护士"],
+    IES: ["细菌学家","生理学家","化学专家","地质专家","地理物理学专家","纺织技术专家","医院药剂师","工业药剂师","药房营业员"],
+    IEC: ["档案保管员","保险统计员"],
+    ICR: ["质量检验技术员","地质学技师","工程师","法官","图书馆技术辅导员","计算机操作员","医院听诊员","家禽检查员"],
+    IRA: ["地理学家","地质学家","声学物理学家","矿物学家","古生物学家","石油学家","地震学家","原子和分子物理学家","电学和磁学物理学家","气象学家","设计审核员","人口统计学家","数学统计学家","外科医生","城市规划家","气象员"],
+    IRS: ["流体物理学家","物理海洋学家","等离子体物理学家","农业科学家","动物学家","食品科学家","园艺学家","植物学家","解剖学家","动物病理学家","作物病理学家","药物学家","生物化学家","生物物理学家","细胞生物学家","临床化学家","遗传学家","分子生物学家","质量控制工程师","兽医","放射性治疗技师"],
+    IRE: ["化验员","化学工程师","纺织工程师","食品技师","渔业技术专家","材料和测试工程师","电气工程师","土木工程师","航空工程师","行政官员","冶金专家","原子核工程师","陶瓷工程师","地质工程师","电力工程量","口腔科医生","牙科医生"],
+    IRC: ["飞机领航员","飞行员","物理实验室技师","文献检查员","农业技术专家","动植物技术专家","生物技师","油管检查员","工商业规划者","矿藏安全检查员","纺织品检验员","照相机修理者","工程技术员","编计算程序者","工具设计者","仪器维修工"],
+    ICA: ["计算机程序员","数据库管理员","软件开发人员","Web 管理员","Web 开发人员","临床数据经理","文档管理专家","编辑","管理分析师","项目管理专家"], 
+    ICE: ["律师助理和法律助理", "私家侦探和调查员", "临床研究协调员", "可持续发展专家", "精算师", "商业智能分析师", "金融风险专家", "管理分析师", "Web管理员", "会计师和审计师", "预算分析师", "理赔员、审查员和调查员", "薪酬、福利和工作分析专家", "计算机信息系统经理", "信用分析师", "金融机构投资分析师", "财务审查员", "欺诈审查员、调查员和分析师", "保险承保人"], 
+
+    // 艺术型（A）主导组合（20组）
+    ARI: ["建筑师","画家","摄影师","绘图员","雕刻家","包装设计师","陶器设计师","绣花工","漫画工"],
+    AIS: ["画家","剧作家","编辑","评论家","时装艺术大师","新闻摄影师","男演员","文学作者"],
+    AIE: ["花匠","皮衣设计师","工业产品设计师","剪影艺术家","复制雕刻品大师"],
+    ASE: ["戏剧导演","舞蹈教师","广告撰稿人","报刊专栏作者","记者","演员","英语翻译"],
+    ASI: ["音乐教师","乐器教师","美术教师","管弦乐指挥","合唱队指挥","歌星","演奏家","哲学家","作家","广告经理","时装模特"],
+    AER: ["新闻摄影师","电视摄影师","艺术指导","录音指导","丑角演员","魔术师","木偶戏演员","骑士","跳水员"],
+    AEI: ["音乐指挥","舞台指导","电影导演"],
+    AES: ["流行歌手","舞蹈演员","电影导演","广播节目主持人","舞蹈教师","口技表演者","喜剧演员","模特"],
+    AIR: ["建筑师","画家","摄影师","绘图员","环境美化工","雕刻家","包装设计师","陶器设计师","绣花工","漫画工"],
+    ACI: ["技术作家", "Web 和数字界面设计师"], 
+    ACS: ["托儿所工作者", "口译和笔译"], 
+    ACE: ["唱片骑师，收音机除外", "编辑", "广告和促销经理", "广告销售代理", "媒体节目总监"], 
+    AIC: ["Web 和数字界面设计师", "技术作家"], 
+    ASR: ["演员","音乐家和歌手","编舞","艺术、戏剧和音乐教师"], 
+    AEC: ["唱片骑师，收音机除外", "编辑", "广告和促销经理", "广告销售代理", "媒体节目总监"], 
+
+    // 社会型（S）主导组合（20组）
+    SIA: ["社会学家","心理咨询者","学校心理学家","政治科学家","大学系主任","教育学教师","农业教师","工程建筑教师","法律教师","STEM学科教师","研究生助教","成人教育教师"],
+    SIE: ["营养学家","饮食学家","海关检查员","安全检查员","税务稽查员","校长"],
+    SIC: ["描图员","兽医助手","诊所助理","体检检查员","监督缓刑犯工作者","娱乐指导者","咨询人员","社会科学教师"],
+    SIR: ["理疗员","救护队工作人员","手足病医生","职业病治疗助手"],
+    SEC: ["社会活动家","退伍军人服务官员","工商会事务代表","教育咨询者","宿舍管理员","旅馆经理","饮食服务管理员"],
+    SER: ["体育教练","游泳指导"],
+    SEI: ["大学校长","学院院长","医院行政管理员","历史学家","家政经济学家","职业学校教师","资料员"],
+    SEA: ["娱乐活动管理员","国外服务办事员","社会服务助理","一般咨询者","宗教教育工作者"],
+    SCE: ["部长助理","福利机构职员","生产协调人","环境卫生管理人员","戏院经理","餐馆经理","售票员"],
+    SRI: ["外科医师助手","医院服务员"],
+    SRE: ["体育教师","职业病治疗者","体育教练","专业运动员","房管员","儿童家庭教师","警察","引座员","传达员","保姆"],
+    SRC: ["护理员","护理助理","医院勤杂工","理发师","学校儿童服务人员"],
+    SRA: ["演员","音乐家和歌手","编舞","艺术、戏剧和音乐教师"], 
+    SCR: ["娱乐和娱乐服务员", "咖啡师", "餐厅和自助餐厅服务员和调酒师助手", "个人护理助手", "校车监视器", "家庭健康助手", "物理治疗师助手", "乘务员", "救护车司机和护理人员，紧急医疗技术人员除外", "动物看护人", "食品服务员，非餐厅", "座位服务员", "救生员、滑雪巡逻队和其他娱乐保护服务人员", "洗发水", "信使和信使", "乘务员", "更衣室、衣帽间和更衣室服务员"], // 待补充
+    SAE: ["演员", "广播播音员和电台唱片骑师", "公共关系专家", "人才总监"], 
+
+    // 企业型（E）主导组合（20组）
+    ECI: ["银行行长","审计员","信用管理员","地产管理员","商业管理员"],
+    ECS: ["信用办事员","保险人员","各类进货员","海关服务经理","售货员","购买员","会计"],
+    ERI: ["建筑物管理员","工业工程师","农场管理员","护士长","农业经营管理人员"],
+    ERS: ["仓库管理员","房屋管理员","货栈监督管理员"],
+    ERC: ["邮政局长","渔船船长","机械操作领班","木工领班","瓦工领班","驾驶员领班"],
+    EIR: ["科学出版物管理员"],
+    EIC: ["专利代理人","鉴定人","运输服务检查员","安全检查员","废品收购人员"],
+    EIS: ["警官","侦察员","交通检验员","安全咨询员","合同管理者","商人"],
+    EAS: ["法官","律师","公证人"],
+    EAR: ["展览室管理员","舞台管理员","播音员","训兽员"],
+    ESC: ["理发师","裁判员","政府行政管理员","财政管理员","工程管理员","职业病防治","售货员","商业经理","办公室主任","人事负责人","调度员"],
+    ESR: ["家具售货员","书店售货员","公共汽车驾驶员","日用品售货员","护士长","自然科学行政领导"],
+    ESI: ["博物馆管理员","图书馆管理员","古迹管理员","饮食业经理","安全服务管理员","技术咨询者","超市管理员","零售店员","批发商","出租车调度"],
+    ESA: ["博物馆馆长","报刊管理员","音乐器材售货员","广告营业员","导游","事务长","空乘人员","船员","法官","律师"],
+    ECA: ["唱片骑师，收音机除外", "广告和促销经理", "广告销售代理", "媒体节目总监", "编辑"], 
+    ECR: ["上门销售人员、新闻和街头小贩以及相关工作人员", "厨师，快餐", "快餐店和柜台员工", "飞机货物处理主管", "食品制餐和服务工人的一线主管", "助手、工人和材料搬运工的一线主管", "家政部和清洁工人的一线主管", "保安人员的一线主管", "食品服务经理", "回收协调员", "裁判员、裁判员和其他体育官员", "农场劳务承包商", "货运代理", "药房助手", "零售损失预防专家"], 
+    EIA: ["新闻分析师、记者和记者", "视频游戏设计师"], 
+
+    // 常规型（C）主导组合（20组）
+    CRI: ["簿记员","会计","记时员","铸造机操作工","打字员","按键操作工","复印机操作工"],
+    CRS: ["仓库保管员","档案管理员","缝纫工","讲述员","收款人"],
+    CRE: ["标价员","实验室工作者","广告管理员","自动打字机操作员","电动机装配工","缝纫机操作工"],
+    CIS: ["记账员","顾客服务员","报刊发行员","土地测量员","保险公司职员","会计师","估价员","邮政检查员","外贸检查员"],
+    CIE: ["打字员","统计员","支票记录员","订货员","校对员","办公室工作人员"],
+    CIR: ["校对员","工程职员","海底电报员","检修计划员","发扳员"],
+    CSE: ["接待员","通讯员","电话接线员","卖票员","旅馆服务员","私人职员","商学教师","旅游办事员"],
+    CSR: ["运货代理商","铁路职员","交通检查员","办公室通信员","薄记员","出纳员","银行财务职员"],
+    CSA: ["秘书","图书管理员","办公室办事员"],
+    CER: ["邮递员","数据处理员","办公室办事员"],
+    CEI: ["推销员","经济分析家"],
+    CES: ["银行会计","记账员","法人秘书","速记员","法院报告人"],
+    CEA: [  "唱片骑师，收音机除外","广告和促销经理","广告销售代理","媒体节目总监","编辑"], 
+};
+
+    const questions = [
+  // 现实型 R（1-15）
+  { id: 1, text: "强壮而敏捷的身体对我很重要", type: "R" },
+  { id: 2, text: "我擅长于自己制作、修理东西", type: "R" },
+  { id: 3, text: "我喜欢使用双手做事", type: "R" },
+  { id: 4, text: "我不在乎工作把手弄脏", type: "R" },
+  { id: 5, text: "我喜欢购买小零件，做成成品", type: "R" },
+  { id: 6, text: "我喜欢独立完成一项任务", type: "R" },
+  { id: 7, text: "我喜欢直言不讳，不喜欢转弯抹角", type: "R" },
+  { id: 8, text: "从事户外活动令我神清气爽", type: "R" },
+  { id: 9, text: "我喜欢周边环境简单而实际", type: "R" },
+  { id: 10, text: "我不害怕过重工作负荷，且知道工作的重点", type: "R" },
+  { id: 11, text: "我希望粗重的肢体工作不会伤害任何人", type: "R" },
+  { id: 12, text: "我选车时，最先注意的是好的引擎", type: "R" },
+  { id: 13, text: "我通常知道如何应付紧急事件", type: "R" },
+  { id: 14, text: "我用运动来保持强壮的身体", type: "R" },
+  { id: 15, text: "我喜欢把东西拆开，看看能否修理他们", type: "R" },
+
+  // 研究型 I（16-30）
+  { id: 16, text: "我必须彻底地了解事情的真相", type: "I" },
+  { id: 17, text: "我可以花很长的时间去想通事情的道理", type: "I" },
+  { id: 18, text: "探索新构思使我满意", type: "I" },
+  { id: 19, text: "我认为教育是个发展及磨练脑力的终身学习过程", type: "I" },
+  { id: 20, text: "有时我长时间阅读、玩拼图游戏、冥想生命本质", type: "I" },
+  { id: 21, text: "我渴望阅读或思考任何可以引发我好奇心的东西", type: "I" },
+  { id: 22, text: "我在解决问题前，必须把问题进行彻底分析", type: "I" },
+  { id: 23, text: "我不断地问：为什么？", type: "I" },
+  { id: 24, text: "我会不断地思索一个问题，直到找出答案为止", type: "I" },
+  { id: 25, text: "我喜欢能使我思考、给我新观点的书", type: "I" },
+  { id: 26, text: "我希望能学习所有使我感兴趣的科目", type: "I" },
+  { id: 27, text: "我喜欢能刺激我思考的话", type: "I" },
+  { id: 28, text: "阅读新发现的事件令人兴奋的事情", type: "I" },
+  { id: 29, text: "我经常对大自然的奥秘感到好奇", type: "I" },
+  { id: 30, text: "我喜欢研读所有的事实，再有逻辑的做出决定", type: "I" },
+
+  // 艺术型 A（31-45）
+  { id: 31, text: "我的心情受音乐、色彩和美丽事物的影响极大", type: "A" },
+  { id: 32, text: "我重视美丽的环境", type: "A" },
+  { id: 33, text: "我是寻求新方法来发挥我的创造力", type: "A" },
+  { id: 34, text: "我喜欢非正式的穿着，尝试新颜色和款式", type: "A" },
+  { id: 35, text: "我有很强的想象力", type: "A" },
+  { id: 36, text: "我喜欢尝试创新的概念", type: "A" },
+  { id: 37, text: "我喜欢重新布置我的环境，使他们与众不同", type: "A" },
+  { id: 38, text: "我喜欢自己的工作能够抒发我的情绪和感觉", type: "A" },
+  { id: 39, text: "大自然的美深深地触动我的灵魂", type: "A" },
+  { id: 40, text: "我希望能看到艺术表演、戏剧及好的电影", type: "A" },
+  { id: 41, text: "我希望能做些与众不同的事", type: "A" },
+  { id: 42, text: "当我从事创造性的事时，我会忘掉一切旧经验", type: "A" },
+  { id: 43, text: "我喜欢美丽、不平凡的东西", type: "A" },
+  { id: 44, text: "尝试不平凡的新事物是件相当有趣的事情", type: "A" },
+  { id: 45, text: "没有美丽事物的生活，对我而言是不可思议的", type: "A" },
+
+  // 社会型 S（46-60）
+  { id: 46, text: "和他人的关系丰富了我的生命并使它有意义", type: "S" },
+  { id: 47, text: "我愿意花时间帮别人解决个人危机", type: "S" },
+  { id: 48, text: "我认为能把自己的焦虑和别人分担是很重要的", type: "S" },
+  { id: 49, text: "我常能体会到某人想要和他人沟通的需要", type: "S" },
+  { id: 50, text: "我喜欢帮助别人发挥天赋和才能", type: "S" },
+  { id: 51, text: "如果我和别人摩擦，我会不断尝试化干戈为玉帛", type: "S" },
+  { id: 52, text: "我经常借着和别人交谈来解决自己的问题", type: "S" },
+  { id: 53, text: "我喜欢帮助别人找可以和他人相互关注的办法", type: "S" },
+  { id: 54, text: "亲密的人际关系对我很重要", type: "S" },
+  { id: 55, text: "我对别人的情绪低潮相当的敏感", type: "S" },
+  { id: 56, text: "我对别人的困难乐于伸出援手", type: "S" },
+  { id: 57, text: "我对社会上有许多人需要帮助感到关注", type: "S" },
+  { id: 58, text: "我经常关心孤独、不友善的人", type: "S" },
+  { id: 59, text: "当别人向我诉说他的困难时，我是个好听众", type: "S" },
+  { id: 60, text: "人们经常告诉我他们的问题", type: "S" },
+
+  // 企业型 E（61-75）
+  { id: 61, text: "我自信会成功", type: "E" },
+  { id: 62, text: "我喜欢竞争", type: "E" },
+  { id: 63, text: "成为群体中的关键任务执行者，对我很重要", type: "E" },
+  { id: 64, text: "我喜欢帮助别人不断改进", type: "E" },
+  { id: 65, text: "我喜欢监督事情直至完工", type: "E" },
+  { id: 66, text: "要成功就必须定高目标", type: "E" },
+  { id: 67, text: "我常想起草一个计划，而由别人完成细节", type: "E" },
+  { id: 68, text: "能够参与重大决策是令人兴奋的事情", type: "E" },
+  { id: 69, text: "升迁和进步对我很重要", type: "E" },
+  { id: 70, text: "能影响别人使我感到兴奋", type: "E" },
+  { id: 71, text: "我愿意冒一点险以求进步", type: "E" },
+  { id: 72, text: "说服别人依计划行事是件有趣的事情", type: "E" },
+  { id: 73, text: "我喜欢讨价还价", type: "E" },
+  { id: 74, text: "做事失败了，我会再接再厉", type: "E" },
+  { id: 75, text: "我常能借着资讯网络和别人取得联系", type: "E" },
+
+  // 常规型 C（76-90）
+  { id: 76, text: "我做事必须有清楚的指引", type: "C" },
+  { id: 77, text: "我在开始一个计划前会花很多时间去计划", type: "C" },
+  { id: 78, text: "我对于自己能重视工作中的所有细节感到骄傲", type: "C" },
+  { id: 79, text: "我在决策时，通常不愿冒险", type: "C" },
+  { id: 80, text: "如果我面对一个新情景，会在事前做充分的准备", type: "C" },
+  { id: 81, text: "我喜欢为重大决策负责", type: "C" },
+  { id: 82, text: "准时对我来说非常重要", type: "C" },
+  { id: 83, text: "我经常保持清洁，喜欢有条不紊", type: "C" },
+  { id: 84, text: "当我把每日工作计划好时，我会较有安全感", type: "C" },
+  { id: 85, text: "当我答应一件事时，我会竭尽监督所有细节", type: "C" },
+  { id: 86, text: "当我遵循成规时，我感到安全", type: "C" },
+  { id: 87, text: "我擅长于检查细节", type: "C" },
+  { id: 88, text: "我花钱时小心翼翼", type: "C" },
+  { id: 89, text: "我需要确切地知道别人对我的要求是什么", type: "C" },
+  { id: 90, text: "小心谨慎的完成一件事是件有成就感的事情", type: "C" }
+];
+
+
+    const types = ['R', 'I', 'A', 'S', 'E', 'C'];
+    let id = 1;
+    /*types.forEach(type => {
+      for (let i = 1; i <= 15; i++) {
+        questions.push({
+          id: id++,
+          text: `${type} 类问题 ${i}`,
+          type: type
+        });
+      }
+    });*/
+
+    //一页十个题目
+    const answers = {};
+    let currentPage = 1;
+    const perPage = 10;
+    const totalPages = Math.ceil(questions.length / perPage);
+
+    function renderPage() {
+      const container = document.getElementById('questionContainer');
+      container.innerHTML = '';
+      const start = (currentPage - 1) * perPage;
+      const pageQuestions = questions.slice(start, start + perPage);
+
+      pageQuestions.forEach(q => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `
+          <h3>第 ${q.id} 题</h3>
+          <p>${q.text}</p>
+          <div class="options">
+            <div class="option" data-value="0">否</div>
+            <div class="option" data-value="1">是</div>
+          </div>
+        `;
+        const options = div.querySelectorAll('.option');
+        options.forEach(opt => {
+          opt.addEventListener('click', () => {
+            options.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            answers[q.id] = { value: parseInt(opt.dataset.value), type: q.type };
+            updateProgress();
+          });
+
+          if (answers[q.id] && parseInt(opt.dataset.value) === answers[q.id].value) {
+            opt.classList.add('selected');
+          }
+        });
+
+        container.appendChild(div);
+      });
+
+      document.getElementById('prevBtn').style.display = currentPage > 1 ? 'inline-block' : 'none';
+      document.getElementById('nextBtn').style.display = currentPage < totalPages ? 'inline-block' : 'none';
+      document.getElementById('submitBtn').style.display = currentPage === totalPages ? 'inline-block' : 'none';
+    }
+
+    function updateProgress() {
+      const progress = (Object.keys(answers).length / questions.length) * 100;
+      document.getElementById('progressBar').style.width = progress + "%";
+    }
+
+    function showResults() {
+      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+      Object.values(answers).forEach(ans => {
+        scores[ans.type] += ans.value;
+      });
+
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const top3 = sorted.slice(0, 3).map(x => x[0]).join('');
+      const resultType = sorted[0][0];           //得分最高类型
+
+      document.getElementById('resultType').textContent = `你的兴趣代码为：${top3}`;
+      document.getElementById('resultDescription').textContent = `最高得分类型：${typeNames[resultType]}`;
+      //const jobList = personalityTypes[resultType].jobs.map(job => `<li>${job}</li>`).join('');
+      //寻找目标职业
+      const jobList=idealcareer[top3].map(job => `<li>${job}</li>`).join('');
+      document.getElementById('jobRecommendations').innerHTML = `<h4>推荐职业：</h4><ul>${jobList}</ul>`;
+
+      const tbody = document.querySelector('#scoreTable tbody');
+      tbody.innerHTML = '';
+      sorted.forEach(([type, score]) => {
+        tbody.innerHTML += `<tr><td>${typeNames[type]}</td><td>${score}</td></tr>`;
+      });
+
+      document.getElementById('questionContainer').style.display = 'none';
+      document.getElementById('prevBtn').style.display = 'none';
+      document.getElementById('nextBtn').style.display = 'none';
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('resultContainer').style.display = 'block';
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPage();
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPage();
+      }
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      if (Object.keys(answers).length < questions.length) {
+        alert("请完成所有题目后再提交！");
+      } else {
+        showResults();
+      }
+    });
+
+    renderPage();
+  </script>
+</body>
+</html>
