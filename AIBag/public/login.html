@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录注册 - 大学生职业竞争力赋能平台</title>
+
+    <!-- 字体和图标 -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Google Sans', Arial, sans-serif;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+
+        }
+
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+
+        }
+
+        /* 主卡片样式 */
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+            min-height: 500px;
+            padding: 32px 40px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+
+        }
+
+
+
+        /* 品牌标识 */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        /* 选项卡样式 */
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .auth-tab.active {
+            color: #0073e6;
+            border-bottom: 3px solid #0073e6;
+        }
+
+        /* 第三方登录按钮 */
+        .social-auth {
+            display: grid;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fff;
+            color: #444;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .social-btn:hover {
+            background: #f8f9fa;
+            border-color: #0073e6;
+        }
+
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* 分隔线 */
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #666;
+            position: relative;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-top: 1px solid #eee;
+            z-index: 1;
+        }
+
+        .divider span {
+            background: #fff;
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 表单样式 */
+        .auth-form {
+            margin-top: 20px;
+        }
+
+        .form-input {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #005bb5;
+        }
+
+        /* 底部链接 */
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .auth-footer a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        /* 隐私声明 */
+        .privacy-notice {
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        /* 隐藏非活动内容 */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .platform-logo {
+            font-size: 24px;
+            color: #0073e6;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* 电话注册输入框 */
+        .phone-input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .phone-prefix {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        #phoneNumber {
+            padding-left: 45px;
+        }
+
+        /* 邮箱注册输入框 */
+        .email-input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .email-input-group .form-input {
+            padding-left: 45px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="auth-card">
+            <!-- 品牌标识 -->
+            <div class="brand-header">
+                <div class="platform-logo">大学生职业竞争力赋能平台</div>
+                <h2>欢迎！</h2>
+            </div>
+
+            <!-- 选项卡 -->
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">登录</div>
+                <div class="auth-tab" data-tab="register">注册</div>
+            </div>
+
+            <!-- 登录内容 -->
+            <div id="loginContent" class="tab-content active">
+                <div class="social-auth">
+                    <button class="social-btn qq-btn">
+                        <i class="fab fa-qq"></i>
+                        QQ快速登录
+                    </button>
+                    <button class="social-btn">
+                        <i class="fab fa-google"></i>
+                        Google登录
+                    </button>
+                </div>
+
+                <div class="divider">
+                    <span>或</span>
+                </div>
+
+                <form class="auth-form" id="loginForm">
+                    <input type="text" name="account" class="form-input" placeholder="手机号/邮箱" required
+                        pattern="(^1[3-9]\d{9}$)|(^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$)">
+                    <input type="password" name="password" class="form-input" placeholder="密码" required>
+                    <button type="submit" class="submit-btn">立即登录</button>
+                </form>
+
+                <div class="auth-footer">
+                    <a href="#">忘记密码？</a>
+                </div>
+            </div>
+
+            <!-- 注册内容 -->
+            <div id="registerContent" class="tab-content">
+                <form class="auth-form" id="registerForm">
+                    <!-- 电话注册 -->
+                    <div class="phone-input-group">
+                        <span class="phone-prefix">+86</span>
+                        <input type="tel" id="phoneNumber" name="phone" class="form-input" pattern="1[3-9]\d{9}"
+                            placeholder="手机号码" required>
+
+                    </div>
+                    <!-- 邮箱注册 -->
+                    <div class="email-input-group">
+                        <input type="email" name="email" class="form-input" placeholder="电子邮箱（选填）">
+                    </div>
+
+
+                    <button type="submit" class="submit-btn">立即注册</button>
+                </form>
+
+                <div class="privacy-notice">
+                    当您关联第三方账户时，本平台会收集存储必要信息。
+                    关联账户即表示您授权我们访问和使用相关账户信息。
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = "http://localhost:5000/api/auth";
+
+        // 处理登录
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const accountInput = this.elements.account.value.trim();
+            const passwordInput = this.elements.password.value;
+
+            // 调用后端登录接口
+            const res = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    phone: /^1[3-9]\d{9}$/.test(accountInput) ? accountInput : undefined,
+                    qq: /^[1-9][0-9]{4,11}$/.test(accountInput) ? accountInput : undefined,
+                    password: passwordInput
+                })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("userData", JSON.stringify(data.user));
+                localStorage.setItem("isLoggedIn", "true");
+                window.location.href = "/profile.html";
+            } else {
+                alert(data.error || "登录失败");
+            }
+        });
+
+        // 处理注册
+        document.getElementById('registerForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const phone = this.elements.phone.value.trim();
+            const email = this.elements.email.value.trim();
+            const password = "123456"; // 临时写死，建议加输入框
+
+            // 校验手机号
+            if (!/^1[3-9]\d{9}$/.test(phone)) {
+                alert("请输入有效的手机号");
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        username: "新用户",
+                        phone,
+                        email,
+                        password
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    alert("注册成功！");
+                    // 注册成功后跳转
+                    window.location.href = "login.html";
+                } else {
+                    alert(data.error || "注册失败");
+                }
+            } catch (err) {
+                console.error("注册请求出错:", err);
+                alert("网络错误，请稍后再试");
+            }
+        });
+
+
+        // 保持的选项卡切换逻辑
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const targetTab = this.dataset.tab;
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(targetTab + 'Content').classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

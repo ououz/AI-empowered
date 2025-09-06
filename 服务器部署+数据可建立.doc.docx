@@ -1,0 +1,59 @@
+# 内容
+content = """
+## 第 1–2 天：环境准备
+1. 选择后端框架：推荐 Node.js + Express（轻量、好学）
+2. 数据库：用 MongoDB（云端 MongoDB Atlas 免费版就够了）
+3. 本地环境搭建：
+   - 装 Node.js
+   - 装 MongoDB（或直接用 MongoDB Atlas 在线版）
+   - 在本地能启动 server.js，前端网页能请求到数据
+
+## 第 3–4 天：后端开发
+1. 写 API 接口（用 Express）：
+   - 用户登录/注册（可选）
+   - 读写数据（增删改查）
+2. 连接 MongoDB，测试能存数据
+3. 让前端 AJAX/Fetch 调用这些 API
+
+## 第 5–6 天：部署上线
+1. 买云服务器（阿里云/腾讯云/华为云，学生优惠很便宜）
+   - 系统建议 Ubuntu 20.04
+2. 部署流程：
+   - 上传你的代码
+   - 装 Node.js 和 Nginx
+   - 用 PM2 让 Node.js 永远运行
+   - Nginx 做反向代理，绑定域名（可选）
+3. 或者更快的方法：
+   - 用 Vercel 部署前端
+   - 用 Render/Heroku 部署后端
+
+这样就能通过网址访问了。
+
+## 第 7–8 天：微信小程序改造
+1. 下载微信开发者工具
+2. 小程序前端相当于“壳子”，用 wx.request() 请求你后端的 API
+3. 把网页的逻辑 UI 拆分：
+   - HTML → WXML
+   - CSS → WXSS
+   - JS → 小程序的 JS 逻辑
+4. 由于你的后端已经写好，前端只需要改造样式和交互。
+
+## 第 9–10 天：测试 & 上线
+1. 网页端测试：能访问，能存取数据
+2. 小程序测试：能正常调用后端接口
+3. 提交小程序审核（需要微信认证账号）
+
+---
+总结：
+- 网页上线：先跑通 Node.js + MongoDB → 部署到服务器 → 前端调用 API
+- 微信小程序：主要是把页面换成 WXML/WXSS，复用同一套后端 API
+- 10 天完全可行，重点是先让后端跑起来，前端可以边学边改。
+"""
+
+doc.add_paragraph(content)
+
+# 保存文件
+output_path = "/mnt/data/十天完成计划.docx"
+doc.save(output_path)
+
+output_path
