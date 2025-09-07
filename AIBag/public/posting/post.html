@@ -270,7 +270,8 @@
                 elements.author.textContent = post.author?.username || '匿名';
                 elements.postTime.textContent = new Date(post.createdAt).toLocaleString();
                 elements.avatar.src = post.author?.avatar || '/images/default-avatar.png';
-                elements.description.textContent = post.content;
+                elements.description.innerHTML = renderContent(post.content);
+
 
                 elements.views.innerHTML = `
       <i class="icon fas fa-eye"></i><span class="count">${post.viewsCount}</span>
@@ -294,7 +295,7 @@
             <span class="comment-author">${c.user?.username || '用户'}</span>
             <span class="comment-time">${new Date(c.createdAt).toLocaleString()}</span>
           </div>
-          <p>${c.content}</p>
+          <p>${c.text}</p>
           <div class="comment-likes">
             <i class="like-icon fas fa-heart"></i>
             <span class="like-count">${c.likesCount}</span>
@@ -307,6 +308,31 @@
                 elements.title.textContent = '加载失败';
                 elements.title.style.color = 'red';
             }
+
+            function renderContent(content) {
+                if (!Array.isArray(content)) return '';
+
+                return content.map(item => {
+                    switch (item.type) {
+                        case 'header':
+                            return `<h2>${item.title || ''}</h2><p>${item.text || ''}</p>`;
+                        case 'paragraph':
+                            return `<p>${item.text || ''}</p>`;
+                        case 'list':
+                            return `<ul>${(item.items || []).map(i => `<li>${i}</li>`).join('')}</ul>`;
+                        case 'quote':
+                            return `<blockquote>${item.text || ''}</blockquote>`;
+                        case 'image':
+                            return `<figure>
+                          <img src="${item.src}" alt="${item.alt || ''}">
+                          <figcaption>${item.caption || ''}</figcaption>
+                        </figure>`;
+                        default:
+                            return '';
+                    }
+                }).join('');
+            }
+
         });
 
         // 点赞按钮逻辑
@@ -318,6 +344,13 @@
                 // TODO: 这里可以调用实际的点赞 API
             }
         });
+
+        function renderContent(content) {
+            if (!Array.isArray(content)) return '';
+            return content.map(item => item.text || '').join('\n');
+        }
+
+
 
     </script>
 </body>

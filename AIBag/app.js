@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
 
 // 路由：用户注册/登录
 app.use("/api/auth", require("./src/routes/auth"));
+app.use("/api/posts", require("./src/routes/posts"));
+app.use("/api/user", require("./src/routes/profile"));
 app.use("/api/profile", require("./src/routes/profile"));
 app.use("/api/favorites", require("./src/routes/favorite"));
 app.use("/api/profile", require("./src/routes/profile"));

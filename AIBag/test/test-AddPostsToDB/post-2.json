@@ -1,0 +1,55 @@
+{
+    "meta": {
+        "id": 2,
+        "title": "应届生必看的薪资谈判策略",
+        "author": "张伟",
+        "postTime": "2024-03-09 09:15",
+        "category": "career",
+        "level": 5,
+        "avatar": "./images/avatar3.jpg",
+        "views": 5600,
+        "likes": 1200,
+        "comments": 287,
+        "description": "如何合理评估自身市场价值？当HR说'这是我们能给的最高薪资'时，应该怎样应对？揭秘企业薪资结构..."
+    },
+    "content": [
+        {
+            "type": "header",
+            "text": "谈判四步法"
+        },
+        {
+            "type": "list",
+            "items": [
+                "市场调研：使用拉勾/猎聘等工具收集同岗位薪资范围",
+                "价值量化：整理实习成果、证书等议价筹码",
+                "锚定策略：给出略高于预期的薪资区间（如：15-18k）",
+                "福利置换：当薪资无法提升时争取培训、假期等福利"
+            ]
+        },
+        {
+            "type": "image",
+            "src": "./images/salary-structure.png",
+            "alt": "企业薪资构成图示"
+        },
+        {
+            "type": "quote",
+            "text": "基于我的项目经验，希望薪资能体现市场价值"
+        }
+    ],
+    "comments": [
+        {
+            "avatar": "./images/user-avatar3.jpg",
+            "author": "林晓婷",
+            "time": "8小时前",
+            "text": "用这个方法成功谈到16k，超心理预期！",
+            "likes": 68
+        },
+        {
+            "avatar": "./images/user-avatar4.jpg",
+            "author": "陈浩宇",
+            "time": "1天前",
+            "text": "求问国企薪资谈判的特殊注意事项",
+            "likes": 42
+        }
+    ]
+}

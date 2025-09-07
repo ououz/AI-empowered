@@ -1,6 +1,7 @@
 const express = require("express");
 const UserProfile = require("../models/UserProfile");
 const auth = require("../middleware/auth");
+const User = require("../models/User");
 
 const router = express.Router();
 
@@ -13,6 +14,18 @@ router.get("/", auth, async (req, res) => {
         res.status(500).json({ error: "服务器错误" });
     }
 });
+
+// 获取当前登录用户基础信息
+router.get("/me", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("username avatar gender");
+        if (!user) return res.status(404).json({ msg: "用户不存在" });
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: "服务器错误" });
+    }
+});
+
 
 // ======================= 更新或创建用户资料 =======================
 router.post("/", auth, async (req, res) => {
