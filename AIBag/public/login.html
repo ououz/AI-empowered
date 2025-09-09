@@ -313,36 +313,44 @@
     </div>
 
     <script>
-        const API_BASE = "http://localhost:5000/api/auth";
+        // 动态判断 API 地址
+        const API_BASE = window.location.hostname === "localhost"
+            ? "http://localhost:5000/api/auth"
+            : "/api/auth"; // 云端使用相对路径
 
-        // 处理登录
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             const accountInput = this.elements.account.value.trim();
             const passwordInput = this.elements.password.value;
 
-            // 调用后端登录接口
-            const res = await fetch("http://localhost:5000/api/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    phone: /^1[3-9]\d{9}$/.test(accountInput) ? accountInput : undefined,
-                    qq: /^[1-9][0-9]{4,11}$/.test(accountInput) ? accountInput : undefined,
-                    password: passwordInput
-                })
-            });
+            try {
+                const res = await fetch(`${API_BASE}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        phone: /^1[3-9]\d{9}$/.test(accountInput) ? accountInput : undefined,
+                        qq: /^[1-9][0-9]{4,11}$/.test(accountInput) ? accountInput : undefined,
+                        password: passwordInput
+                    })
+                });
 
-            const data = await res.json();
-            if (res.ok) {
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("userData", JSON.stringify(data.user));
-                localStorage.setItem("isLoggedIn", "true");
-                window.location.href = "/profile.html";
-            } else {
-                alert(data.error || "登录失败");
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("userData", JSON.stringify(data.user));
+                    localStorage.setItem("isLoggedIn", "true");
+
+                    // 登录成功后跳转
+                    window.location.href = "/profile.html";
+                } else {
+                    alert(data.error || "登录失败");
+                }
+            } catch (err) {
+                console.error("登录请求出错:", err);
+                alert("网络错误，请稍后再试");
             }
         });
-
         // 处理注册
         document.getElementById('registerForm').addEventListener('submit', async function (e) {
             e.preventDefault();
