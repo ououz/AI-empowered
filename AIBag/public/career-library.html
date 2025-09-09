@@ -7,6 +7,10 @@
   <title>职业库 - 大学生职业竞争力赋能平台</title>
   <a href="login.html" id="navLogin">登录/注册</a>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,7 +23,7 @@
     .main-content {
       margin-top: 60px;
       /* 顶栏高度 */
-      padding: 1spx;
+      padding: 20px;
     }
 
 
@@ -154,8 +158,9 @@
     }
 
     .career-category {
-      margin-bottom: 2rem;
+      margin-bottom: 15px;
     }
+
 
     .career-category h2 {
       color: #000000;
@@ -163,18 +168,25 @@
     }
 
     .career-list {
+      overflow: hidden;
       display: flex;
-
-      gap: 1rem;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
     }
 
     .career-card {
       background: #f9f9f9;
       padding: 1rem;
       border-radius: 8px;
+      height: 180px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: calc(33.333% - 1rem);
       text-align: center;
+      width: 250px;
+    }
+
+    .career-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .career-card h3 {
@@ -577,7 +589,7 @@
       line-height: 1.8;
       color: #666;
       font-size: 14px;
-      margin-left: -70px;
+
     }
 
     .requirement-list {
@@ -625,6 +637,75 @@
     /* 显示返回按钮 */
     .job-details-active .back-button {
       display: flex;
+    }
+
+
+    .carousel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .carousel-header h2 {
+      font-size: 1.8rem;
+      color: #2B2B2B;
+      margin: 0;
+    }
+
+    .carousel-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-prev:hover,
+    .carousel-next:hover {
+      background: #0073e6;
+      color: white;
+    }
+
+    .carousel-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .carousel-next .material-icons {
+      margin-right: 0 !important;
+      font-size: 1.8rem;
+      color: #666;
+      vertical-align: middle;
+    }
+
+    .carousel-prev .material-icons {
+      margin-right: 0 !important;
+      font-size: 1.8rem;
+      color: #666;
+      vertical-align: middle;
+    }
+
+    .shadow-line {
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 20px 0;
+      width: 2200px;
+      border: none;
     }
   </style>
 </head>
@@ -732,533 +813,155 @@
         <div class="search-results" id="searchResults">
           <!-- 搜索结果将动态显示在这里 -->
         </div>
+
         <!-- 技术类职业 -->
         <div class="career-category" id="technology">
-          <h2>技术类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="software-engineer">
-              <h3>软件开发工程师</h3>
-              <p>负责设计、开发和维护软件系统。</p>
-            </div>
-            <div class="career-card" id="data-scientist">
-              <h3>数据科学家</h3>
-              <p>通过数据分析为企业提供决策支持。</p>
-            </div>
-            <div class="career-card" id="cybersecurity-engineer">
-              <h3>网络安全工程师</h3>
-              <p>保护企业网络系统免受攻击。</p>
-            </div>
-            <div class="career-card" id="ai-engineer">
-              <h3>人工智能工程师</h3>
-              <p>开发和优化人工智能算法。</p>
-            </div>
-            <div class="career-card" id="cloud-engineer">
-              <h3>云计算工程师</h3>
-              <p>负责云平台的设计和维护。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>技术类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div> <!-- 这里会动态加载卡片 -->
         </div>
+
+        <div class="shadow-line"></div>
 
         <!-- 市场类职业 -->
         <div class="career-category" id="marketing">
-          <h2>市场类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="marketing-manager">
-              <h3>市场营销经理</h3>
-              <p>制定并执行市场推广策略。</p>
-            </div>
-            <div class="career-card" id="brand-manager">
-              <h3>品牌经理</h3>
-              <p>负责品牌建设和推广。</p>
-            </div>
-            <div class="career-card" id="digital-marketing-expert">
-              <h3>数字营销专家</h3>
-              <p>通过数字渠道进行营销推广。</p>
-            </div>
-            <div class="career-card" id="market-analyst">
-              <h3>市场分析师</h3>
-              <p>分析市场趋势和消费者行为。</p>
-            </div>
-            <div class="career-card" id="pr-manager">
-              <h3>公关经理</h3>
-              <p>负责企业公共关系的维护。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>市场类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 管理类职业 -->
         <div class="career-category" id="management">
-          <h2>管理类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="project-manager">
-              <h3>项目经理</h3>
-              <p>负责项目的规划、执行和监控。</p>
-            </div>
-            <div class="career-card" id="product-manager">
-              <h3>产品经理</h3>
-              <p>负责产品的全生命周期管理。</p>
-            </div>
-            <div class="career-card" id="operations-manager">
-              <h3>运营经理</h3>
-              <p>优化企业运营流程，提升效率。</p>
-            </div>
-            <div class="career-card" id="hr-manager">
-              <h3>人力资源经理</h3>
-              <p>负责企业人力资源的管理和开发。</p>
-            </div>
-            <div class="career-card" id="supply-chain-manager">
-              <h3>供应链经理</h3>
-              <p>优化供应链管理，降低成本。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>管理类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 金融类职业 -->
         <div class="career-category" id="finance">
-          <h2>金融类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="investment-banker">
-              <h3>投资银行家</h3>
-              <p>负责企业融资和并购业务。</p>
-            </div>
-            <div class="career-card" id="financial-analyst">
-              <h3>财务分析师</h3>
-              <p>分析企业财务状况，提供决策支持。</p>
-            </div>
-            <div class="career-card" id="risk-manager">
-              <h3>风险管理师</h3>
-              <p>评估和管理企业风险。</p>
-            </div>
-            <div class="career-card" id="insurance-actuary">
-              <h3>保险精算师</h3>
-              <p>设计和管理保险产品。</p>
-            </div>
-            <div class="career-card" id="tax-consultant">
-              <h3>税务顾问</h3>
-              <p>提供税务规划和咨询服务。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>金融类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 教育类职业 -->
         <div class="career-category" id="education">
-          <h2>教育类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="teacher">
-              <h3>教师</h3>
-              <p>负责教育和教学工作。</p>
-            </div>
-            <div class="career-card" id="education-researcher">
-              <h3>教育研究员</h3>
-              <p>进行教育研究和教育政策分析。</p>
-            </div>
-            <div class="career-card" id="education-technologist">
-              <h3>教育技术专家</h3>
-              <p>利用技术改进教学方法。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>教育类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 医疗类职业 -->
         <div class="career-category" id="healthcare">
-          <h2>医疗类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="doctor">
-              <h3>医生</h3>
-              <p>诊断和治疗疾病，提供医疗服务。</p>
-            </div>
-            <div class="career-card" id="nurse">
-              <h3>护士</h3>
-              <p>提供护理服务，协助医生治疗患者。</p>
-            </div>
-            <div class="career-card" id="pharmacist">
-              <h3>药剂师</h3>
-              <p>负责药品的调配和管理，提供用药指导。</p>
-            </div>
-            <div class="career-card" id="dentist">
-              <h3>牙医</h3>
-              <p>诊断和治疗口腔疾病，提供牙齿护理。</p>
-            </div>
-            <div class="career-card" id="physical-therapist">
-              <h3>物理治疗师</h3>
-              <p>通过物理疗法帮助患者恢复身体功能。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>医疗类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 创意类职业 -->
         <div class="career-category" id="creative">
-          <h2>创意类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="graphic-designer">
-              <h3>平面设计师</h3>
-              <p>负责视觉设计和创意表达。</p>
-            </div>
-            <div class="career-card" id="ui-ux-designer">
-              <h3>UI/UX设计师</h3>
-              <p>设计用户界面和用户体验。</p>
-            </div>
-            <div class="career-card" id="photographer">
-              <h3>摄影师</h3>
-              <p>拍摄和编辑照片，捕捉精彩瞬间。</p>
-            </div>
-            <div class="career-card" id="video-editor">
-              <h3>视频剪辑师</h3>
-              <p>负责视频的剪辑和后期制作。</p>
-            </div>
-            <div class="career-card" id="copywriter">
-              <h3>文案策划</h3>
-              <p>撰写广告文案和宣传内容。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>创意类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 工程类职业 -->
         <div class="career-category" id="engineering">
-          <h2>工程类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="mechanical-engineer">
-              <h3>机械工程师</h3>
-              <p>设计和维护机械设备。</p>
-            </div>
-            <div class="career-card" id="electrical-engineer">
-              <h3>电气工程师</h3>
-              <p>设计和维护电气系统。</p>
-            </div>
-            <div class="career-card" id="civil-engineer">
-              <h3>土木工程师</h3>
-              <p>负责建筑和基础设施的设计与施工。</p>
-            </div>
-            <div class="career-card" id="chemical-engineer">
-              <h3>化学工程师</h3>
-              <p>设计和优化化学工艺流程。</p>
-            </div>
-            <div class="career-card" id="environmental-engineer">
-              <h3>环境工程师</h3>
-              <p>解决环境问题，设计环保方案。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>工程类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 法律类职业 -->
         <div class="career-category" id="legal">
-          <h2>法律类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="lawyer">
-              <h3>律师</h3>
-              <p>提供法律咨询和代理服务。</p>
-            </div>
-            <div class="career-card" id="judge">
-              <h3>法官</h3>
-              <p>审理案件并作出判决。</p>
-            </div>
-            <div class="career-card" id="paralegal">
-              <h3>法律助理</h3>
-              <p>协助律师处理法律事务。</p>
-            </div>
-            <div class="career-card" id="legal-consultant">
-              <h3>法律顾问</h3>
-              <p>为企业提供法律建议和风险评估。</p>
-            </div>
-            <div class="career-card" id="notary-public">
-              <h3>公证员</h3>
-              <p>负责公证法律文件和事务。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>法律类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-
+        <div class="shadow-line"></div>
         <!-- 物流类职业 -->
         <div class="career-category" id="logistics">
-          <h2>物流类职业</h2>
-          <div class="career-list">
-            <div class="career-card" id="logistics-manager">
-              <h3>物流经理</h3>
-              <p>优化物流流程，降低成本。</p>
-            </div>
-            <div class="career-card" id="supply-chain-analyst">
-              <h3>供应链分析师</h3>
-              <p>分析供应链数据，提供优化建议。</p>
-            </div>
-            <div class="career-card" id="warehouse-manager">
-              <h3>仓库经理</h3>
-              <p>负责仓库的管理和运营。</p>
-            </div>
-            <div class="career-card" id="transportation-coordinator">
-              <h3>运输协调员</h3>
-              <p>协调运输计划，确保货物准时送达。</p>
-            </div>
-            <div class="career-card" id="procurement-specialist">
-              <h3>采购专员</h3>
-              <p>负责采购物资，优化采购流程。</p>
+          <div class="carousel-header" style="text-align: left;">
+            <h2>物流类职业</h2>
+            <div class="carousel-controls">
+              <button class="carousel-prev"><span class="material-icons">chevron_left</span></button>
+              <button class="carousel-next"><span class="material-icons">chevron_right</span></button>
             </div>
           </div>
+          <div class="career-list"></div>
         </div>
-      </div>
-    </div>
 
-    <div class="footer">
-      <p>&copy; 2023 大学生职业竞争力赋能平台. 保留所有权利.</p>
-      <p>联系我们: info@careerempower.com</p>
+      </div>
+
+
     </div>
   </div>
+
+  <div class="footer">
+    <p>&copy; 2023 大学生职业竞争力赋能平台. 保留所有权利.</p>
+    <p>联系我们: info@careerempower.com</p>
+  </div>
+  </div>
   <script>
+    let allJobs = []; // 全局保存所有职位数据
 
-    // 模拟职位数据
-    const jobs = {
-      "software-engineer": {
-        title: "Java工程师",
-        salary: "10-15K·13薪",
-        contactPhone: "027-12345678",
-        experience: "1-3年",
-        education: "本科",
-        company: "云科安信",
-        location: "武汉·江夏区·光谷",
-        description: `
-            岗位描述：
-            1. 负责开发公司产品后台接口；
-            2. 按照要求完成功能模块的设计、编码工作；
-            3. 负责开发环境数据库的维护工作；
-            
-            岗位要求：
-            1. 1-3年Java开发经验，精通Java语言、TCP/IP网络、Socket通信；
-            2. 熟练掌握Spring、SpringMVC、MyBatis、Spring Boot主流框架；
-            3. 熟练掌握Redis、MySQL、XXL-JOB、Zookeeper等中间件，并具有一定SQL优化能力；
-        `,
-        requirements: [
-          "熟悉B端产品开发流程",
-          "了解Docker容器化技术",
-          "有安全产品开发经验优先",
-          "具备良好的编码习惯和文档编写能力"
-        ]
-      }
-    };
-
-    // 初始化事件监听
-    document.addEventListener('DOMContentLoaded', () => {
-      // 绑定卡片点击事件
-      document.querySelectorAll('.career-card').forEach(card => {
-        card.addEventListener('click', function () {
-          const searchParams = new URLSearchParams(window.location.search);
-          window.history.pushState({}, '', `?${searchParams.toString()}#${this.id}`);
-          showJobDetails(this.id);
-        });
-      });
-
-      // 处理浏览器历史记录
-      window.addEventListener('popstate', () => {
-        if (!window.location.hash) {
-          showCareerList();
-        }
-      });
-
-      // 检查登录状态
-      checkLoginStatus();
-    });
-
-    // 显示职位详情
-    function showJobDetails(jobId) {
-      const container = document.querySelector('.career-content');
-      const job = jobs[jobId];
-
-      if (!job) {
-        console.error('职位信息不存在:', jobId);
-        return;
-      }
-
-      container.innerHTML = `
-        <div class="back-button" onclick="showCareerList()">
-          <span class="material-icons">arrow_back</span>
-          返回职位列表
-        </div>
-        <div class="job-details-container">
-          <div class="job-info-sidebar">
-            <div class="job-header">
-              <h1 class="job-title">${job.title}</h1>
-              <div class="job-salary">${job.salary}</div>
-              <div class="job-meta">
-                <span>${job.experience}</span> · 
-                <span>${job.education}</span>
-              </div>
-            </div>
-            <div class="job-company">
-              <img src="images/company-logo.png" class="company-logo" alt="公司logo">
-              <div class="company-info">
-                <h3>${job.company}</h3>
-                <p>${job.location}</p>
-              </div>
-            </div>
-            <div class="action-buttons">
-              <button class="btn btn-primary">立即沟通</button>
-              <button class="btn btn-outline">收藏职位</button>
-            </div>
-          </div>
-          <div class="job-description">
-            <h2 class="section-title">职位描述</h2>
-            <pre class="job-description-content">${job.description}</pre>
-            <h2 class="section-title">任职要求</h2>
-            <ul class="requirement-list">
-              ${job.requirements.map(r => `<li class="requirement-item">${r}</li>`).join('')}
-            </ul>
-          </div>
-        </div>
-      `;
-
-      container.classList.add('job-details-active');
-      window.scrollTo(0, 0);
-    }
-
-    // 返回职位列表（刷新页面）
-    function showCareerList() {
-      // 移除URL哈希
-      const newUrl = window.location.pathname + window.location.search;
-      window.history.replaceState({}, document.title, newUrl);
-
-      // 刷新页面
-      window.location.reload();
-    }
-
-    // 添加卡片点击事件 (显示职位详情)
-    document.querySelectorAll('.career-card').forEach(card => {
-      card.addEventListener('click', () => showJobDetails(card.id));
-    });
-
-    // 支持浏览器历史记录
-    window.addEventListener('popstate', () => {
-      if (!window.location.hash) {
-        showCareerList();
-      }
-    });
-
-    // 修正后的卡片点击事件处理（带搜索参数保留）
-    document.querySelectorAll('.career-card').forEach(card => {
-      card.addEventListener('click', function () {
-        const searchParams = new URLSearchParams(window.location.search);
-        window.history.pushState({}, '', `?${searchParams.toString()}#${this.id}`);
-        showJobDetails(this.id);
-      });
-    });
-
-    // 添加浏览器后退支持
-    window.addEventListener('popstate', () => {
-      if (!window.location.hash) {
-        showCareerList();
-      }
-    });
-    const careers = [
-      { id: "software-engineer", title: "软件开发工程师", description: "负责设计、开发和维护软件系统。" },
-      { id: "data-scientist", title: "数据科学家", description: "通过数据分析为企业提供决策支持。" },
-      { id: "cybersecurity-engineer", title: "网络安全工程师", description: "保护企业网络系统免受攻击。" },
-      { id: "marketing-manager", title: "市场营销经理", description: "制定并执行市场推广策略。" },
-      { id: "brand-manager", title: "品牌经理", description: "负责品牌建设和推广。" },
-      { id: "digital-marketing-expert", title: "数字营销专家", description: "通过数字渠道进行营销推广。" },
-      { id: "project-manager", title: "项目经理", description: "负责项目的规划、执行和监控。" },
-      { id: "product-manager", title: "产品经理", description: "负责产品的全生命周期管理。" },
-      { id: "operations-manager", title: "运营经理", description: "优化企业运营流程，提升效率。" },
-      { id: "investment-banker", title: "投资银行家", description: "负责企业融资和并购业务。" },
-      { id: "financial-analyst", title: "财务分析师", description: "分析企业财务状况，提供决策支持。" },
-      { id: "risk-manager", title: "风险管理师", description: "评估和管理企业风险。" },
-      { id: "insurance-actuary", title: "保险精算师", description: "设计和管理保险产品。" },
-      { id: "tax-consultant", title: "税务顾问", description: "提供税务规划和咨询服务。" },
-      { id: "teacher", title: "教师", description: "负责教育和教学工作。" },
-      { id: "education-researcher", title: "教育研究员", description: "进行教育研究和教育政策分析。" },
-      { id: "education-technologist", title: "教育技术专家", description: "利用技术改进教学方法。" },
-      { id: "doctor", title: "医生", description: "诊断和治疗疾病，提供医疗服务。" },
-      { id: "nurse", title: "护士", description: "提供护理服务，协助医生治疗患者。" },
-      { id: "pharmacist", title: "药剂师", description: "负责药品的调配和管理，提供用药指导。" },
-      { id: "dentist", title: "牙医", description: "诊断和治疗口腔疾病，提供牙齿护理。" },
-      { id: "physical-therapist", title: "物理治疗师", description: "通过物理疗法帮助患者恢复身体功能。" },
-      { id: "graphic-designer", title: "平面设计师", description: "负责视觉设计和创意表达。" },
-      { id: "ui-ux-designer", title: "UI/UX设计师", description: "设计用户界面和用户体验。" },
-      { id: "photographer", title: "摄影师", description: "拍摄和编辑照片，捕捉精彩瞬间。" },
-      { id: "video-editor", title: "视频剪辑师", description: "负责视频的剪辑和后期制作。" },
-      { id: "copywriter", title: "文案策划", description: "撰写广告文案和宣传内容。" },
-      { id: "mechanical-engineer", title: "机械工程师", description: "设计和维护机械设备。" },
-      { id: "electrical-engineer", title: "电气工程师", description: "设计和维护电气系统。" },
-      { id: "civil-engineer", title: "土木工程师", description: "负责建筑和基础设施的设计与施工。" },
-      { id: "chemical-engineer", title: "化学工程师", description: "设计和优化化学工艺流程。" },
-      { id: "environmental-engineer", title: "环境工程师", description: "解决环境问题，设计环保方案。" },
-      { id: "lawyer", title: "律师", description: "提供法律咨询和代理服务。" },
-      { id: "judge", title: "法官", description: "审理案件并作出判决。" },
-      { id: "paralegal", title: "法律助理", description: "协助律师处理法律事务。" },
-      { id: "legal-consultant", title: "法律顾问", description: "为企业提供法律建议和风险评估。" },
-      { id: "notary-public", title: "公证员", description: "负责公证法律文件和事务。" },
-      { id: "logistics-manager", title: "物流经理", description: "优化物流流程，降低成本。" },
-      { id: "supply-chain-analyst", title: "供应链分析师", description: "分析供应链数据，提供优化建议。" },
-      { id: "warehouse-manager", title: "仓库经理", description: "负责仓库的管理和运营。" },
-      { id: "transportation-coordinator", title: "运输协调员", description: "协调运输计划，确保货物准时送达。" },
-      { id: "procurement-specialist", title: "采购专员", description: "负责采购物资，优化采购流程。" }
-    ];
-
-    // 自动搜索功能增强
-    function autoSearch() {
-      const searchTerm = getSearchTerm();
-      if (searchTerm) {
-        document.getElementById('searchInput').value = searchTerm;
-        // 自动触发搜索逻辑（复用原搜索函数）
-        searchCareers();
-      }
-    }
-    // 页面加载完成后执行
-    window.addEventListener('DOMContentLoaded', autoSearch);
-    // 修正后的搜索函数
-    function searchCareers() {
-      const input = document.getElementById("careerSearchInput").value.toLowerCase();
-      const results = careers.filter(career =>
-        career.title.toLowerCase().includes(input) ||
-        career.description.toLowerCase().includes(input)
-      );
-
-      const resultsContainer = document.getElementById("searchResults");
-      resultsContainer.innerHTML = "";
-
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `
-          <div class="no-results">
-            <span class="material-icons">search_off</span>
-            <p>没有找到相关职业，请尝试其他关键词</p>
-          </div>`;
-      } else {
-        results.forEach(career => {
-          const card = document.createElement("div");
-          card.className = "search-result-card";
-          card.innerHTML = `
-            <h3>${career.title}</h3>
-            <p>${career.description}</p>
-            <a href="#${career.id}" class="view-link">查看详情</a>
-          `;
-          resultsContainer.appendChild(card);
-        });
-      }
-      // 同步更新URL（保留搜索历史）
-      if (history.replaceState) {
-        const newurl = `${window.location.pathname}?q=${encodeURIComponent(input)}`;
-        window.history.replaceState({ path: newurl }, '', newurl);
-      }
-    }
-
-
-
-    // 修正后的切换函数
     function toggleSidebar() {
       const sidebar = document.querySelector('.sidebar');
       const overlay = document.querySelector('.sidebar-overlay');
-
-      // 仅切换active状态
       const isActive = sidebar.classList.toggle('active');
-
-      // 同步紧凑模式
       sidebar.classList.toggle('compact', !isActive);
-
-      // 遮罩层控制
       overlay.style.display = isActive ? 'block' : 'none';
     }
 
-    // 增强登录状态检查
     function checkLoginStatus() {
-      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const token = localStorage.getItem('token');
       const navAuth = document.getElementById('navAuth');
-
-      if (isLoggedIn) {
+      if (token) {
         navAuth.innerHTML = `
       <span style="color:#666">欢迎回来！</span>
       <button class="btn-logout" onclick="logout()">退出登录</button>
@@ -1268,18 +971,47 @@
       }
     }
 
-    // 退出登录功能
     function logout() {
+      localStorage.removeItem('token');
       localStorage.removeItem('isLoggedIn');
       checkLoginStatus();
       window.location.reload();
     }
 
-    // 初始化执行
-    document.addEventListener('DOMContentLoaded', () => {
-      checkLoginStatus();
-      loadUserData();
-    });
+    // 收藏职位函数
+    function favoriteJob(jobId) {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('请先登录后再收藏！');
+        window.location.href = 'login.html';
+        return;
+      }
+      fetch(`/api/favorite/job/${jobId}`, {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(async res => {
+          if (!res.ok) {
+            const text = await res.text();
+            alert("收藏失败：" + text);
+            return;
+          }
+          return res.json();
+        })
+        .then(data => {
+          if (data && data.success) {
+            alert("收藏成功！");
+          } else if (data && data.error) {
+            alert("收藏失败：" + data.error);
+          }
+        })
+        .catch(err => {
+          alert("收藏失败：" + err.message);
+        });
+    }
 
     function handleSearch() {
       const searchTerm = document.getElementById('searchInput').value;
@@ -1289,7 +1021,289 @@
 
     document.getElementById('searchInput')
       .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
+
+    document.querySelectorAll('.category-tag').forEach(tag => {
+      tag.addEventListener('click', function () {
+        document.querySelector('.category-tag.active').classList.remove('active');
+        this.classList.add('active');
+        // TODO: 分类筛选逻辑
+      });
+    });
+
+    // ======================= 加载所有职位 =======================
+    async function loadJobs() {
+      try {
+        const res = await fetch('http://localhost:5000/api/jobs');
+        if (!res.ok) throw new Error('职位列表加载失败');
+        const jobs = await res.json();
+
+        allJobs = jobs; // 缓存数据
+
+        renderJobLists(jobs);
+      } catch (err) {
+        console.error(err);
+        alert(err.message);
+      }
+    }
+
+    function renderJobLists(jobs) {
+      // 清空所有 career-list
+      const allLists = document.querySelectorAll('.career-list');
+      allLists.forEach(list => {
+        list.innerHTML = '';
+        if ($(list).hasClass('slick-initialized')) {
+          $(list).slick('unslick');
+        }
+      });
+
+      // 动态插入卡片
+      jobs.forEach(job => {
+        const categoryId = job.category.toLowerCase();
+        const categoryList = document.querySelector(`#${categoryId} .career-list`);
+        if (!categoryList) {
+          console.warn('找不到对应分类：', categoryId);
+          return;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'career-card';
+        card.id = job.slug;
+        card.innerHTML = `
+        <h3>${job.title}</h3>
+        <p>${job.company} - ${job.location}</p>
+        <p>薪资：${job.salary}</p>
+      `;
+
+        categoryList.appendChild(card);
+        card.addEventListener('click', () => showJobDetails(job.slug));
+      });
+
+      // 初始化 slick
+      initCareerSlick();
+    }
+
+    function initCareerSlick() {
+      document.querySelectorAll('.career-list').forEach(list => {
+        const wrapper = list.closest('.career-category');
+        wrapper.style.display = '';
+
+        if (!$(list).hasClass('slick-initialized')) {
+          $(list).slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            arrows: false,
+            responsive: [
+              { breakpoint: 1400, settings: { slidesToShow: 4 } },
+              { breakpoint: 1200, settings: { slidesToShow: 3 } },
+              { breakpoint: 768, settings: { slidesToShow: 2 } },
+              { breakpoint: 480, settings: { slidesToShow: 1 } }
+            ]
+          });
+
+          const prevBtn = wrapper.querySelector('.carousel-prev');
+          const nextBtn = wrapper.querySelector('.carousel-next');
+          if (prevBtn) prevBtn.addEventListener('click', () => $(list).slick('slickPrev'));
+          if (nextBtn) nextBtn.addEventListener('click', () => $(list).slick('slickNext'));
+        }
+      });
+    }
+
+    async function showJobDetails(jobId) {
+      console.log('showJobDetails 被调用，参数:', jobId);
+      const container = document.querySelector('.career-content');
+      try {
+        const res = await fetch(`/api/jobs/slug/${jobId}`);
+        if (!res.ok) throw new Error('职位详情加载失败');
+        const job = await res.json();
+
+        document.querySelectorAll('.career-category').forEach(cat => cat.style.display = 'none');
+        document.querySelectorAll('.shadow-line').forEach(line => line.style.display = 'none');
+        const searchResults = document.getElementById('searchResults');
+        if (searchResults) searchResults.style.display = 'none';
+
+        let detailDiv = document.getElementById('job-detail-view');
+        if (!detailDiv) {
+          detailDiv = document.createElement('div');
+          detailDiv.id = 'job-detail-view';
+          container.appendChild(detailDiv);
+        }
+
+        detailDiv.innerHTML = `
+      <div class="back-button" onclick="showCareerList()">
+        <span class="material-icons">arrow_back</span> 返回职位列表
+      </div>
+      <div class="job-details-container">
+        <div class="job-info-sidebar">
+          <h1 class="job-title">${job.title}</h1>
+          <div class="job-salary">${job.salary || ''}</div>
+          <div class="job-meta">
+            <span>${job.experience || ''}</span> · <span>${job.education || ''}</span>
+          </div>
+          <div class="job-company">
+            <img src="${job.companyLogo || 'images/company-logo.png'}" class="company-logo" alt="公司logo">
+            <div class="company-info">
+              <h3>${job.company || ''}</h3>
+              <p>${job.location || ''}</p>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-primary">立即沟通</button>
+            <button class="btn btn-outline" id="favoriteJobBtn">收藏职位</button>
+          </div>
+        </div>
+        <div class="job-description">
+          <h2 class="section-title">职位描述</h2>
+          <pre class="job-description-content">${job.description || ''}</pre>
+          <h2 class="section-title">任职要求</h2>
+          <ul class="requirement-list">
+            ${job.requirements ? job.requirements.map(r => `<li class="requirement-item">${r}</li>`).join('') : ''}
+          </ul>
+        </div>
+      </div>
+    `;
+        detailDiv.style.display = 'block';
+        container.classList.add('job-details-active');
+        window.scrollTo(0, 0);
+
+        // 收藏按钮事件（务必每次渲染后都绑定）
+        const favoriteBtn = document.getElementById('favoriteJobBtn');
+        if (favoriteBtn) {
+          favoriteBtn.onclick = null; // 清除旧事件
+          favoriteBtn.onclick = function () {
+            let jobIdVal = job._id;
+            // 兼容 MongoDB _id 对象
+            if (typeof jobIdVal === 'object' && jobIdVal.$oid) jobIdVal = jobIdVal.$oid;
+
+            // 检查格式
+            if (!/^[a-f0-9]{24}$/.test(jobIdVal)) {
+              alert('收藏失败：ID格式不正确');
+              console.error('错误 jobId:', jobIdVal);
+              return;
+            }
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+              alert('请先登录后再收藏！');
+              window.location.href = 'login.html';
+              return;
+            }
+
+            console.log('收藏岗位ID:', jobIdVal);
+            favoriteJob(jobIdVal);
+          };
+        }
+
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `<p style="color:red;">职位详情加载失败，请稍后重试</p>`;
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const careerContent = document.querySelector('.career-content');
+
+      if (careerContent) {
+        careerContent.addEventListener('click', async e => {
+          const card = e.target.closest('.career-card');
+          if (card) {
+            await showJobDetails(card.id);
+            window.history.pushState({ jobId: card.id }, '', `#${card.id}`);
+          }
+        });
+      }
+
+      window.addEventListener('popstate', event => {
+        if (event.state && event.state.jobId) {
+          showJobDetails(event.state.jobId);
+        } else {
+          showCareerList();
+        }
+      });
+
+      function autoSearch() {
+        const params = new URLSearchParams(window.location.search);
+        const term = params.get('q');
+        if (term) {
+          document.getElementById('careerSearchInput').value = term;
+          searchCareers(term);
+        }
+      }
+
+      if (typeof checkLoginStatus === 'function') checkLoginStatus();
+      if (typeof loadUserData === 'function') loadUserData();
+
+      loadJobs();
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') handleSearch();
+        });
+      }
+
+      autoSearch();
+    });
+
+    function showCareerList() {
+      // 备注：当前“返回职位列表”直接刷新页面，后续可优化为无刷新切换
+      window.location.reload();
+    }
+
+    function searchCareers(term) {
+      const input = term || document.getElementById("careerSearchInput").value.trim().toLowerCase();
+      const resultsContainer = document.getElementById("searchResults");
+      if (!resultsContainer) return;
+
+      // 搜索匹配职位
+      const results = allJobs.filter(job =>
+        job.title.toLowerCase().includes(input) ||
+        (job.description && job.description.toLowerCase().includes(input))
+      );
+
+      resultsContainer.innerHTML = "";
+      if (results.length === 0) {
+        resultsContainer.innerHTML = `
+      <div class="no-results">
+        <span class="material-icons">search_off</span>
+        <p>没有找到相关职业，请尝试其他关键词</p>
+      </div>`;
+        return;
+      }
+
+      // 渲染所有匹配的职业卡片（美观样式）
+      results.forEach(job => {
+        const card = document.createElement("div");
+        card.className = "search-result-card";
+        card.style.border = "1px solid #e0e0e0";
+        card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+        card.style.marginBottom = "20px";
+        card.style.padding = "1.5rem";
+        card.style.borderRadius = "12px";
+        card.innerHTML = `
+      <h3 style="margin-bottom:8px;color:#0073e6;">${job.title}</h3>
+      <div style="color:#666;margin-bottom:6px;">${job.company || ''} ${job.location ? ' - ' + job.location : ''}</div>
+      <div style="color:#0073e6;margin-bottom:6px;">${job.salary ? '薪资：' + job.salary : ''}</div>
+      <div style="font-size:13px;color:#888;margin-bottom:10px;">${job.description || ''}</div>
+      <a href="javascript:void(0);" class="view-link" data-slug="${job.slug}" style="color:#0073e6;font-weight:bold;">查看详情 <span class="material-icons" style="font-size:18px;vertical-align:middle;">arrow_forward</span></a>
+    `;
+        // 点击“查看详情”跳转到详情卡片
+        card.querySelector('.view-link').addEventListener('click', function () {
+          showJobDetails(job.slug);
+          window.history.pushState({ jobId: job.slug }, '', `#${job.slug}`);
+        });
+        resultsContainer.appendChild(card);
+      });
+
+      // 同步更新URL
+      if (history.replaceState) {
+        const newurl = `${window.location.pathname}?q=${encodeURIComponent(input)}`;
+        window.history.replaceState({ path: newurl }, '', newurl);
+      }
+    }
   </script>
+
+
+
 </body>
 
 </html>

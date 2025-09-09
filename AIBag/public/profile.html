@@ -1149,9 +1149,7 @@
 
           <p>学生</p>
           <div class="stats-grid">
-            <div>关注0人</div>
-            <div>粉丝0人</div>
-            <div>主题/回复 0</div>
+            <div>帖子 0</div>
             <div>获赞20</div>
             <div>学习时长 31分</div>
           </div>
@@ -1215,12 +1213,9 @@
 
       <!-- 岗位收藏 -->
       <div id="favoritesTab" style="display: none;">
-        <div class="favorite-item">
-          <h4>前端开发工程师</h4>
-          <p>腾讯科技 · 深圳</p>
-          <button onclick="unfavorite(this)">取消收藏</button>
+        <div id="favoriteJobsContainer">
+          <!-- 动态生成收藏内容 -->
         </div>
-        <!-- 动态生成收藏内容 -->
       </div>
 
       <!-- 测评报告 -->
@@ -1781,6 +1776,15 @@
                    margin-right:40px>
                    退出登录</button>
           `;
+
+        // 显示统计数据
+        // 找到 stats-grid 下的三个 div，依次填充
+        const statsDivs = userContainer.querySelectorAll('.stats-grid div');
+        if (statsDivs.length >= 3) {
+          statsDivs[0].innerText = `帖子 ${user.postsCount || 0}`;
+          statsDivs[1].innerText = `获赞 ${user.likes || 0}`;
+          statsDivs[2].innerText = `学习时长 ${user.studyHours || 0}分`;
+        }
       } else {
         logout();
       }
@@ -1830,6 +1834,41 @@
       console.error("加载用户资料失败:", err);
     }
   }
+
+  async function loadFavoriteJobs() {
+    const res = await fetch("/api/favorite/job", {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    });
+    const data = await res.json();
+    const container = document.getElementById("favoriteJobsContainer");
+    container.innerHTML = "";
+    if (!data.favorites || data.favorites.length === 0) {
+      container.innerHTML = "<p>暂无收藏岗位</p>";
+      return;
+    }
+    data.favorites.forEach(item => {
+      const job = item.target;
+      const card = document.createElement("div");
+      card.className = "favorite-job-card";
+      card.style.border = "1px solid #e0e0e0";
+      card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+      card.style.marginBottom = "20px";
+      card.style.padding = "1.5rem";
+      card.style.borderRadius = "12px";
+      card.innerHTML = `
+      <h3 style="margin-bottom:8px;color:#0073e6;">${job.title}</h3>
+      <div style="color:#666;margin-bottom:6px;">${job.company || ''} ${job.location ? ' - ' + job.location : ''}</div>
+      <div style="color:#0073e6;margin-bottom:6px;">${job.salary ? '薪资：' + job.salary : ''}</div>
+      <div style="font-size:13px;color:#888;margin-bottom:10px;">${job.description || ''}</div>
+    `;
+      container.appendChild(card);
+    });
+  }
+
+  // 页面加载时调用
+  loadFavoriteJobs();
 
 
   function handleSearch() {

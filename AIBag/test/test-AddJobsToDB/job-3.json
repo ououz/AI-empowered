@@ -1,0 +1,17 @@
+{
+    "slug": "cloud-engineer",
+    "title": "云计算工程师",
+    "salary": "15-25K·13薪",
+    "contactPhone": "027-33445566",
+    "experience": "2-5年",
+    "education": "本科",
+    "company": "云端科技",
+    "location": "杭州·滨江区",
+    "description": "岗位描述：\n1. 负责云平台架构设计和维护；\n2. 优化云资源和部署流程；\n岗位要求：\n1. 熟悉AWS/Azure/GCP；\n2. 熟悉Docker/Kubernetes；\n3. 有实际项目经验。",
+    "requirements": [
+        "云平台架构经验",
+        "熟悉容器化和微服务",
+        "良好的团队合作能力"
+    ],
+    "category": "technology"
+}

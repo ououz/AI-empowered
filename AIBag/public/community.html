@@ -418,16 +418,20 @@
     .category-nav {
       display: flex;
       gap: 15px;
-      margin-bottom: 30px;
       flex-wrap: wrap;
       position: sticky;
       top: 60px;
       /* 根据导航栏高度调整 */
       background: white;
       z-index: 100;
-      padding: 15px 0;
-      margin-bottom: 15px !important;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      margin: 0;
+      /* 去掉 margin-left */
+      width: 100%;
+      /* 占满 main 的宽度 */
+      box-shadow: 0 3px 1px rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+      /* 避免 padding 撑破宽度 */
     }
 
     .category-tag {

@@ -1,0 +1,17 @@
+{
+    "slug": "ai-engineer",
+    "title": "人工智能工程师",
+    "salary": "20-30K·13薪",
+    "contactPhone": "027-22334455",
+    "experience": "2-4年",
+    "education": "硕士",
+    "company": "未来智能",
+    "location": "深圳·南山区",
+    "description": "岗位描述：\n1. 开发和优化AI算法；\n2. 进行深度学习模型训练和调优；\n岗位要求：\n1. 熟练使用Python及深度学习框架（TensorFlow/PyTorch）；\n2. 有AI项目落地经验；\n3. 数学基础扎实。",
+    "requirements": [
+        "熟悉深度学习与机器学习算法",
+        "有项目部署经验",
+        "具备良好的代码能力"
+    ],
+    "category": "technology"
+}

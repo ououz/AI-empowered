@@ -1,0 +1,17 @@
+{
+    "slug": "data-scientist",
+    "title": "数据科学家",
+    "salary": "12-18K·13薪",
+    "contactPhone": "027-87654321",
+    "experience": "2-4年",
+    "education": "硕士",
+    "company": "智数科技",
+    "location": "北京·海淀区",
+    "description": "岗位描述：\n1. 分析大数据，为企业提供决策支持；\n2. 构建机器学习模型和数据可视化；\n岗位要求：\n1. 熟练掌握Python/R；\n2. 熟悉SQL和NoSQL数据库；\n3. 有实际数据分析项目经验。",
+    "requirements": [
+        "精通统计分析和机器学习算法",
+        "熟悉数据可视化工具",
+        "良好的沟通与报告能力"
+    ],
+    "category": "technology"
+}

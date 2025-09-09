@@ -1,0 +1,47 @@
+{
+    "authorId": "68bc074d2727dda6f58cce25",
+    "title": "AI时代如何规划你的职业路径",
+    "description": "人工智能专家李博士解析AI对各行业岗位的影响，帮助大学生识别未来最具潜力的职业方向。",
+    "link": "https://www.example.com/ai-career-path",
+    "tags": [
+        "主推",
+        "趋势分析"
+    ],
+    "type": "main",
+    "actions": [
+        {
+            "type": "learnMore",
+            "label": "立即了解",
+            "url": "https://www.example.com/ai-career-path"
+        },
+        {
+            "type": "share",
+            "label": "分享"
+        },
+        {
+            "type": "watchReplay",
+            "label": "观看回放",
+            "url": "https://www.example.com/ai-career-path/replay"
+        }
+    ],
+    "content": [
+        {
+            "type": "header",
+            "title": "AI时代职业规划",
+            "text": "李博士分析AI对未来岗位的影响与机会。"
+        },
+        {
+            "type": "paragraph",
+            "text": "论坛涵盖AI趋势、求职策略和职业技能建议。"
+        },
+        {
+            "type": "image",
+            "src": "images/ai-career.png",
+            "alt": "AI与职业发展",
+            "caption": "AI时代职业路径规划"
+        }
+    ],
+    "viewsCount": 5200,
+    "clicksCount": 210,
+    "postTime": "2024-05-28T10:00:00.000Z"
+}

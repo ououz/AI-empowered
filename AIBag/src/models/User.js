@@ -48,6 +48,7 @@ const UserSchema = new mongoose.Schema(
         following: { type: Number, default: 0 },
         likes: { type: Number, default: 0 },
         studyTime: { type: Number, default: 0 }, // 学习时长（分钟）
+
     },
     {
         timestamps: true, // 自动加 createdAt / updatedAt

@@ -36,7 +36,6 @@ router.post("/", auth, async (req, res) => {
 });
 
 
-// 今日热帖
 // 今日热帖 (要放在 /:id 前面)
 router.get("/hot-today", async (req, res) => {
     try {

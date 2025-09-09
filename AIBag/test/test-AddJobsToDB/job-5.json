@@ -1,0 +1,18 @@
+{
+    "slug": "software-engineer",
+    "title": "软件开发工程师",
+    "salary": "10-15K·13薪",
+    "contactPhone": "027-12345678",
+    "experience": "1-3年",
+    "education": "本科",
+    "company": "云科安信",
+    "location": "武汉·江夏区·光谷",
+    "description": "岗位描述：\n1. 负责开发公司产品后台接口；\n2. 按照要求完成功能模块的设计、编码工作；\n3. 维护开发环境数据库；\n岗位要求：\n1. 熟悉Java开发，精通Spring/SpringBoot；\n2. 熟练使用MySQL/Redis；\n3. 有良好的编码习惯。",
+    "requirements": [
+        "熟悉B端产品开发流程",
+        "了解Docker容器化技术",
+        "有安全产品开发经验优先",
+        "具备良好的编码习惯和文档编写能力"
+    ],
+    "category": "marketing"
+}

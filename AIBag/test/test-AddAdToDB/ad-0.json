@@ -1,0 +1,60 @@
+{
+    "authorId": "68bc074d2727dda6f58cce25",
+    "title": "2024大学生职业发展高峰论坛",
+    "description": "平台首席职业规划师张教授将为大家解读2024年就业市场新趋势，分享职业竞争力提升的五大核心要素。",
+    "link": "https://www.example.com/career-forum-2024",
+    "tags": [
+        "主推",
+        "活动预告"
+    ],
+    "type": "main",
+    "actions": [
+        {
+            "type": "learnMore",
+            "label": "立即了解",
+            "url": "https://www.example.com/career-forum-2024"
+        },
+        {
+            "type": "share",
+            "label": "分享"
+        },
+        {
+            "type": "bookNow",
+            "label": "预约参加",
+            "url": "https://www.example.com/career-forum-2024/register"
+        }
+    ],
+    "content": [
+        {
+            "type": "header",
+            "title": "2024大学生职业发展高峰论坛",
+            "text": "职业规划专家张教授分享就业趋势与核心能力提升策略。"
+        },
+        {
+            "type": "paragraph",
+            "text": "论坛将线上直播，适合大三、大四学生及职场新人。"
+        },
+        {
+            "type": "list",
+            "items": [
+                "时间：2024年06月15日",
+                "地点：线上直播",
+                "主讲嘉宾：张教授",
+                "参与人数：不限，免费报名"
+            ]
+        },
+        {
+            "type": "image",
+            "src": "images/career-forum.jpg",
+            "alt": "职业发展论坛",
+            "caption": "2024大学生职业发展高峰论坛在线报名中"
+        },
+        {
+            "type": "paragraph",
+            "text": "不要错过与专家面对面的宝贵机会！"
+        }
+    ],
+    "viewsCount": 250,
+    "clicksCount": 80,
+    "postTime": "2024-06-15T09:00:00.000Z"
+}

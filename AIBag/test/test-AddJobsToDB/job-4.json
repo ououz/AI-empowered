@@ -1,0 +1,17 @@
+{
+    "slug": "frontend-engineer",
+    "title": "前端开发工程师",
+    "salary": "10-18K·13薪",
+    "contactPhone": "027-44556677",
+    "experience": "1-3年",
+    "education": "本科",
+    "company": "网页科技",
+    "location": "广州·天河区",
+    "description": "岗位描述：\n1. 负责Web前端开发和优化；\n2. 实现用户界面和交互效果；\n岗位要求：\n1. 熟悉HTML/CSS/JavaScript；\n2. 熟悉Vue/React框架；\n3. 有前端项目经验。",
+    "requirements": [
+        "熟悉前端开发流程",
+        "掌握主流框架和工具",
+        "具备良好的代码质量意识"
+    ],
+    "category": "technology"
+}

@@ -1,0 +1,45 @@
+{
+    "authorId": "68bc074d2727dda6f58cce25",
+    "title": "简历优化与面试技巧工作坊",
+    "description": "针对大学生提供简历优化与面试技巧培训，限50人报名。",
+    "link": "https://www.example.com/resume-workshop",
+    "tags": [
+        "次推",
+        "技能提升"
+    ],
+    "type": "secondary",
+    "actions": [
+        {
+            "type": "learnMore",
+            "label": "立即了解",
+            "url": "https://www.example.com/resume-workshop"
+        },
+        {
+            "type": "share",
+            "label": "分享"
+        }
+    ],
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "工作坊提供简历优化和面试技巧培训，帮助学生提升就业竞争力。"
+        },
+        {
+            "type": "list",
+            "items": [
+                "时间：2024年05月20日",
+                "人数：限50人",
+                "方式：线上+线下混合"
+            ]
+        },
+        {
+            "type": "image",
+            "src": "images/resume-workshop.jpg",
+            "alt": "简历优化工作坊",
+            "caption": "简历与面试提升训练"
+        }
+    ],
+    "viewsCount": 800,
+    "clicksCount": 120,
+    "postTime": "2024-05-20T14:00:00.000Z"
+}

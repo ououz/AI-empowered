@@ -1,0 +1,45 @@
+{
+    "authorId": "68bc074d2727dda6f58cce25",
+    "title": "新版职业技能测评系统上线",
+    "description": "职业技能测评系统升级，新增10项功能，帮助学生了解自身能力。",
+    "link": "https://www.example.com/skill-assessment-update",
+    "tags": [
+        "次推",
+        "系统更新"
+    ],
+    "type": "secondary",
+    "actions": [
+        {
+            "type": "learnMore",
+            "label": "立即了解",
+            "url": "https://www.example.com/skill-assessment-update"
+        },
+        {
+            "type": "share",
+            "label": "分享"
+        }
+    ],
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "新版职业技能测评系统上线，增加职业兴趣、技能匹配等功能。"
+        },
+        {
+            "type": "list",
+            "items": [
+                "上线日期：2024年05月05日",
+                "新增功能：10项",
+                "适用人群：大学生及职场新人"
+            ]
+        },
+        {
+            "type": "image",
+            "src": "images/skill-assessment.webp",
+            "alt": "职业技能测评",
+            "caption": "新版测评系统上线"
+        }
+    ],
+    "viewsCount": 500,
+    "clicksCount": 90,
+    "postTime": "2024-05-05T09:00:00.000Z"
+}

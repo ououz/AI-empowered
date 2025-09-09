@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const Post = require('../models/Post');
 
 const router = express.Router();
 
@@ -86,7 +87,17 @@ router.get("/me", async (req, res) => {
         const user = await User.findById(decoded.userId).select("-password");
         if (!user) return res.status(404).json({ error: "用户不存在" });
 
-        res.json(user);
+        // 动态统计帖子数
+        const postsCount = await Post.countDocuments({ userId: user._id });
+        res.json({
+            id: user._id,
+            username: user.username,
+            phone: user.phone,
+            qq: user.qq,
+            postsCount, // 这里用动态统计
+            likes: user.likes || 0,
+            studyHours: user.studyHours || 0
+        });
     } catch (err) {
         res.status(401).json({ error: "无效或过期的 token" });
     }
