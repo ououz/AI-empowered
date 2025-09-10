@@ -16,9 +16,7 @@ connectDB();
 
 app.use(express.static(path.join(__dirname, "public")));
 // 默认首页 -> login.html
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "login.html"));
-});
+
 
 // 路由：用户注册/登录
 app.use("/api/auth", require("./src/routes/auth"));

@@ -91,7 +91,7 @@ router.post("/work", auth, async (req, res) => {
 // ======================= 文件上传配置 =======================
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, "../../uploads")); // ✅ 改成绝对路径
+        cb(null, path.join(__dirname, "../../uploads"));
     },
     filename: function (req, file, cb) {
         const ext = path.extname(file.originalname);
@@ -104,21 +104,29 @@ const upload = multer({ storage });
 // ======================= 上传头像 =======================
 router.post("/upload-avatar", auth, upload.single("avatar"), async (req, res) => {
     try {
-        if (!req.file) {
-            return res.status(400).json({ msg: "没有选择文件" });
+        const updateData = {};
+
+        if (req.file) {
+            updateData.avatar = `/uploads/${req.file.filename}`;
         }
 
-        const avatarUrl = `/uploads/${req.file.filename}`;
+        if (req.body.username && req.body.username.trim()) {
+            updateData.username = req.body.username.trim();
+        }
+
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({ msg: "请至少上传头像或填写用户名" });
+        }
 
         const user = await User.findByIdAndUpdate(
             req.user.id,
-            { avatar: avatarUrl },
+            { $set: updateData },
             { new: true }
         ).select("username avatar");
 
-        res.json({ msg: "头像上传成功", user });
+        res.json({ msg: "资料更新成功", user });
     } catch (err) {
-        console.error("头像上传失败:", err);
+        console.error("资料更新失败:", err);
         res.status(500).json({ msg: "服务器错误" });
     }
 });

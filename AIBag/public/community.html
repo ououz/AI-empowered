@@ -967,7 +967,7 @@
       const token = localStorage.getItem('token');
       if (!token) return; // 没登录直接退出
 
-      const res = await fetch('/api/user/me', {
+      const res = await fetch('/api/auth/me', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('未登录或获取失败');
@@ -982,13 +982,13 @@
       // 更新用户名
       const nameEl = document.querySelector('.user-profile h4');
       if (nameEl) {
-        nameEl.textContent = user.username;
+        nameEl.textContent = user.username || "未命名用户";
       }
 
-      // 更新等级（简单用 likes/10 模拟等级，实际你可以用 user.level 字段）
+      // 更新等级（这里用 postsCount/10 简单计算等级）
       const levelEl = document.querySelector('.user-profile .user-level');
       if (levelEl) {
-        const level = Math.floor((user.likes || 0) / 10) + 1;
+        const level = Math.floor((user.postsCount || 0) / 10) + 1;
         levelEl.textContent = `Lv.${level}`;
       }
 

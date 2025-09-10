@@ -47,10 +47,10 @@ router.post("/register", async (req, res) => {
 // ======================= 登录接口 =======================
 router.post("/login", async (req, res) => {
     try {
-        const { account, password } = req.body;
+        const { phone, password } = req.body;
 
-        // 可以用手机号或QQ登录
-        const user = await User.findOne({ $or: [{ phone: account }, { qq: account }] });
+        // 可以用手机号
+        const user = await User.findOne({ $or: [{ phone }, { qq: phone }] });
         if (!user) return res.status(400).json({ error: "用户不存在" });
 
         // 验证密码
@@ -92,6 +92,7 @@ router.get("/me", async (req, res) => {
         res.json({
             id: user._id,
             username: user.username,
+            avatar: user.avatar,
             phone: user.phone,
             qq: user.qq,
             postsCount, // 这里用动态统计
