@@ -1,21 +1,19 @@
 {
-    "meta": {
-        "id": 2,
-        "title": "应届生必看的薪资谈判策略",
-        "author": "张伟",
-        "postTime": "2024-03-09 09:15",
-        "category": "career",
-        "level": 5,
-        "avatar": "./images/avatar3.jpg",
-        "views": 5600,
-        "likes": 1200,
-        "comments": 287,
-        "description": "如何合理评估自身市场价值？当HR说'这是我们能给的最高薪资'时，应该怎样应对？揭秘企业薪资结构..."
+    "_id": {
+        "$oid": "68bda60a004b27648dd9f477"
     },
+    "userId": {
+        "$oid": "68bc074d2727dda6f58cce25"
+    },
+    "title": "应届生必看的薪资谈判策略",
+    "description": "如何合理评估自身市场价值？当HR说'这是我们能给的最高薪资'时，应该怎样应对？揭秘企业薪资结构...",
+    "category": "career",
+    "tags": [],
     "content": [
         {
             "type": "header",
-            "text": "谈判四步法"
+            "text": "谈判四步法",
+            "items": []
         },
         {
             "type": "list",
@@ -28,28 +26,25 @@
         },
         {
             "type": "image",
+            "items": [],
             "src": "./images/salary-structure.png",
             "alt": "企业薪资构成图示"
         },
         {
             "type": "quote",
-            "text": "基于我的项目经验，希望薪资能体现市场价值"
+            "text": "基于我的项目经验，希望薪资能体现市场价值",
+            "items": []
         }
     ],
-    "comments": [
-        {
-            "avatar": "./images/user-avatar3.jpg",
-            "author": "林晓婷",
-            "time": "8小时前",
-            "text": "用这个方法成功谈到16k，超心理预期！",
-            "likes": 68
-        },
-        {
-            "avatar": "./images/user-avatar4.jpg",
-            "author": "陈浩宇",
-            "time": "1天前",
-            "text": "求问国企薪资谈判的特殊注意事项",
-            "likes": 42
-        }
-    ]
+    "viewsCount": 5618,
+    "likesCount": 1200,
+    "commentsCount": 287,
+    "postTime": "2024-03-09 09:15",
+    "createdAt": {
+        "$date": "2025-09-07T15:34:34.595Z"
+    },
+    "updatedAt": {
+        "$date": "2025-09-09T02:58:05.165Z"
+    },
+    "__v": 0
 }

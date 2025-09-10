@@ -269,7 +269,7 @@
                 elements.title.textContent = post.title;
                 elements.author.textContent = post.author?.username || '匿名';
                 elements.postTime.textContent = new Date(post.createdAt).toLocaleString();
-                elements.avatar.src = post.author?.avatar || '/images/default-avatar.png';
+                elements.avatar.src = post.author?.avatar || '../images/profile/actor.jpg';
                 elements.description.innerHTML = renderContent(post.content);
 
 
@@ -289,7 +289,7 @@
                     const div = document.createElement('div');
                     div.className = 'comment';
                     div.innerHTML = `
-        <img src="${c.user?.avatar || '/images/default-avatar.png'}" class="comment-avatar">
+        <img src="${c.user?.avatar || '../images/avatar.jpg'}" class="comment-avatar">
         <div class="comment-body">
           <div class="comment-header">
             <span class="comment-author">${c.user?.username || '用户'}</span>

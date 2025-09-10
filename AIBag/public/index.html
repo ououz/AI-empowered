@@ -2107,7 +2107,7 @@
           nameEl.textContent = user.username;
         }
 
-        // 更新等级（简单用 likes/10 模拟等级，实际你可以用 user.level 字段）
+        // 更新等级
         const levelEl = document.querySelector('.user-profile .user-level');
         if (levelEl) {
           const level = Math.floor((user.likes || 0) / 10) + 1;
@@ -2125,6 +2125,7 @@
         console.error('加载用户数据失败:', err);
       }
     }
+
 
     // ------------------ 初始化 ------------------
     document.addEventListener('DOMContentLoaded', async () => {

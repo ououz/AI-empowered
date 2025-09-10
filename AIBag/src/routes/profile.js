@@ -2,6 +2,8 @@ const express = require("express");
 const UserProfile = require("../models/UserProfile");
 const auth = require("../middleware/auth");
 const User = require("../models/User");
+const path = require("path");
+const multer = require("multer"); // ✅ 补充
 
 const router = express.Router();
 
@@ -9,7 +11,7 @@ const router = express.Router();
 router.get("/", auth, async (req, res) => {
     try {
         const profile = await UserProfile.findOne({ userId: req.user.userId });
-        res.json(profile || {}); // 没有就返回空对象
+        res.json(profile || {});
     } catch (err) {
         res.status(500).json({ error: "服务器错误" });
     }
@@ -26,18 +28,15 @@ router.get("/me", auth, async (req, res) => {
     }
 });
 
-
 // ======================= 更新或创建用户资料 =======================
 router.post("/", auth, async (req, res) => {
     try {
         const data = req.body;
-
         const profile = await UserProfile.findOneAndUpdate(
             { userId: req.user.userId },
             { $set: data },
             { new: true, upsert: true, runValidators: true }
         );
-
         res.json({ msg: "资料保存成功", profile });
     } catch (err) {
         console.error(err);
@@ -56,8 +55,7 @@ router.post("/basic", auth, async (req, res) => {
     res.json({ msg: "基本信息已保存", profile });
 });
 
-
-// =======================保存技能 =======================
+// ======================= 保存技能 =======================
 router.post("/skills", auth, async (req, res) => {
     const { skills } = req.body;
     const profile = await UserProfile.findOneAndUpdate(
@@ -68,8 +66,7 @@ router.post("/skills", auth, async (req, res) => {
     res.json({ msg: "技能已保存", profile });
 });
 
-
-// =======================保存教育经历=======================
+// ======================= 保存教育经历 =======================
 router.post("/education", auth, async (req, res) => {
     const { education } = req.body;
     const profile = await UserProfile.findOneAndUpdate(
@@ -80,8 +77,7 @@ router.post("/education", auth, async (req, res) => {
     res.json({ msg: "教育经历已保存", profile });
 });
 
-
-// =======================保存工作经历=======================
+// ======================= 保存工作经历 =======================
 router.post("/work", auth, async (req, res) => {
     const { experience } = req.body;
     const profile = await UserProfile.findOneAndUpdate(
@@ -91,4 +87,40 @@ router.post("/work", auth, async (req, res) => {
     );
     res.json({ msg: "工作经历已保存", profile });
 });
+
+// ======================= 文件上传配置 =======================
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, "../../uploads")); // ✅ 改成绝对路径
+    },
+    filename: function (req, file, cb) {
+        const ext = path.extname(file.originalname);
+        cb(null, `${Date.now()}-${req.user.id}${ext}`);
+    }
+});
+
+const upload = multer({ storage });
+
+// ======================= 上传头像 =======================
+router.post("/upload-avatar", auth, upload.single("avatar"), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ msg: "没有选择文件" });
+        }
+
+        const avatarUrl = `/uploads/${req.file.filename}`;
+
+        const user = await User.findByIdAndUpdate(
+            req.user.id,
+            { avatar: avatarUrl },
+            { new: true }
+        ).select("username avatar");
+
+        res.json({ msg: "头像上传成功", user });
+    } catch (err) {
+        console.error("头像上传失败:", err);
+        res.status(500).json({ msg: "服务器错误" });
+    }
+});
+
 module.exports = router;

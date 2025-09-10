@@ -29,6 +29,8 @@ app.use("/api/favorites", require("./src/routes/favorite"));
 app.use("/api/favorite", require("./src/routes/favorite"));
 app.use("/api/jobs", require("./src/routes/job"));
 app.use("/api/ads", require("./src/routes/ad"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 
 app.get("/api/health", (_, res) => res.json({ ok: true }));

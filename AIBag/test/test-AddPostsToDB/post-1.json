@@ -1,21 +1,19 @@
 {
-    "meta": {
-        "id": 1,
-        "title": "世界500强HR偏好的简历模板解析",
-        "author": "陈思雨",
-        "postTime": "2024-03-10 14:30",
-        "category": "resume",
-        "level": 3,
-        "avatar": "./images/avatar2.jpg",
-        "views": 3400,
-        "likes": 892,
-        "comments": 134,
-        "description": "整理了宝洁、联合利华等快消巨头的成功简历案例，重点解析STAR法则的应用技巧，附赠可编辑模板..."
+    "_id": {
+        "$oid": "68bda60a004b27648dd9f475"
     },
+    "userId": {
+        "$oid": "68bc074d2727dda6f58cce25"
+    },
+    "title": "世界500强HR偏好的简历模板解析",
+    "description": "整理了宝洁、联合利华等快消巨头的成功简历案例，重点解析STAR法则的应用技巧，附赠可编辑模板...",
+    "category": "resume",
+    "tags": [],
     "content": [
         {
             "type": "header",
-            "text": "STAR法则核心要点"
+            "text": "STAR法则核心要点",
+            "items": []
         },
         {
             "type": "list",
@@ -28,28 +26,25 @@
         },
         {
             "type": "image",
+            "items": [],
             "src": "./images/resume-template.jpg",
             "alt": "快消行业简历模板"
         },
         {
             "type": "quote",
-            "text": "优秀简历的共同特点：一页原则、关键词匹配、结果导向"
+            "text": "优秀简历的共同特点：一页原则、关键词匹配、结果导向",
+            "items": []
         }
     ],
-    "comments": [
-        {
-            "avatar": "./images/user-avatar1.jpg",
-            "author": "李娜",
-            "time": "2小时前",
-            "text": "模板非常实用，修改后已收到宝洁面试邀请！",
-            "likes": 24
-        },
-        {
-            "avatar": "./images/user-avatar2.jpg",
-            "author": "王浩",
-            "time": "5小时前",
-            "text": "STAR法则的电商运营案例很有参考价值",
-            "likes": 15
-        }
-    ]
+    "viewsCount": 3411,
+    "likesCount": 892,
+    "commentsCount": 134,
+    "postTime": "2024-03-10 14:30",
+    "createdAt": {
+        "$date": "2025-09-07T15:34:34.591Z"
+    },
+    "updatedAt": {
+        "$date": "2025-09-09T02:57:58.882Z"
+    },
+    "__v": 0
 }

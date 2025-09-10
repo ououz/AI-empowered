@@ -1049,6 +1049,48 @@
       border-top: 2px dashed #e2e8f0;
       padding-top: 1.5rem;
     }
+
+    .settings .material-icons {
+      margin-right: auto;
+      font-size: 12px;
+      vertical-align: middle;
+
+    }
+
+    .settings .material-icons:hover {
+      color: #0073e6;
+      cursor: pointer;
+    }
+
+    /* 统一保存/取消按钮样式 */
+    .save-button {
+      background: #94bee9;
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .save-button:hover {
+      background: #6aa5db;
+    }
+
+    .cancel-button {
+      background: #f0f4f8;
+      color: #4a5568;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .cancel-button:hover {
+      background: #e2e8f0;
+    }
   </style>
 </head>
 
@@ -1149,9 +1191,14 @@
 
           <p>学生</p>
           <div class="stats-grid">
-            <div>帖子 0</div>
-            <div>获赞20</div>
-            <div>学习时长 31分</div>
+            <div>帖子 </div>
+            <div>获赞</div>
+            <div>学习时长 </div>
+            <div class="settings" onclick="openSettings()">
+              <span class="material-icons">设置 settings</span>
+
+            </div>
+
           </div>
         </div>
       </div>
@@ -1499,6 +1546,30 @@
   </div>
   </div>
 
+  <!-- 修改资料模态框放这里 -->
+  <div id="settingsModal" class="form-modal" style="display:none;">
+    <h3>修改资料</h3>
+    <label>用户名：</label>
+    <input type="text" id="newUsername" placeholder="请输入新用户名"><br><br>
+    <label>上传头像：</label>
+    <input type="file" id="avatarFile" accept="image/*"><br><br>
+
+
+    <!-- 按钮组靠右 -->
+    <div class="form-actions">
+      <button type="submit" onclick="updateProfile()" class="save-button">
+        <span class="material-icons">save</span>
+        保存
+      </button>
+      <button type="button" onclick="closeSettings()" class="cancel-button">
+        <span class="material-icons">cancel</span>
+        取消
+      </button>
+    </div>
+
+
+  </div>
+
 
   <div class="footer">
     <p>&copy; 2023 大学生职业竞争力赋能平台. 保留所有权利.</p>
@@ -1762,6 +1833,9 @@
 
         // 显示用户数据
         document.getElementById("userNickname").innerText = user.username;
+
+        // 显示头像
+        document.getElementById("userAvatar").src = user.avatar || "images/profile/actor.jpg";
         navAuth.innerHTML = `
             <span style="color:#666">欢迎，${user.username}</span>
             <button onclick="logout()"
@@ -1879,6 +1953,64 @@
 
   document.getElementById('searchInput')
     .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
+
+  function openSettings() {
+    document.getElementById("settingsModal").style.display = "block";
+  }
+
+  function closeSettings() {
+    document.getElementById("settingsModal").style.display = "none";
+  }
+
+  async function updateProfile() {
+    const username = document.getElementById("newUsername").value.trim();
+    const fileInput = document.getElementById("avatarFile");
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("请先登录！");
+      return;
+    }
+
+    // 检查有没有选择文件
+    if (!fileInput.files.length) {
+      alert("请选择一个头像文件！");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("avatar", fileInput.files[0]);
+    if (username) formData.append("username", username);
+
+    try {
+      const res = await fetch("/api/profile/upload-avatar", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token
+        },
+        body: formData
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("修改成功！");
+        // 更新前端显示
+        if (data.user.username) {
+          document.getElementById("userNickname").innerText = data.user.username;
+        }
+        if (data.user.avatar) {
+          document.getElementById("userAvatar").src = data.user.avatar;
+        }
+        closeSettings();
+      } else {
+        alert("修改失败: " + (data.msg || "未知错误"));
+      }
+    } catch (err) {
+      console.error("请求出错:", err);
+      alert("请求失败，请稍后再试");
+    }
+  }
+
 </script>
 
 </html>
