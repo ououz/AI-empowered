@@ -1,0 +1,138 @@
+[
+    {
+        "category": "其他实用技能",
+        "subcategory": "英语口语（商务）",
+        "group": "其他实用技能 · 英语口语（商务）",
+        "title": "商务英语口语",
+        "description": "推荐课程: 慕课网《商务英语口语》",
+        "platform": "慕课网",
+        "platformTag": "imooc",
+        "imageUrl": "images/english-imooc.jpg",
+        "hours": "",
+        "tags": [
+            "商务英语",
+            "系统课程"
+        ],
+        "link": "https://m.imooc.com/learn/140",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "英语口语（商务）",
+        "group": "其他实用技能 · 英语口语（商务）",
+        "title": "外企英语实战",
+        "description": "推荐课程: B站《外企英语实战》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/english-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "职场英语",
+            "实战教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1kv411a7xy",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "平面设计（AI+CoreDRAW）",
+        "group": "其他实用技能 · 平面设计（AI+CoreDRAW）",
+        "title": "AI零基础入门",
+        "description": "推荐课程: 秒秒学《AI零基础入门》",
+        "platform": "秒秒学",
+        "platformTag": "miaomiao",
+        "imageUrl": "images/design-miaomiao.jpg",
+        "hours": "",
+        "tags": [
+            "AI设计",
+            "图文教程"
+        ],
+        "link": "http://mbaike.com/wiki/photoshop%E5%9F",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "平面设计（AI+CoreDRAW）",
+        "group": "其他实用技能 · 平面设计（AI+CoreDRAW）",
+        "title": "CoreDRAW全功能教程",
+        "description": "推荐课程: B站《CoreDRAW全功能教程》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/design-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "CoreDRAW",
+            "完整教程"
+        ],
+        "link": "https://www.bilibili.com/video/Q/2004781",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "Python自动化办公",
+        "group": "其他实用技能 · Python自动化办公",
+        "title": "Python办公自动化",
+        "description": "推荐课程: B站《Python办公自动化》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/python-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "Python",
+            "办公自动化"
+        ],
+        "link": "https://www.bilibili.com/video/BV1Z7411d7y",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "Python自动化办公",
+        "group": "其他实用技能 · Python自动化办公",
+        "title": "Python爬虫工程师",
+        "description": "推荐课程: 慕课网《Python爬虫工程师》",
+        "platform": "慕课网",
+        "platformTag": "imooc",
+        "imageUrl": "images/python-imooc.jpg",
+        "hours": "",
+        "tags": [
+            "Python爬虫",
+            "工程师课程"
+        ],
+        "link": "https://m.imooc.com/learn/177",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "基础数据分析（Excel+Python）",
+        "group": "其他实用技能 · 基础数据分析（Excel+Python）",
+        "title": "Python数据分析快速入门",
+        "description": "推荐课程: 慕课网《Python数据分析快速入门》",
+        "platform": "慕课网",
+        "platformTag": "imooc",
+        "imageUrl": "images/data-imooc.jpg",
+        "hours": "",
+        "tags": [
+            "Python分析",
+            "免费体验课"
+        ],
+        "link": "https://m.imooc.com/learn/92",
+        "isRecommended": true
+    },
+    {
+        "category": "其他实用技能",
+        "subcategory": "基础数据分析（Excel+Python）",
+        "group": "其他实用技能 · 基础数据分析（Excel+Python）",
+        "title": "Excel数据可视化实战",
+        "description": "推荐课程: B站《Excel数据可视化实战》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/excel-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "Excel",
+            "UP主: 旁庭厨房万能调试"
+        ],
+        "link": "https://www.bilibili.com/video/BV1Wv411T75",
+        "isRecommended": true
+    }
+]

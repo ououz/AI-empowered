@@ -1,0 +1,137 @@
+[
+    {
+        "category": "设计类",
+        "subcategory": "Photoshop图像处理",
+        "group": "设计类 · Photoshop图像处理",
+        "title": "Photoshop图像处理",
+        "description": "推荐课程: 秒秒学《Photoshop基础教程》",
+        "platform": "秒秒学",
+        "platformTag": "miaomiao",
+        "imageUrl": "images/photoshop-miaomiao.jpg",
+        "hours": "",
+        "tags": [
+            "图像处理",
+            "交互教程"
+        ],
+        "link": "https://m.baike.com/wiki/photoshop%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/2",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "Photoshop图像处理",
+        "group": "设计类 · Photoshop图像处理",
+        "title": "Photoshop图像处理",
+        "description": "推荐课程: B站《PS从入门到精通》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/photoshop-bilibili.jpg",
+        "hours": "12小时",
+        "tags": [
+            "图像处理"
+        ],
+        "link": "https://www.bilibili.com/video/BV18K411w7V",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "UI设计",
+        "group": "设计类 · UI设计",
+        "title": "UI设计",
+        "description": "推荐课程: 新像素《UI设计线上训练营》",
+        "platform": "新像素",
+        "platformTag": "xinxiangsu",
+        "imageUrl": "images/ui-xinxiangsu.jpg",
+        "hours": "",
+        "tags": [
+            "界面设计",
+            "系统课程"
+        ],
+        "link": "https://www.uixxs.com/",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "UI设计",
+        "group": "设计类 · UI设计",
+        "title": "UI设计",
+        "description": "推荐课程: B站《UI设计入门实战》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/ui-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "界面设计",
+            "实战教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1Jv411577V",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "视频剪辑(Premiere Pro)",
+        "group": "设计类 · 视频剪辑(Premiere Pro)",
+        "title": "Premiere Pro视频剪辑",
+        "description": "推荐资源: Adobe官方教程",
+        "platform": "Adobe",
+        "platformTag": "adobe",
+        "imageUrl": "images/premiere-adobe.jpg",
+        "hours": "",
+        "tags": [
+            "视频剪辑",
+            "官方文档"
+        ],
+        "link": "https://www.adobe.com/sg/products/premiere",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "视频剪辑(Premiere Pro)",
+        "group": "设计类 · 视频剪辑(Premiere Pro)",
+        "title": "Premiere Pro视频剪辑",
+        "description": "推荐课程: 人人素材《Premiere Pro边学边练》",
+        "platform": "人人素材",
+        "platformTag": "renren",
+        "imageUrl": "images/premiere-renren.jpg",
+        "hours": "",
+        "tags": [
+            "视频剪辑",
+            "实战教程"
+        ],
+        "link": "https://www.renresucai.com/127949.html",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "手机短视频剪辑(剪映)",
+        "group": "设计类 · 手机短视频剪辑(剪映)",
+        "title": "剪映短视频剪辑",
+        "description": "推荐课程: B站《剪映零基础到高阶全教程》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/jianying-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "手机剪辑",
+            "全阶段教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1...",
+        "isRecommended": true
+    },
+    {
+        "category": "设计类",
+        "subcategory": "手机短视频剪辑(剪映)",
+        "group": "设计类 · 手机短视频剪辑(剪映)",
+        "title": "剪映短视频剪辑",
+        "description": "推荐课程: 抖音《手机剪辑100个实用技巧》",
+        "platform": "抖音",
+        "platformTag": "douyin",
+        "imageUrl": "images/jianying-douyin.jpg",
+        "hours": "",
+        "tags": [
+            "手机剪辑",
+            "实用技巧"
+        ],
+        "link": "https://www.douyin.com/user/...",
+        "isRecommended": true
+    }
+]

@@ -1,0 +1,104 @@
+[
+    {
+        "category": "语言学习类",
+        "subcategory": "日语（N5-N4）",
+        "group": "语言类 · 日语（N5-N4）",
+        "title": "日语初级（N5-N4）",
+        "description": "推荐教材: 《标准日本语初级》（人民教育出版社）",
+        "platform": "标准日本语",
+        "platformTag": "standard-japanese",
+        "imageUrl": "images/japanese-textbook.jpg",
+        "hours": "",
+        "tags": [
+            "官方教材",
+            "N5-N4级别"
+        ],
+        "link": "https://m.baike.com/wiki/%E6%A0%87%E5%87%86%E6%97%A5%E6%9C%AC%E8%AF%AD",
+        "isRecommended": true
+    },
+    {
+        "category": "语言学习类",
+        "subcategory": "日语（N5-N4）",
+        "group": "语言类 · 日语（N5-N4）",
+        "title": "日语初级（N5-N4）",
+        "description": "推荐课程: 《日语零基础入门》",
+        "platform": "沪江网校",
+        "platformTag": "hujiang",
+        "imageUrl": "images/japanese-course.jpg",
+        "hours": "",
+        "tags": [
+            "在线课程",
+            "零基础"
+        ],
+        "link": "https://m.hujiang.com/c/hanyurumen/",
+        "isRecommended": true
+    },
+    {
+        "category": "语言学习类",
+        "subcategory": "韩语（TOPIK1-2）",
+        "group": "语言学习类 · 韩语（TOPIK1-2）",
+        "title": "韩语基础（TOPIK 1-2）",
+        "description": "推荐课程: 《延世韩国语1-2册连读》",
+        "platform": "沪江网校",
+        "platformTag": "hujiang",
+        "imageUrl": "images/korean-hujiang.jpg",
+        "hours": "",
+        "tags": [
+            "系统课程",
+            "分级教学"
+        ],
+        "link": "https://m.hujiang.com/c/hanyurumen/",
+        "isRecommended": true
+    },
+    {
+        "category": "语言学习类",
+        "subcategory": "韩语（TOPIK1-2）",
+        "group": "语言学习类 · 韩语（TOPIK1-2）",
+        "title": "韩语基础（TOPIK 1-2）",
+        "description": "推荐平台: 韩语学习网",
+        "platform": "韩语学习网",
+        "platformTag": "korean-study",
+        "imageUrl": "images/korean-study.jpg",
+        "hours": "",
+        "tags": [
+            "韩语学习",
+            "在线资源"
+        ],
+        "link": "http://kr.tingroom.com/",
+        "isRecommended": true
+    },
+    {
+        "category": "语言学习类",
+        "subcategory": "法语（A1-A2）",
+        "group": "语言类 · 法语（A1-A2）",
+        "title": "法语（A1-A2）",
+        "description": "推荐课程: 《零基础语音入门》",
+        "platform": "沪江法语",
+        "platformTag": "hujiang",
+        "imageUrl": "images/french-hujiang.jpg",
+        "hours": "",
+        "tags": [
+            "语音课程",
+            "法语入门"
+        ],
+        "link": "https://m.hujiang.com/c/fjjcrm/unit/",
+        "isRecommended": true
+    },
+    {
+        "category": "语言学习类",
+        "subcategory": "法语（A1-A2）",
+        "group": "语言类 · 法语（A1-A2）",
+        "title": "法语（A1-A2）",
+        "description": "推荐课程: 《French for Beginners》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/french-coursera.jpg",
+        "hours": "",
+        "tags": [
+            "国际课程",
+            "英语授课"
+        ],
+        "link": "https://www.coursera.org/learn/french-beginners",
+        "isRecommended": true
+    }
+]

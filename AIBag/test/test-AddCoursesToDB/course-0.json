@@ -1,0 +1,189 @@
+[
+    {
+        "category": "IT技术类",
+        "subcategory": "Python编程基础",
+        "group": "IT技术类 · Python编程基础",
+        "title": "Python 编程基础",
+        "description": "推荐课程: B站《Python 零基础入门教程 2025》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/python-course.jpg",
+        "hours": "12小时",
+        "tags": [
+            "视频教程",
+            "12小时"
+        ],
+        "link": "https://www.bilibili.com/video/BV1xGXaYzEtW/",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "Python编程基础",
+        "group": "IT技术类 · Python编程基础",
+        "title": "Python 编程基础",
+        "description": "推荐课程: 慕课网《Python入门第一季》",
+        "platform": "慕课网",
+        "platformTag": "imooc",
+        "imageUrl": "images/imooc-python.jpg",
+        "hours": "8小时",
+        "tags": [
+            "视频教程",
+            "8小时"
+        ],
+        "link": "https://m.imooc.com/learn/177",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "Python编程基础",
+        "group": "IT技术类 · Python编程基础",
+        "title": "Python 编程基础",
+        "description": "推荐课程: Coursera《Python for Everybody》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/coursera-python.jpg",
+        "hours": "28小时",
+        "tags": [
+            "专项课程",
+            "28小时"
+        ],
+        "link": "https://www.coursera.org/learn/python",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "Web 前端开发（HTML+CSS+JS）",
+        "group": "IT技术类 · Web 前端开发（HTML+CSS+JS）",
+        "title": "Web前端开发",
+        "description": "推荐课程: B站《Web前端磨基础入门》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/web-frontend-bilibili.jpg",
+        "hours": "视频教程",
+        "tags": [
+            "HTML+CSS+JS",
+            "视频教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1uJ411k7w7",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "Web 前端开发（HTML+CSS+JS）",
+        "group": "IT技术类 · Web 前端开发（HTML+CSS+JS）",
+        "title": "Web前端开发",
+        "description": "推荐课程: 慕课网《HTML5+CSS3基础教程》",
+        "platform": "慕课网",
+        "platformTag": "imooc",
+        "imageUrl": "images/web-frontend-imooc.jpg",
+        "hours": "入门课程",
+        "tags": [
+            "HTML+CSS",
+            "入门课程"
+        ],
+        "link": "https://m.imooc.com/learn/15",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "Web 前端开发（HTML+CSS+JS）",
+        "group": "IT技术类 · Web 前端开发（HTML+CSS+JS）",
+        "title": "Web前端开发",
+        "description": "推荐课程: W3School在线教程",
+        "platform": "W3School",
+        "platformTag": "w3school",
+        "imageUrl": "images/web-frontend-w3school.jpg",
+        "hours": "文档教程",
+        "tags": [
+            "HTML+CSS+JS",
+            "文档教程"
+        ],
+        "link": "https://www.w3school.com.cn/",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "数据分析（Excel+Python）",
+        "group": "IT技术类 · 数据分析（Excel+Python）",
+        "title": "数据分析(Excel+Python)",
+        "description": "推荐课程: ExcelHome《财务数据分析实战》",
+        "platform": "ExcelHome",
+        "platformTag": "excelhome",
+        "imageUrl": "images/data-analysis-excel.jpg",
+        "hours": "视频教程",
+        "tags": [
+            "Excel实战",
+            "视频教程"
+        ],
+        "link": "https://www.excelhome.net/video/XML5",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "数据分析（Excel+Python）",
+        "group": "IT技术类 · 数据分析（Excel+Python）",
+        "title": "数据分析(Excel+Python)",
+        "description": "推荐课程: B站《Python数据分析实战》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/data-analysis-python.jpg",
+        "hours": "视频教程",
+        "tags": [
+            "Python",
+            "视频教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "数据分析（Excel+Python）",
+        "group": "IT技术类 · 数据分析（Excel+Python）",
+        "title": "数据分析(Excel+Python)",
+        "description": "推荐课程: Coursera《Python数据分析》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/data-analysis-coursera.jpg",
+        "hours": "专项课程",
+        "tags": [
+            "Python",
+            "专项课程"
+        ],
+        "link": "https://www.coursera.org/learn/python-data",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "云计算基础",
+        "group": "IT技术类 · 云计算基础",
+        "title": "云计算基础",
+        "description": "推荐课程: 华为云开发者学堂《云计算入门》",
+        "platform": "华为云",
+        "platformTag": "huawei",
+        "imageUrl": "images/cloud-computing-huawei.jpg",
+        "hours": "认证课程",
+        "tags": [
+            "云计算基础",
+            "认证课程"
+        ],
+        "link": "https://edu.huaweicloud.com/",
+        "isRecommended": true
+    },
+    {
+        "category": "IT技术类",
+        "subcategory": "云计算基础",
+        "group": "IT技术类 · 云计算基础",
+        "title": "云计算基础",
+        "description": "推荐课程: 网易云课堂《阿里云云计算工程师》",
+        "platform": "网易云课堂",
+        "platformTag": "netease",
+        "imageUrl": "images/cloud-computing-netease.jpg",
+        "hours": "视频课程",
+        "tags": [
+            "阿里云认证",
+            "视频课程"
+        ],
+        "link": "https://study.163.com/course/introduction/1",
+        "isRecommended": true
+    }
+]

@@ -1,0 +1,103 @@
+[
+    {
+        "category": "办公技能类",
+        "subcategory": "Excel高级技巧",
+        "group": "办公技能类 · Excel高级技巧",
+        "title": "Excel高级技巧",
+        "description": "推荐课程: ExcelHome《Excel高级技巧》",
+        "platform": "ExcelHome",
+        "platformTag": "excelhome",
+        "imageUrl": "images/excel-course.jpg",
+        "hours": "",
+        "tags": [
+            "数据处理",
+            "视频教程"
+        ],
+        "link": "https://www.excelhome.net/video",
+        "isRecommended": true
+    },
+    {
+        "category": "办公技能类",
+        "subcategory": "Excel高级技巧",
+        "group": "办公技能类 · Excel高级技巧",
+        "title": "Excel高级技巧",
+        "description": "推荐课程: B站《Excel自动化办公》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/excel-bilibili.jpg",
+        "hours": "8小时",
+        "tags": [
+            "办公自动化"
+        ],
+        "link": "https://www.bilibili.com/video/BV1tK41137yT",
+        "isRecommended": true
+    },
+    {
+        "category": "办公技能类",
+        "subcategory": "PPT设计进阶",
+        "group": "办公技能类 · PPT设计进阶",
+        "title": "PPT设计进阶",
+        "description": "推荐资源: iSlide官方教程",
+        "platform": "iSlide官网",
+        "platformTag": "islide",
+        "imageUrl": "images/ppt-islide.jpg",
+        "hours": "",
+        "tags": [
+            "演示设计",
+            "官方文档"
+        ],
+        "link": "https://www.islide.cc/la",
+        "isRecommended": true
+    },
+    {
+        "category": "办公技能类",
+        "subcategory": "PPT设计进阶",
+        "group": "办公技能类 · PPT设计进阶",
+        "title": "PPT设计进阶",
+        "description": "推荐课程: B站《PPT高级动画教程》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/ppt-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "动画设计",
+            "实战教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1Wv411T75",
+        "isRecommended": true
+    },
+    {
+        "category": "办公技能类",
+        "subcategory": "Word专业排版",
+        "group": "办公技能类 · Word专业排版",
+        "title": "Word专业排版",
+        "description": "推荐课程: 金山文档《Word专业排版》",
+        "platform": "金山文档",
+        "platformTag": "kdocs",
+        "imageUrl": "images/word-kdocs.jpg",
+        "hours": "",
+        "tags": [
+            "文档排版",
+            "图文教程"
+        ],
+        "link": "https://www.kdocs.cn/article/54840EC888.ht",
+        "isRecommended": true
+    },
+    {
+        "category": "办公技能类",
+        "subcategory": "Word专业排版",
+        "group": "办公技能类 · Word专业排版",
+        "title": "Word专业排版",
+        "description": "推荐课程: B站《Word高效办公技巧》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/word-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "办公技巧",
+            "实用教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1vK411a7Xy",
+        "isRecommended": true
+    }
+]

@@ -1,0 +1,121 @@
+[
+    {
+        "category": "职业技能类",
+        "subcategory": "项目管理(PMP)",
+        "group": "职业技能类 · 项目管理(PMP)",
+        "title": "PMP入门与实战",
+        "description": "推荐课程: 网易云课堂《PMP入门与实战》",
+        "platform": "网易云课堂",
+        "platformTag": "netease",
+        "imageUrl": "images/pmp-netease.jpg",
+        "hours": "",
+        "tags": [
+            "项目管理",
+            "认证培训"
+        ],
+        "link": "https://study.163.com/course/introduction/1",
+        "isRecommended": true
+    },
+    {
+        "category": "职业技能类",
+        "subcategory": "项目管理(PMP)",
+        "group": "职业技能类 · 项目管理(PMP)",
+        "title": "项目管理基础",
+        "description": "推荐课程: Coursera《项目管理基础》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/pmp-coursera.jpg",
+        "hours": "",
+        "tags": [
+            "项目管理",
+            "国际认证"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "职业技能类",
+        "subcategory": "项目管理(PMP)",
+        "group": "职业技能类 · 项目管理(PMP)",
+        "title": "敏捷项目管理",
+        "description": "推荐课程: B站《敏捷项目管理》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/pmp-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "敏捷开发",
+            "实战教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1Z7411d7y",
+        "isRecommended": true
+    },
+    {
+        "category": "职业技能类",
+        "subcategory": "沟通技巧",
+        "group": "职业技能类 · 沟通技巧",
+        "title": "商务沟通",
+        "description": "推荐课程: Coursera《商务沟通》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/communication-coursera.jpg",
+        "hours": "",
+        "tags": [
+            "沟通技巧",
+            "国际课程"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "职业技能类",
+        "subcategory": "沟通技巧",
+        "group": "职业技能类 · 沟通技巧",
+        "title": "高难度沟通实战",
+        "description": "推荐课程: B站《高难度沟通实战》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/communication-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "沟通技巧",
+            "实战案例"
+        ],
+        "link": "https://www.bilibili.com/video/BV1Wv411t75",
+        "isRecommended": true
+    },
+    {
+        "category": "职业技能类",
+        "subcategory": "数据分析",
+        "group": "职业技能类 · 数据分析",
+        "title": "数据分析实战",
+        "description": "推荐课程: 慕课网《数据分析实战》",
+        "platform": "慕课网",
+        "platformTag": "imooc",
+        "imageUrl": "images/data-analysis-imooc.jpg",
+        "hours": "",
+        "tags": [
+            "数据分析",
+            "系统课程"
+        ],
+        "link": "https://m.imooc.com/learn/92",
+        "isRecommended": true
+    },
+    {
+        "category": "职业技能类",
+        "subcategory": "数据分析",
+        "group": "职业技能类 · 数据分析",
+        "title": "高级查询技巧",
+        "description": "推荐课程: B站《高级查询技巧》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/data-analysis-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "SQL技巧",
+            "实战教程"
+        ],
+        "link": "https://www.bilibili.com/video/BV1vK411a7Xy",
+        "isRecommended": true
+    }
+]

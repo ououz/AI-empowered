@@ -511,7 +511,7 @@
       padding: 20px;
       background: white;
       box-shadow: #666;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
@@ -768,1357 +768,118 @@
           <a href="#life" class="filter-tag">生活技能</a>
           <a href="#career" class="filter-tag">职业技能</a>
           <a href="#new-tech" class="filter-tag">新兴技能</a>
+          <a href="#other-skill" class="filter-tag">其他实用技能</a>
         </div>
       </div>
     </div>
 
-    <section class="course-category">
+    <section class="course-category" id="courseCategory">
       <div class="category-header" id="it-tech">
         <h2 class="category-title1">IT技术类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">编程开发</div>
+          <div class="filter-tag ">编程开发</div>
           <div class="filter-tag">web前端开发</div>
           <div class="filter-tag">数据分析</div>
           <div class="filter-tag">云计算基础</div>
         </div>
       </div>
-
-
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- 单个课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">IT技术类 · Python编程基础</h3>
-          <div class="card-container">
-
-            <!-- Python编程基础课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/python-course.jpg" alt="Python编程基础课程">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>Python 编程基础</h4>
-                <div class="course-type">推荐课程: B站《Python 零基础入门教程 2025》</div>
-                <div class="meta">
-                  <span class="material-icons">video_library</span> 视频教程
-                  <span class="material-icons">schedule</span> 12小时
-                </div>
-                <a href="https://www.bilibili.com/video/BV1xGXaYzEtW/" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- 慕课网《Python入门第一季》课程卡片 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/imooc-python.jpg" alt="慕课网Python入门课程">
-                <div class="platform-tag imooc">慕课网</div>
-              </div>
-              <div class="card-body">
-                <h4>Python 编程基础</h4>
-                <div class="course-type">推荐课程: 慕课网《Python入门第一季》</div>
-                <div class="meta">
-                  <span class="material-icons">video_library</span> 视频教程
-                  <span class="material-icons">schedule</span> 8小时
-                </div>
-                <a href="https://m.imooc.com/learn/177" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- Coursera《Python for Everybody》课程卡片 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/coursera-python.jpg" alt="Coursera Python课程">
-                <div class="platform-tag coursera">Coursera</div>
-              </div>
-              <div class="card-body">
-                <h4>Python 编程基础</h4>
-                <div class="course-type">推荐课程: Coursera《Python for Everybody》</div>
-                <div class="meta">
-                  <span class="material-icons">menu_book</span> 专项课程
-                  <span class="material-icons">schedule</span> 28小时
-                </div>
-                <a href="https://www.coursera.org/learn/python" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <!-- 可展开的其他分类 -->
-        <button id="toggleDetailsBtn" class="toggle-details-btn">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses" id="collapsedCourses">
-
-          <!-- Web 前端开发 -->
-          <div class="course-group">
-            <h3 class="group-title">IT技术类 ·Web 前端开发（HTML+CSS+JS）</h3>
-            <div class="card-container">
-
-              <!-- Web前端开发 - B站课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/web-frontend-bilibili.jpg" alt="Web前端开发课程">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>Web前端开发</h4>
-                  <div class="course-type">推荐课程: B站《Web前端磨基础入门》</div>
-                  <div class="meta">
-                    <span class="material-icons">code</span> HTML+CSS+JS
-                    <span class="material-icons">video_library</span> 视频教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1uJ411k7w7" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- Web前端开发 - 慕课网课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/web-frontend-imooc.jpg" alt="HTML5+CSS3基础教程">
-                  <div class="platform-tag imooc">慕课网</div>
-                </div>
-                <div class="card-body">
-                  <h4>Web前端开发</h4>
-                  <div class="course-type">推荐课程: 慕课网《HTML5+CSS3基础教程》</div>
-                  <div class="meta">
-                    <span class="material-icons">code</span> HTML+CSS
-                    <span class="material-icons">school</span> 入门课程
-                  </div>
-                  <a href="https://m.imooc.com/learn/15" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- Web前端开发 - W3School课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/web-frontend-w3school.jpg" alt="W3School在线教程">
-                  <div class="platform-tag w3school">W3School</div>
-                </div>
-                <div class="card-body">
-                  <h4>Web前端开发</h4>
-                  <div class="course-type">推荐课程: W3School在线教程</div>
-                  <div class="meta">
-                    <span class="material-icons">code</span> HTML+CSS+JS
-                    <span class="material-icons">article</span> 文档教程
-                  </div>
-                  <a href="https://www.w3school.com.cn/" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- 数据分析 -->
-          <div class="course-group">
-            <h3 class="group-title">IT技术类 ·数据分析（Excel+Python）</h3>
-            <div class="card-container">
-
-
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/data-analysis-excel.jpg" alt="财务数据分析实战">
-                  <div class="platform-tag excelhome">ExcelHome</div>
-                </div>
-                <div class="card-body">
-                  <h4>数据分析(Excel+Python)</h4>
-                  <div class="course-type">推荐课程: ExcelHome《财务数据分析实战》</div>
-                  <div class="meta">
-                    <span class="material-icons">analytics</span> Excel实战
-                    <span class="material-icons">video_library</span> 视频教程
-                  </div>
-                  <a href="https://www.excelhome.net/video/XML5" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 数据分析 - B站Python课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/data-analysis-python.jpg" alt="Python数据分析实战">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>数据分析(Excel+Python)</h4>
-                  <div class="course-type">推荐课程: B站《Python数据分析实战》</div>
-                  <div class="meta">
-                    <span class="material-icons">data_usage</span> Python
-                    <span class="material-icons">video_library</span> 视频教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 数据分析 - Coursera课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/data-analysis-coursera.jpg" alt="Python数据分析">
-                  <div class="platform-tag coursera">Coursera</div>
-                </div>
-                <div class="card-body">
-                  <h4>数据分析(Excel+Python)</h4>
-                  <div class="course-type">推荐课程: Coursera《Python数据分析》</div>
-                  <div class="meta">
-                    <span class="material-icons">data_usage</span> Python
-                    <span class="material-icons">school</span> 专项课程
-                  </div>
-                  <a href="https://www.coursera.org/learn/python-data" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 云计算基础 -->
-          <div class="course-group">
-            <h3 class="group-title">IT技术类 ·云计算基础</h3>
-            <div class="card-container">
-              <!-- 云计算基础 - 华为云课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/cloud-computing-huawei.jpg" alt="华为云云计算课程">
-                  <div class="platform-tag huawei">华为云</div>
-                </div>
-                <div class="card-body">
-                  <h4>云计算基础</h4>
-                  <div class="course-type">推荐课程: 华为云开发者学堂《云计算入门》</div>
-                  <div class="meta">
-                    <span class="material-icons">cloud</span> 云计算基础
-                    <span class="material-icons">school</span> 认证课程
-                  </div>
-                  <a href="https://edu.huaweicloud.com/" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 云计算基础 - 网易云课堂课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/cloud-computing-netease.jpg" alt="阿里云云计算课程">
-                  <div class="platform-tag netease">网易云课堂</div>
-                </div>
-                <div class="card-body">
-                  <h4>云计算基础</h4>
-                  <div class="course-type">推荐课程: 网易云课堂《阿里云云计算工程师》</div>
-                  <div class="meta">
-                    <span class="material-icons">cloud</span> 阿里云认证
-                    <span class="material-icons">video_library</span> 视频课程
-                  </div>
-                  <a href="https://study.163.com/course/introduction/1" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="it-courses" id="it-tech-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
       <div class="shadow-line"></div>
-
 
       <div class="category-header" id="design">
         <h2 class="category-title1">设计类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">PS图像处理</div>
+          <div class="filter-tag">PS图像处理</div>
           <div class="filter-tag">UI设计</div>
           <div class="filter-tag">视频剪辑</div>
           <div class="filter-tag">短视频剪辑</div>
         </div>
       </div>
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- Photoshop图像处理课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">设计类 · Photoshop图像处理</h3>
-          <div class="card-container">
-
-            <!-- 秒秒学Photoshop基础教程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/photoshop-miaomiao.jpg" alt="Photoshop基础教程">
-                <div class="platform-tag miaomiao">秒秒学</div>
-              </div>
-              <div class="card-body">
-                <h4>Photoshop图像处理</h4>
-                <div class="course-type">推荐课程: 秒秒学《Photoshop基础教程》</div>
-                <div class="meta">
-                  <span class="material-icons">photo_camera</span> 图像处理
-                  <span class="material-icons">video_library</span> 交互教程
-                </div>
-                <a href="https://m.baike.com/wiki/photoshop%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/2" target="_blank"
-                  class="btn-login" style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- B站PS从入门到精通 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/photoshop-bilibili.jpg" alt="PS从入门到精通">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>Photoshop图像处理</h4>
-                <div class="course-type">推荐课程: B站《PS从入门到精通》</div>
-                <div class="meta">
-                  <span class="material-icons">photo_camera</span> 图像处理
-                  <span class="material-icons">schedule</span> 12小时
-                </div>
-                <a href="https://www.bilibili.com/video/BV18K411w7V" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 设计类的查看更多按钮 -->
-        <button class="toggle-details-btn design-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <!-- 设计类的隐藏内容 -->
-        <div class="collapsed-courses design-collapsed">
-          <!-- UI设计课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">设计类 · UI设计</h3>
-            <div class="card-container">
-
-              <!-- 新像素UI设计训练营 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/ui-xinxiangsu.jpg" alt="UI设计训练营">
-                  <div class="platform-tag xinxiangsu">新像素</div>
-                </div>
-                <div class="card-body">
-                  <h4>UI设计</h4>
-                  <div class="course-type">推荐课程: 新像素《UI设计线上训练营》</div>
-                  <div class="meta">
-                    <span class="material-icons">design_services</span> 界面设计
-                    <span class="material-icons">school</span> 系统课程
-                  </div>
-                  <a href="https://www.uixxs.com/" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站UI设计入门实战 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/ui-bilibili.jpg" alt="UI设计入门实战">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>UI设计</h4>
-                  <div class="course-type">推荐课程: B站《UI设计入门实战》</div>
-                  <div class="meta">
-                    <span class="material-icons">design_services</span> 界面设计
-                    <span class="material-icons">video_library</span> 实战教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1Jv411577V" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 视频剪辑(Premiere Pro)课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">设计类 · 视频剪辑(Premiere Pro)</h3>
-            <div class="card-container">
-
-              <!-- Adobe官方Premiere教程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/premiere-adobe.jpg" alt="Premiere Pro教程">
-                  <div class="platform-tag adobe">Adobe</div>
-                </div>
-                <div class="card-body">
-                  <h4>Premiere Pro视频剪辑</h4>
-                  <div class="course-type">推荐资源: Adobe官方教程</div>
-                  <div class="meta">
-                    <span class="material-icons">movie</span> 视频剪辑
-                    <span class="material-icons">article</span> 官方文档
-                  </div>
-                  <a href="https://www.adobe.com/sg/products/premiere" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 人人素材Premiere教程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/premiere-renren.jpg" alt="Premiere边学边练">
-                  <div class="platform-tag renren">人人素材</div>
-                </div>
-                <div class="card-body">
-                  <h4>Premiere Pro视频剪辑</h4>
-                  <div class="course-type">推荐课程: 人人素材《Premiere Pro边学边练》</div>
-                  <div class="meta">
-                    <span class="material-icons">movie</span> 视频剪辑
-                    <span class="material-icons">video_library</span> 实战教程
-                  </div>
-                  <a href="https://www.renresucai.com/127949.html" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 手机短视频剪辑(剪映)课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">设计类 · 手机短视频剪辑(剪映)</h3>
-            <div class="card-container">
-
-              <!-- B站剪映教程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/jianying-bilibili.jpg" alt="剪映教程">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>剪映短视频剪辑</h4>
-                  <div class="course-type">推荐课程: B站《剪映零基础到高阶全教程》</div>
-                  <div class="meta">
-                    <span class="material-icons">videocam</span> 手机剪辑
-                    <span class="material-icons">video_library</span> 全阶段教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1..." target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 抖音剪映创作课堂 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/jianying-douyin.jpg" alt="剪映创作课堂">
-                  <div class="platform-tag douyin">抖音</div>
-                </div>
-                <div class="card-body">
-                  <h4>剪映短视频剪辑</h4>
-                  <div class="course-type">推荐课程: 抖音《手机剪辑100个实用技巧》</div>
-                  <div class="meta">
-                    <span class="material-icons">videocam</span> 手机剪辑
-                    <span class="material-icons">tips_and_updates</span> 实用技巧
-                  </div>
-                  <a href="https://www.douyin.com/user/..." target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="it-courses" id="design-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
       <div class="shadow-line"></div>
-
 
       <div class="category-header" id="language">
         <h2 class="category-title1">语言学习类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">日语（N5-N4）</div>
+          <div class="filter-tag ">日语（N5-N4）</div>
           <div class="filter-tag">韩语（TOPIK1-2）</div>
           <div class="filter-tag">法语（A1-A2）</div>
         </div>
       </div>
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <div class="course-group">
-          <h3 class="group-title">语言类 · 日语（N5-N4） </h3>
-          <div class="card-container">
-
-            <!-- 标准日本语教材卡片 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/japanese-textbook.jpg" alt="标准日本语教材">
-                <div class="platform-tag standard-japanese">标准日本语</div>
-              </div>
-              <div class="card-body">
-                <h4>日语初级（N5-N4）</h4>
-                <div class="course-type">推荐教材: 《标准日本语初级》（人民教育出版社）</div>
-                <div class="meta">
-                  <span class="material-icons">menu_book</span> 官方教材
-                  <span class="material-icons">school</span> N5-N4级别
-                </div>
-                <a href="https://m.baike.com/wiki/%E6%A0%87%E5%87%86%E6%97%A5%E6%9C%AC%E8%AF%AD" target="_blank"
-                  class="btn-login" style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  访问官网
-                </a>
-              </div>
-            </div>
-
-            <!-- 沪江网校课程卡片 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/japanese-course.jpg" alt="日语零基础课程">
-                <div class="platform-tag hujiang">沪江网校</div>
-              </div>
-              <div class="card-body">
-                <h4>日语初级（N5-N4）</h4>
-                <div class="course-type">推荐课程: 《日语零基础入门》</div>
-                <div class="meta">
-                  <span class="material-icons">video_library</span> 在线课程
-                  <span class="material-icons">language</span> 零基础
-                </div>
-                <a href="https://m.hujiang.com/c/hanyurumen/" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  立即学习
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- 可展开的其他语言课程 -->
-        <button class="toggle-details-btn language-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses language-collapsed">
-
-          <!-- 韩语课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">语言学习类 · 韩语（TOPIK1-2）</h3>
-            <div class="card-container">
-              <!-- 沪江网校韩语课程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/korean-hujiang.jpg" alt="延世韩国语课程">
-                  <div class="platform-tag hujiang">沪江网校</div>
-                </div>
-                <div class="card-body">
-                  <h4>韩语基础（TOPIK 1-2）</h4>
-                  <div class="course-type">推荐课程: 《延世韩国语1-2册连读》</div>
-                  <div class="meta">
-                    <span class="material-icons">video_library</span> 系统课程
-                    <span class="material-icons">school</span> 分级教学
-                  </div>
-                  <a href="https://m.hujiang.com/c/hanyurumen/" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    立即学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 韩语学习网课程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/korean-study.jpg" alt="韩语基础课程">
-                  <div class="platform-tag korean-study">韩语学习网</div>
-                </div>
-                <div class="card-body">
-                  <h4>韩语基础（TOPIK 1-2）</h4>
-                  <div class="course-type">推荐平台: 韩语学习网</div>
-                  <div class="meta">
-                    <span class="material-icons">language</span> 韩语学习
-                    <span class="material-icons">menu_book</span> 在线资源
-                  </div>
-                  <a href="http://kr.tingroom.com/" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    访问官网
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="course-group">
-            <h3 class="group-title">语言类 · 法语（A1-A2）</h3>
-            <div class="card-container">
-              <!-- 沪江法语课程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/french-hujiang.jpg" alt="法语语音入门课程">
-                  <div class="platform-tag hujiang">沪江法语</div>
-                </div>
-                <div class="card-body">
-                  <h4>法语（A1-A2）</h4>
-                  <div class="course-type">推荐课程: 《零基础语音入门》</div>
-                  <div class="meta">
-                    <span class="material-icons">record_voice_over</span> 语音课程
-                    <span class="material-icons">language</span> 法语入门
-                  </div>
-                  <a href="https://m.hujiang.com/c/fjjcrm/unit/" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    立即学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- Coursera法语课程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/french-coursera.jpg" alt="French for Beginners课程">
-                  <div class="platform-tag coursera">Coursera</div>
-                </div>
-                <div class="card-body">
-                  <h4>法语（A1-A2）</h4>
-                  <div class="course-type">推荐课程: 《French for Beginners》</div>
-                  <div class="meta">
-                    <span class="material-icons">school</span> 国际课程
-                    <span class="material-icons">translate</span> 英语授课
-                  </div>
-                  <a href="https://www.coursera.org/learn/french-beginners" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div class="it-courses" id="language-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
       <div class="shadow-line"></div>
+
 
       <!-- 办公技能类课程部分 -->
       <div class="category-header" id="office">
         <h2 class="category-title1">办公技能类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">Excel</div>
+          <div class="filter-tag">Excel</div>
           <div class="filter-tag">PPT</div>
           <div class="filter-tag">Word</div>
         </div>
       </div>
 
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- Excel课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">办公技能类 · Excel高级技巧</h3>
-          <div class="card-container">
-
-            <!-- ExcelHome课程卡片 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/excel-course.jpg" alt="Excel高级技巧课程">
-                <div class="platform-tag excelhome">ExcelHome</div>
-              </div>
-              <div class="card-body">
-                <h4>Excel高级技巧</h4>
-                <div class="course-type">推荐课程: ExcelHome《Excel高级技巧》</div>
-                <div class="meta">
-                  <span class="material-icons">table_chart</span> 数据处理
-                  <span class="material-icons">video_library</span> 视频教程
-                </div>
-                <a href="https://www.excelhome.net/video" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- B站Excel自动化办公课程卡片 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/excel-bilibili.jpg" alt="Excel自动化办公">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>Excel高级技巧</h4>
-                <div class="course-type">推荐课程: B站《Excel自动化办公》</div>
-                <div class="meta">
-                  <span class="material-icons">table_chart</span> 办公自动化
-                  <span class="material-icons">schedule</span> 8小时
-                </div>
-                <a href="https://www.bilibili.com/video/BV1tK41137yT" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 办公技能部分修改为 -->
-        <button class="toggle-details-btn office-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses office-collapsed">
-          <!-- PPT课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">办公技能类 · PPT设计进阶</h3>
-            <div class="card-container">
-
-              <!-- iSlide官网课程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/ppt-islide.jpg" alt="PPT设计进阶">
-                  <div class="platform-tag islide">iSlide官网</div>
-                </div>
-                <div class="card-body">
-                  <h4>PPT设计进阶</h4>
-                  <div class="course-type">推荐资源: iSlide官方教程</div>
-                  <div class="meta">
-                    <span class="material-icons">slideshow</span> 演示设计
-                    <span class="material-icons">article</span> 官方文档
-                  </div>
-                  <a href="https://www.islide.cc/la" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站PPT高级动画教程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/ppt-bilibili.jpg" alt="PPT高级动画教程">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>PPT设计进阶</h4>
-                  <div class="course-type">推荐课程: B站《PPT高级动画教程》</div>
-                  <div class="meta">
-                    <span class="material-icons">animation</span> 动画设计
-                    <span class="material-icons">video_library</span> 实战教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1Wv411T75" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Word课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">办公技能类 · Word专业排版</h3>
-            <div class="card-container">
-
-              <!-- 金山文档Word课程卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/word-kdocs.jpg" alt="Word专业排版">
-                  <div class="platform-tag kdocs">金山文档</div>
-                </div>
-                <div class="card-body">
-                  <h4>Word专业排版</h4>
-                  <div class="course-type">推荐课程: 金山文档《Word专业排版》</div>
-                  <div class="meta">
-                    <span class="material-icons">article</span> 文档排版
-                    <span class="material-icons">menu_book</span> 图文教程
-                  </div>
-                  <a href="https://www.kdocs.cn/article/54840EC888.ht" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站Word高效办公技巧卡片 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/word-bilibili.jpg" alt="Word高效办公技巧">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>Word专业排版</h4>
-                  <div class="course-type">推荐课程: B站《Word高效办公技巧》</div>
-                  <div class="meta">
-                    <span class="material-icons">article</span> 办公技巧
-                    <span class="material-icons">video_library</span> 实用教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1vK411a7Xy" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <div class="it-courses" id="office-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
       <div class="shadow-line"></div>
-
 
       <!-- 生活技能类课程部分 -->
       <div class="category-header" id="life">
         <h2 class="category-title1">生活技能类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">手机摄影</div>
+          <div class="filter-tag ">手机摄影</div>
           <div class="filter-tag">家庭烹饪</div>
           <div class="filter-tag">时间管理</div>
         </div>
       </div>
-
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- 手机摄影课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">生活技能类 · 手机摄影</h3>
-          <div class="card-container">
-
-            <!-- 爱奇艺手机摄影课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/phone-photography-iqiyi.jpg" alt="从零学手机摄影">
-                <div class="platform-tag iqiyi">爱奇艺</div>
-              </div>
-              <div class="card-body">
-                <h4>从零学手机摄影</h4>
-                <div class="course-type">推荐课程: 爱奇艺《从零学手机摄影》</div>
-                <div class="meta">
-                  <span class="material-icons">photo_camera</span> 摄影基础
-                  <span class="material-icons">video_library</span> 视频教程
-                </div>
-                <a href="https://m.iqiyi.com/a_25yg24w5yxx.html" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- B站手机摄影进阶教程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/phone-photography-bilibili.jpg" alt="手机摄影进阶教程">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>手机摄影进阶教程</h4>
-                <div class="course-type">推荐课程: B站《手机摄影进阶教程》</div>
-                <div class="meta">
-                  <span class="material-icons">photo_camera</span> 摄影进阶
-                  <span class="material-icons">schedule</span> 6小时
-                </div>
-                <a href="https://www.bilibili.com/video/BV1uK4y1q73" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 可展开的其他语言课程 -->
-        <button class="toggle-details-btn lifeskill-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses lifeskill-collapsed">
-          <!-- 家庭烹饪课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">生活技能类 · 家庭中餐烹饪</h3>
-            <div class="card-container">
-
-              <!-- 下厨房家庭中餐课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/cooking-xiachufang.jpg" alt="家庭中餐厨艺班">
-                  <div class="platform-tag xiachufang">下厨房</div>
-                </div>
-                <div class="card-body">
-                  <h4>家庭中餐厨艺班</h4>
-                  <div class="course-type">推荐课程: 下厨房《家庭中餐厨艺班》</div>
-                  <div class="meta">
-                    <span class="material-icons">restaurant</span> 中式烹饪
-                    <span class="material-icons">menu_book</span> 图文教程
-                  </div>
-                  <a href="https://mip.xiachufang.com/recipe/10734300" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 腾讯课堂中式烹调课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/cooking-qqclass.jpg" alt="初级中式烹调师">
-                  <div class="platform-tag qqclass">腾讯课堂</div>
-                </div>
-                <div class="card-body">
-                  <h4>初级中式烹调师</h4>
-                  <div class="course-type">推荐课程: 腾讯课堂《初级中式烹调师》</div>
-                  <div class="meta">
-                    <span class="material-icons">restaurant</span> 专业课程
-                    <span class="material-icons">video_library</span> 认证培训
-                  </div>
-                  <a href="http://ke.qq.com/course/1345968" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- 时间管理课程组 -->
-          <div class="course-group">
-
-            <h3 class="group-title">生活技能类 · 时间管理</h3>
-            <div class="card-container">
-
-              <!-- B站高效时间管理课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/time-management-bilibili.jpg" alt="高效时间管理课">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>高效时间管理课</h4>
-                  <div class="course-type">推荐课程: B站《高效时间管理课》</div>
-                  <div class="meta">
-                    <span class="material-icons">schedule</span> 效率提升
-                    <span class="material-icons">video_library</span> 实用技巧
-                  </div>
-                  <a href="http://mip.xiachufang.com/recipe/10734300" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 慕课网职场时间管理课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/time-management-imooc.jpg" alt="职场时间管理">
-                  <div class="platform-tag imooc">慕课网</div>
-                </div>
-                <div class="card-body">
-                  <h4>职场时间管理</h4>
-                  <div class="course-type">推荐课程: 慕课网《职场时间管理》</div>
-                  <div class="meta">
-                    <span class="material-icons">work</span> 职场技能
-                    <span class="material-icons">school</span> 系统课程
-                  </div>
-                  <a href="https://m.imooc.com/learn/137" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-
-        </div>
+      <div class="it-courses" id="life-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
-
       <div class="shadow-line"></div>
-
 
       <!-- 职业技能类课程部分 -->
       <div class="category-header" id="career">
         <h2 class="category-title1">职业技能类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">项目管理</div>
+          <div class="filter-tag ">项目管理</div>
           <div class="filter-tag">沟通技巧</div>
           <div class="filter-tag">数据分析</div>
         </div>
       </div>
 
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- 项目管理课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">职业技能类 · 项目管理(PMP)</h3>
-          <div class="card-container">
-
-            <!-- 网易云课堂PMP课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/pmp-netease.jpg" alt="PMP入门与实战">
-                <div class="platform-tag netease">网易云课堂</div>
-              </div>
-              <div class="card-body">
-                <h4>PMP入门与实战</h4>
-                <div class="course-type">推荐课程: 网易云课堂《PMP入门与实战》</div>
-                <div class="meta">
-                  <span class="material-icons">business_center</span> 项目管理
-                  <span class="material-icons">video_library</span> 认证培训
-                </div>
-                <a href="https://study.163.com/course/introduction/1" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- Coursera项目管理课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/pmp-coursera.jpg" alt="项目管理基础">
-                <div class="platform-tag coursera">Coursera</div>
-              </div>
-              <div class="card-body">
-                <h4>项目管理基础</h4>
-                <div class="course-type">推荐课程: Coursera《项目管理基础》</div>
-                <div class="meta">
-                  <span class="material-icons">business_center</span> 项目管理
-                  <span class="material-icons">school</span> 国际认证
-                </div>
-                <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- B站敏捷项目管理课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/pmp-bilibili.jpg" alt="敏捷项目管理">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>敏捷项目管理</h4>
-                <div class="course-type">推荐课程: B站《敏捷项目管理》</div>
-                <div class="meta">
-                  <span class="material-icons">business_center</span> 敏捷开发
-                  <span class="material-icons">video_library</span> 实战教程
-                </div>
-                <a href="https://www.bilibili.com/video/BV1Z7411d7y" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 可展开的其他职业技能课程 -->
-        <button class="toggle-details-btn skill-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses skill-collapsed">
-          <!-- 沟通技巧课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">职业技能类 · 沟通技巧</h3>
-            <div class="card-container">
-
-              <!-- Coursera沟通课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/communication-coursera.jpg" alt="商务沟通">
-                  <div class="platform-tag coursera">Coursera</div>
-                </div>
-                <div class="card-body">
-                  <h4>商务沟通</h4>
-                  <div class="course-type">推荐课程: Coursera《商务沟通》</div>
-                  <div class="meta">
-                    <span class="material-icons">forum</span> 沟通技巧
-                    <span class="material-icons">school</span> 国际课程
-                  </div>
-                  <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站高难度沟通课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/communication-bilibili.jpg" alt="高难度沟通实战">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>高难度沟通实战</h4>
-                  <div class="course-type">推荐课程: B站《高难度沟通实战》</div>
-                  <div class="meta">
-                    <span class="material-icons">forum</span> 沟通技巧
-                    <span class="material-icons">video_library</span> 实战案例
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1Wv411t75" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 数据分析课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">职业技能类 · 数据分析</h3>
-            <div class="card-container">
-
-              <!-- 慕课网数据分析课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/data-analysis-imooc.jpg" alt="数据分析实战">
-                  <div class="platform-tag imooc">慕课网</div>
-                </div>
-                <div class="card-body">
-                  <h4>数据分析实战</h4>
-                  <div class="course-type">推荐课程: 慕课网《数据分析实战》</div>
-                  <div class="meta">
-                    <span class="material-icons">analytics</span> 数据分析
-                    <span class="material-icons">school</span> 系统课程
-                  </div>
-                  <a href="https://m.imooc.com/learn/92" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站高级查询技巧课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/data-analysis-bilibili.jpg" alt="高级查询技巧">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>高级查询技巧</h4>
-                  <div class="course-type">推荐课程: B站《高级查询技巧》</div>
-                  <div class="meta">
-                    <span class="material-icons">analytics</span> SQL技巧
-                    <span class="material-icons">video_library</span> 实战教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1vK411a7Xy" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="it-courses" id="career-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
       <div class="shadow-line"></div>
-
 
       <!-- 新兴技能类课程部分 -->
       <div class="category-header" id="new-tech">
         <h2 class="category-title1">新兴技能类</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">AI应用</div>
+          <div class="filter-tag ">AI应用</div>
           <div class="filter-tag">区块链</div>
           <div class="filter-tag">短视频运营</div>
         </div>
       </div>
 
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- AI应用课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">新兴技能类 · AI应用</h3>
-          <div class="card-container">
-
-            <!-- ChatGPT+Midjourney课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/ai-course.jpg" alt="ChatGPT+Midjourney">
-                <div class="platform-tag coursera">Coursera</div>
-              </div>
-              <div class="card-body">
-                <h4>ChatGPT+Midjourney</h4>
-                <div class="course-type">推荐课程: Coursera《生成式AI》</div>
-                <div class="meta">
-                  <span class="material-icons">smart_toy</span> AI应用
-                  <span class="material-icons">school</span> 国际认证
-                </div>
-                <div class="community-actions">
-                  <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-
-                </div>
-              </div>
-            </div>
-
-            <!-- B站AI绘画课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/ai-painting.jpg" alt="AI绘画实战教程">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>AI绘画实战教程</h4>
-                <div class="course-type">推荐课程: B站《AI绘画实战教程》</div>
-                <div class="meta">
-                  <span class="material-icons">palette</span> AI绘画
-                  <span class="material-icons">video_library</span> 实战教程
-                </div>
-                <div class="community-actions">
-                  <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 可展开的其他新兴技能课程 -->
-        <button class="toggle-details-btn newskill-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses newskill-collapsed">
-          <!-- 区块链课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">新兴技能类 · 区块链</h3>
-            <div class="card-container">
-
-              <!-- Coursera区块链课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/blockchain-course.jpg" alt="区块链与数字货币">
-                  <div class="platform-tag coursera">Coursera</div>
-                </div>
-                <div class="card-body">
-                  <h4>区块链与数字货币</h4>
-                  <div class="course-type">推荐课程: Coursera《区块链与数字货币》</div>
-                  <div class="meta">
-                    <span class="material-icons">currency_bitcoin</span> 区块链
-                    <span class="material-icons">school</span> 国际课程
-                  </div>
-                  <div class="community-actions">
-                    <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                      style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                      前往学习
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- B站区块链课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/blockchain-bilibili.jpg" alt="区块链入门精讲">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>区块链入门精讲</h4>
-                  <div class="course-type">推荐课程: B站《区块链入门精讲》</div>
-                  <div class="meta">
-                    <span class="material-icons">currency_bitcoin</span> 区块链
-                    <span class="material-icons">video_library</span> 入门教程
-                  </div>
-                  <div class="community-actions">
-                    <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                      style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                      前往学习
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 短视频运营课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">新兴技能类 · 短视频运营</h3>
-            <div class="card-container">
-
-              <!-- 我要自学网短视频课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/short-video-course.jpg" alt="短视频运营">
-                  <div class="platform-tag 51zxw">我要自学网</div>
-                </div>
-                <div class="card-body">
-                  <h4>短视频运营</h4>
-                  <div class="course-type">推荐课程: 我要自学网《短视频运营》</div>
-                  <div class="meta">
-                    <span class="material-icons">videocam</span> 短视频
-                    <span class="material-icons">trending_up</span> 运营技巧
-                  </div>
-                  <div class="community-actions">
-                    <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                      style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                      前往学习
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- B站抖音运营课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/douyin-course.jpg" alt="抖音运营实战课">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>抖音运营实战课</h4>
-                  <div class="course-type">推荐课程: B站《抖音运营实战课》</div>
-                  <div class="meta">
-                    <span class="material-icons">videocam</span> 抖音运营
-                    <span class="material-icons">video_library</span> 实战案例
-                  </div>
-                  <div class="community-actions">
-                    <a href="https://www.coursera.org/learn/business-communication" target="_blank" class="btn-login"
-                      style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                      前往学习
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="it-courses" id="new-tech-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
-
       <div class="shadow-line"></div>
 
-
       <!-- 其他实用技能类课程部分 -->
-      <div class="category-header">
+      <div class="category-header" id="other-skill">
         <h2 class="category-title1">其他实用技能</h2>
         <div class="subcategory-tags">
-          <div class="filter-tag active">英语口语</div>
+          <div class="filter-tag ">英语口语</div>
           <div class="filter-tag">平面设计</div>
           <div class="filter-tag">Python办公</div>
           <div class="filter-tag">数据分析</div>
@@ -2126,540 +887,10 @@
         </div>
       </div>
 
-      <!-- 课程主体 -->
-      <div class="it-courses">
-        <!-- 英语口语课程组 -->
-        <div class="course-group">
-          <h3 class="group-title">其他实用技能 · 英语口语（商务）</h3>
-          <div class="card-container">
-
-            <!-- 慕课网商务英语课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/english-imooc.jpg" alt="商务英语口语">
-                <div class="platform-tag imooc">慕课网</div>
-              </div>
-              <div class="card-body">
-                <h4>商务英语口语</h4>
-                <div class="course-type">推荐课程: 慕课网《商务英语口语》</div>
-                <div class="meta">
-                  <span class="material-icons">language</span> 商务英语
-                  <span class="material-icons">school</span> 系统课程
-                </div>
-                <a href="https://m.imooc.com/learn/140" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-
-            <!-- B站外企英语课程 -->
-            <div class="course-card">
-              <div class="card-image">
-                <img src="images/english-bilibili.jpg" alt="外企英语实战">
-                <div class="platform-tag bilibili">B站</div>
-              </div>
-              <div class="card-body">
-                <h4>外企英语实战</h4>
-                <div class="course-type">推荐课程: B站《外企英语实战》</div>
-                <div class="meta">
-                  <span class="material-icons">language</span> 职场英语
-                  <span class="material-icons">video_library</span> 实战教程
-                </div>
-                <a href="https://www.bilibili.com/video/BV1kv411a7xy" target="_blank" class="btn-login"
-                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                  前往学习
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="toggle-details-btn otherskill-toggle">
-          <span>查看更多</span>
-          <span class="material-icons">expand_more</span>
-        </button>
-
-        <div class="collapsed-courses otherskill-collapsed">
-          <!-- 平面设计课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">其他实用技能 · 平面设计（AI+CoreDRAW）</h3>
-            <div class="card-container">
-
-              <!-- 秒秒学AI课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/design-miaomiao.jpg" alt="AI零基础入门">
-                  <div class="platform-tag miaomiao">秒秒学</div>
-                </div>
-                <div class="card-body">
-                  <h4>AI零基础入门</h4>
-                  <div class="course-type">推荐课程: 秒秒学《AI零基础入门》</div>
-                  <div class="meta">
-                    <span class="material-icons">brush</span> AI设计
-                    <span class="material-icons">menu_book</span> 图文教程
-                  </div>
-                  <a href="http://mbaike.com/wiki/photoshop%E5%9F" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站CoreDRAW课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/design-bilibili.jpg" alt="CoreDRAW全功能教程">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>CoreDRAW全功能教程</h4>
-                  <div class="course-type">推荐课程: B站《CoreDRAW全功能教程》</div>
-                  <div class="meta">
-                    <span class="material-icons">brush</span> CoreDRAW
-                    <span class="material-icons">video_library</span> 完整教程
-                  </div>
-                  <a href="https://www.bilibili.com/video/Q/2004781" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Python办公课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">其他实用技能 · Python自动化办公</h3>
-            <div class="card-container">
-
-              <!-- B站Python办公课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/python-bilibili.jpg" alt="Python办公自动化">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>Python办公自动化</h4>
-                  <div class="course-type">推荐课程: B站《Python办公自动化》</div>
-                  <div class="meta">
-                    <span class="material-icons">code</span> Python
-                    <span class="material-icons">video_library</span> 办公自动化
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1Z7411d7y" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- 慕课网Python爬虫课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/python-imooc.jpg" alt="Python爬虫工程师">
-                  <div class="platform-tag imooc">慕课网</div>
-                </div>
-                <div class="card-body">
-                  <h4>Python爬虫工程师</h4>
-                  <div class="course-type">推荐课程: 慕课网《Python爬虫工程师》</div>
-                  <div class="meta">
-                    <span class="material-icons">code</span> Python爬虫
-                    <span class="material-icons">school</span> 工程师课程
-                  </div>
-                  <a href="https://m.imooc.com/learn/177" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 数据分析课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">其他实用技能 · 基础数据分析（Excel+Python）</h3>
-            <div class="card-container">
-
-              <!-- 慕课网Python数据分析课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/data-imooc.jpg" alt="Python数据分析快速入门">
-                  <div class="platform-tag imooc">慕课网</div>
-                </div>
-                <div class="card-body">
-                  <h4>Python数据分析快速入门</h4>
-                  <div class="course-type">推荐课程: 慕课网《Python数据分析快速入门》</div>
-                  <div class="meta">
-                    <span class="material-icons">analytics</span> Python分析
-                    <span class="material-icons">free_breakfast</span> 免费体验课
-                  </div>
-                  <a href="https://m.imooc.com/learn/92" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站Excel数据可视化课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/excel-bilibili.jpg" alt="Excel数据可视化实战">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>Excel数据可视化实战</h4>
-                  <div class="course-type">推荐课程: B站《Excel数据可视化实战》</div>
-                  <div class="meta">
-                    <span class="material-icons">analytics</span> Excel
-                    <span class="material-icons">person</span> UP主: 旁庭厨房万能调试
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1Wv411T75" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- PPT设计课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">其他实用技能 · 职场PPT设计</h3>
-            <div class="card-container">
-
-              <!-- 网易云课堂PPT课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/ppt-netease.jpg" alt="PPT设计从入门到精通">
-                  <div class="platform-tag netease">网易云课堂</div>
-                </div>
-                <div class="card-body">
-                  <h4>PPT设计从入门到精通</h4>
-                  <div class="course-type">推荐课程: 网易云课堂《PPT设计从入门到精通》</div>
-                  <div class="meta">
-                    <span class="material-icons">slideshow</span> PPT设计
-                    <span class="material-icons">free_breakfast</span> 限时免费
-                  </div>
-                  <a href="https://study.163.com/course/introduction/1" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-
-              <!-- B站PPT高级排版课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/ppt-bilibili.jpg" alt="职场PPT高级排版技巧">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>职场PPT高级排版技巧</h4>
-                  <div class="course-type">推荐课程: B站《职场PPT高级排版技巧》</div>
-                  <div class="meta">
-                    <span class="material-icons">slideshow</span> PPT排版
-                    <span class="material-icons">person</span> UP主: 旁门左道PPT
-                  </div>
-                  <a href="https://www.bilibili.com/video/BV1Wv411T75" target="_blank" class="btn-login"
-                    style="display: block; margin-top: 12px; text-align: center;text-decoration:none">
-                    前往学习
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 英语口语实战课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">语言学习 · 英语口语实战</h3>
-            <div class="card-container">
-              <!-- 每日英语听力APP课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/english-listening.jpg" alt="走遍美国">
-                  <div class="platform-tag app">每日英语听力</div>
-                </div>
-                <div class="card-body">
-                  <h4>走遍美国</h4>
-                  <div class="course-type">推荐课程: 每日英语听力APP《走遍美国》</div>
-                  <div class="meta">
-                    <span class="material-icons">record_voice_over</span> 美式发音
-                    <span class="material-icons">translate</span> 日常对话
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站英语口语课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/english-speaking.jpg" alt="英语口语900句">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>英语口语900句</h4>
-                  <div class="course-type">推荐课程: B站《英语口语900句》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 英语的平行世界
-                    <span class="material-icons">play_circle</span> 实用句型
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 摄影构图与后期课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">摄影艺术 · 构图与后期</h3>
-            <div class="card-container">
-              <!-- 图虫APP摄影课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/mobile-photography.jpg" alt="手机摄影从入门到精通">
-                  <div class="platform-tag app">图虫APP</div>
-                </div>
-                <div class="card-body">
-                  <h4>手机摄影从入门到精通</h4>
-                  <div class="course-type">推荐课程: 图虫APP《手机摄影从入门到精通》</div>
-                  <div class="meta">
-                    <span class="material-icons">photo_camera</span> 手机摄影
-                    <span class="material-icons">school</span> 系统课程
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站Lightroom课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/lightroom.jpg" alt="Lightroom基础调色教程">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>Lightroom基础调色教程</h4>
-                  <div class="course-type">推荐课程: B站《Lightroom基础调色教程》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 摄影师顾俊
-                    <span class="material-icons">palette</span> 后期调色
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 时间管理技巧课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">个人提升 · 时间管理技巧</h3>
-            <div class="card-container">
-              <!-- 得到APP时间管理课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/time-management.jpg" alt="时间管理50讲">
-                  <div class="platform-tag app">得到APP</div>
-                </div>
-                <div class="card-body">
-                  <h4>时间管理50讲</h4>
-                  <div class="course-type">推荐课程: 得到APP《时间管理50讲》</div>
-                  <div class="meta">
-                    <span class="material-icons">free_breakfast</span> 免费试听
-                    <span class="material-icons">schedule</span> 效率提升
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站番茄工作法课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/pomodoro.jpg" alt="番茄工作法深度解析">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>番茄工作法深度解析</h4>
-                  <div class="course-type">推荐课程: B站《番茄工作法深度解析》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 效率火箭
-                    <span class="material-icons">timer</span> 专注技巧
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 家常菜烹饪课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">生活技能 · 家常菜烹饪</h3>
-            <div class="card-container">
-              <!-- 下厨房APP烹饪课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/cooking.jpg" alt="新手也能学会的100道菜">
-                  <div class="platform-tag app">下厨房</div>
-                </div>
-                <div class="card-body">
-                  <h4>新手也能学会的100道菜</h4>
-                  <div class="course-type">推荐课程: 下厨房APP《新手也能学会的100道菜》</div>
-                  <div class="meta">
-                    <span class="material-icons">restaurant</span> 家常菜
-                    <span class="material-icons">school</span> 从零开始
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站调味公式课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/seasoning.jpg" alt="家庭厨房万能调味公式">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>家庭厨房万能调味公式</h4>
-                  <div class="course-type">推荐课程: B站《家庭厨房万能调味公式》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 小高姐的魔法调料
-                    <span class="material-icons">local_dining</span> 调味技巧
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 吉他弹唱入门课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">音乐艺术 · 吉他弹唱入门</h3>
-            <div class="card-container">
-              <!-- 吉他世界网课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/guitar.jpg" alt="民谣吉他从零开始">
-                  <div class="platform-tag website">吉他世界网</div>
-                </div>
-                <div class="card-body">
-                  <h4>民谣吉他从零开始</h4>
-                  <div class="course-type">推荐课程: 吉他世界网《民谣吉他从零开始》</div>
-                  <div class="meta">
-                    <span class="material-icons">music_note</span> 民谣吉他
-                    <span class="material-icons">school</span> 官网课程
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站和弦转换课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/guitar-chords.jpg" alt="弹唱歌曲和弦转换技巧">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>弹唱歌曲和弦转换技巧</h4>
-                  <div class="course-type">推荐课程: B站《弹唱歌曲和弦转换技巧》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 吉他自学教室
-                    <span class="material-icons">headset</span> 和弦练习
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 基础理财知识课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">财务管理 · 基础理财知识</h3>
-            <div class="card-container">
-              <!-- 支付宝理财课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/finance.jpg" alt="支付宝理财入门课">
-                  <div class="platform-tag app">支付宝</div>
-                </div>
-                <div class="card-body">
-                  <h4>支付宝理财入门课</h4>
-                  <div class="course-type">推荐课程: 支付宝理财入门课</div>
-                  <div class="meta">
-                    <span class="material-icons">account_balance_wallet</span> 理财基础
-                    <span class="material-icons">school</span> APP内课程
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站基金定投课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/investment.jpg" alt="基金定投新手指南">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>基金定投新手指南</h4>
-                  <div class="course-type">推荐课程: B站《基金定投新手指南》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 银行螺丝钉
-                    <span class="material-icons">trending_up</span> 基金投资
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 冥想与正念练习课程组 -->
-          <div class="course-group">
-            <h3 class="group-title">身心健康 · 冥想与正念练习</h3>
-            <div class="card-container">
-              <!-- 潮汐APP冥想课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/meditation.jpg" alt="潮汐APP冥想课程">
-                  <div class="platform-tag app">潮汐APP</div>
-                </div>
-                <div class="card-body">
-                  <h4>冥想引导课程</h4>
-                  <div class="course-type">推荐课程: 潮汐APP冥想课程</div>
-                  <div class="meta">
-                    <span class="material-icons">self_improvement</span> 冥想引导
-                    <span class="material-icons">school</span> APP内课程
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-
-              <!-- B站冥想音频课程 -->
-              <div class="course-card">
-                <div class="card-image">
-                  <img src="images/mindfulness.jpg" alt="零基础冥想引导音频">
-                  <div class="platform-tag bilibili">B站</div>
-                </div>
-                <div class="card-body">
-                  <h4>零基础冥想引导音频</h4>
-                  <div class="course-type">推荐课程: B站《零基础冥想引导音频》</div>
-                  <div class="meta">
-                    <span class="material-icons">person</span> UP主: 简单心理
-                    <span class="material-icons">psychology</span> 正念练习
-                  </div>
-                  <a href="#" target="_blank" class="btn-login">前往学习</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
+      <div class="it-courses" id="other-skill-courses">
+        <!-- 课程内容将由JavaScript动态加载 -->
       </div>
-
-      <!-- 分隔线 -->
-      <div class="shadow-line"></div>
-  </div>
-
-
-
-  </section>
+    </section>
 
   </div>
 
@@ -2675,211 +906,215 @@
     <p>联系我们: info@careerempower.com</p>
   </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('.home-carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-      });
-      $('.success-carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-      });
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.home-carousel, .success-carousel').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 3000,
     });
+  });
 
+  // 切换侧边栏
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const isActive = sidebar.classList.toggle('active');
+    sidebar.classList.toggle('compact', !isActive);
+    overlay.style.display = isActive ? 'block' : 'none';
+  }
 
-    // 修正后的切换函数
-    function toggleSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      const overlay = document.querySelector('.sidebar-overlay');
-
-      // 仅切换active状态
-      const isActive = sidebar.classList.toggle('active');
-
-      // 同步紧凑模式
-      sidebar.classList.toggle('compact', !isActive);
-
-      // 遮罩层控制
-      overlay.style.display = isActive ? 'block' : 'none';
-    }
-
-    // 增强登录状态检查
-    function checkLoginStatus() {
-      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      const navAuth = document.getElementById('navAuth');
-
-      if (isLoggedIn) {
-        navAuth.innerHTML = `
+  function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const navAuth = document.getElementById('navAuth');
+    navAuth.innerHTML = isLoggedIn ? `
       <span style="color:#666">欢迎回来！</span>
       <button class="btn-logout" onclick="logout()">退出登录</button>
-    `;
-      } else {
-        navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
+    ` : '<a href="login.html" class="btn-login">登录/注册</a>';
+  }
+
+  function logout() {
+    localStorage.removeItem('isLoggedIn');
+    checkLoginStatus();
+    window.location.reload();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => checkLoginStatus());
+
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('keypress', e => e.key === 'Enter' && handleSearch(e));
+  }
+
+  function handleSearch(e) {
+    const keyword = e.target.value.trim().toLowerCase();
+    if (!keyword) return;
+
+    document.querySelectorAll('.card-body').forEach(card => card.classList.remove('highlight'));
+    document.querySelectorAll('.collapsed-courses').forEach(el => el.style.display = 'flex');
+
+    let firstMatch = null;
+    document.querySelectorAll('.card-body').forEach(card => {
+      if (card.innerText.toLowerCase().includes(keyword)) {
+        card.classList.add('highlight');
+        if (!firstMatch) {
+          firstMatch = card.closest('.it-courses');
+          firstMatch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => { card.style.transform = 'scale(1)'; }, 300);
+        }
+        setTimeout(() => card.classList.remove('highlight'), 3000);
       }
-    }
-
-    // 退出登录功能
-    function logout() {
-      localStorage.removeItem('isLoggedIn');
-      checkLoginStatus();
-      window.location.reload();
-    }
-
-    // 初始化执行
-    document.addEventListener('DOMContentLoaded', () => {
-      checkLoginStatus();
-      loadUserData();
     });
 
-    function handleSearch() {
-      const searchTerm = document.getElementById('searchInput').value;
-      const encodedTerm = encodeURIComponent(searchTerm);
-      window.location.href = `search.html?q=${encodedTerm}`;
-    }
-
-    document.getElementById('searchInput')
-      .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
+    if (!firstMatch) alert('未找到相关课程');
+  }
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-      // 统一处理所有查看更多按钮
-      document.querySelectorAll('.toggle-details-btn').forEach(button => {
-        // 获取对应的折叠内容区域
-        // 通过按钮的class或id找到对应的折叠内容区域
-        let collapsedElement;
 
-        // 检查按钮是否有特定类名
-        if (button.classList.contains('design-toggle')) {
-          collapsedElement = document.querySelector('.design-collapsed');
-        }
-        else if (button.classList.contains('language-toggle')) {
-          collapsedElement = document.querySelector('.language-collapsed');
-        }
-        else if (button.classList.contains('office-toggle')) {
-          collapsedElement = document.querySelector('.office-collapsed');
-        }
-        else if (button.classList.contains('lifeskill-toggle')) {
-          collapsedElement = document.querySelector('.lifeskill-collapsed');
-        }
-        else if (button.classList.contains('otherskill-toggle')) {
-          collapsedElement = document.querySelector('.otherskill-collapsed');
-        }
-        else if (button.classList.contains('newskill-toggle')) {
-          collapsedElement = document.querySelector('.newskill-collapsed');
-        }
-        else {
-          // 默认处理 - 查找最近的collapsed-courses元素
-          collapsedElement = button.nextElementSibling;
-          while (collapsedElement && !collapsedElement.classList.contains('collapsed-courses')) {
-            collapsedElement = collapsedElement.nextElementSibling;
+  async function loadCourses() {
+    try {
+      const res = await fetch('/api/courses');
+      const coursesData = await res.json();
+
+      const categoryMap = {
+        "IT技术类": "it-tech-courses",
+        "设计类": "design-courses",
+        "语言学习类": "language-courses",
+        "办公技能类": "office-courses",
+        "生活技能类": "life-courses",
+        "职业技能类": "career-courses",
+        "新兴技能类": "new-tech-courses",
+        "其他实用技能": "other-skill-courses"
+      };
+
+      for (const category in coursesData) {
+        const containerId = categoryMap[category];
+        const container = document.getElementById(containerId);
+        if (!container) continue;
+        container.innerHTML = '';
+
+        const subcategories = coursesData[category];
+
+        for (const subcategory in subcategories) {
+          let groupData = subcategories[subcategory];
+
+          // 如果 groupData 不是数组，就说明还嵌套了一层 key
+          if (!Array.isArray(groupData)) {
+            const innerKey = Object.keys(groupData)[0];
+            groupData = groupData[innerKey];
           }
-        }
 
-        // 初始化折叠状态
-        if (collapsedElement) {
-          collapsedElement.style.display = 'none';
+          const groupDiv = document.createElement('div');
+          groupDiv.classList.add('course-group');
 
-          button.addEventListener('click', function () {
-            const isHidden = collapsedElement.style.display === 'none';
-            const arrowIcon = this.querySelector('.material-icons');
+          const groupTitle = document.createElement('h3');
+          groupTitle.textContent = subcategory;
+          groupTitle.classList.add('group-title');
+          groupDiv.appendChild(groupTitle);
 
-            if (isHidden) {
-              collapsedElement.style.display = 'block';
-              arrowIcon.style.transform = 'rotate(180deg)';
-              this.querySelector('span:first-child').textContent = '收起';
-            } else {
-              collapsedElement.style.display = 'none';
-              arrowIcon.style.transform = 'rotate(0deg)';
-              this.querySelector('span:first-child').textContent = '查看更多';
-            }
+          const cardContainer = document.createElement('div');
+          cardContainer.classList.add('card-container');
+
+          const collapsedContainer = document.createElement('div');
+          collapsedContainer.classList.add('collapsed-courses');
+          collapsedContainer.style.display = 'none';
+
+          groupData.forEach((course, idx) => {
+            const card = document.createElement('div');
+            card.classList.add('course-card');
+            card.innerHTML = `
+            <div class="card-image">
+              <img src="${course.imageUrl}" alt="${course.title}">
+              <div class="platform-tag ${course.platformTag || ''}">${course.platform}</div>
+            </div>
+            <div class="card-body">
+              <h4>${course.title}</h4>
+              <p>${course.description}</p>
+              <a href="${course.link}" target="_blank" class="btn-login"
+                  style="display: block; margin-top: 12px; text-align: center;text-decoration:none">前往学习</a>
+            </div>
+          `;
+            if (idx < 3) cardContainer.appendChild(card);
+            else collapsedContainer.appendChild(card);
           });
-        }
-      });
-    });
-    // 触摸滑动支持
-    let touchStartX = 0;
-    document.querySelector('.horizontal-scroll').addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-    });
 
-    document.querySelector('.horizontal-scroll').addEventListener('touchmove', e => {
-      if (Math.abs(e.touches[0].clientX - touchStartX) > 10) {
-        e.preventDefault(); // 阻止默认滚动
-      }
-    }, { passive: false });
+          groupDiv.appendChild(cardContainer);
+          groupDiv.appendChild(collapsedContainer);
 
-    // 在原有脚本中添加
-    window.addEventListener('scroll', () => {
+          if (groupData.length > 3) {
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'toggle-details-btn design-toggle';
 
-      const stickyFilter = document.querySelector('.sticky-filter-container');
-      if (window.scrollY > 100) {
-        stickyFilter.classList.add('scrolled');
-      } else {
-        stickyFilter.classList.remove('scrolled');
-      }
-    });
+            // 创建文字
+            const btnText = document.createElement('span');
+            btnText.textContent = '查看更多';
+            toggleBtn.appendChild(btnText);
 
+            // 创建图标
+            const icon = document.createElement('span');
+            icon.className = 'material-icons';
+            icon.style.transition = 'transform 0.3s'; // 动画效果
+            icon.textContent = 'expand_more';
+            toggleBtn.appendChild(icon);
 
-    function handleSearch(e) {
-      if (e.key !== 'Enter') return;
+            toggleBtn.addEventListener('click', () => {
+              const isHidden = collapsedContainer.style.display === 'none';
+              collapsedContainer.style.display = isHidden ? 'flex' : 'none';
 
-      const keyword = e.target.value.trim().toLowerCase();
-      if (!keyword) return;
+              // 切换文字
+              btnText.textContent = isHidden ? '收起' : '查看更多';
 
-      // 移除旧的高亮
-      document.querySelectorAll('.card-body').forEach(card => {
-        card.classList.remove('highlight');
-      });
-
-      // 展开所有隐藏内容
-      document.querySelectorAll('.collapsed-courses').forEach(el => {
-        el.style.display = 'block';
-      });
-
-      let firstMatch = null;
-
-      document.querySelectorAll('.card-body').forEach(card => {
-        const text = card.innerText.toLowerCase();
-        if (text.includes(keyword)) {
-          card.classList.add('highlight');
-          if (!firstMatch) {
-            firstMatch = card.closest('.it-courses');
-            // 滚动到目标位置
-            firstMatch.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
+              // 切换图标方向
+              icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
             });
 
-            // 添加额外动画
-            setTimeout(() => {
-              card.style.transform = 'scale(1)';
-            }, 300);
+            groupDiv.appendChild(toggleBtn);
           }
 
-          // 3秒后移除高亮
-          setTimeout(() => {
-            card.classList.remove('highlight');
-          }, 3000);
-        }
-      });
+          container.appendChild(groupDiv);
 
-      if (!firstMatch) {
-        alert('未找到相关课程');
+        }
       }
+
+    } catch (err) {
+      console.error('加载课程失败:', err);
     }
-  </script>
-</body>
+  }
+
+  window.addEventListener('DOMContentLoaded', loadCourses);
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = tag.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      const offset = 150; // 这里改成你的导航高度
+      if (!targetEl) return;
+
+      // 先移除动画类
+      targetEl.classList.remove('show');
+
+      // 计算目标滚动位置
+      const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - offset;
+
+      // 滚动
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+
+      // 延迟添加动画类
+      setTimeout(() => targetEl.classList.add('show'), 200);
+    });
+  });
+
+
+</script>
+
+
 
 </html>

@@ -1,0 +1,104 @@
+[
+    {
+        "category": "新兴技能类",
+        "subcategory": "AI应用",
+        "group": "新兴技能类 · AI应用",
+        "title": "ChatGPT+Midjourney",
+        "description": "推荐课程: Coursera《生成式AI》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/ai-course.jpg",
+        "hours": "",
+        "tags": [
+            "AI应用",
+            "国际认证"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "新兴技能类",
+        "subcategory": "AI应用",
+        "group": "新兴技能类 · AI应用",
+        "title": "AI绘画实战教程",
+        "description": "推荐课程: B站《AI绘画实战教程》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/ai-painting.jpg",
+        "hours": "",
+        "tags": [
+            "AI绘画",
+            "实战教程"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "新兴技能类",
+        "subcategory": "区块链",
+        "group": "新兴技能类 · 区块链",
+        "title": "区块链与数字货币",
+        "description": "推荐课程: Coursera《区块链与数字货币》",
+        "platform": "Coursera",
+        "platformTag": "coursera",
+        "imageUrl": "images/blockchain-course.jpg",
+        "hours": "",
+        "tags": [
+            "区块链",
+            "国际课程"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "新兴技能类",
+        "subcategory": "区块链",
+        "group": "新兴技能类 · 区块链",
+        "title": "区块链入门精讲",
+        "description": "推荐课程: B站《区块链入门精讲》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/blockchain-bilibili.jpg",
+        "hours": "",
+        "tags": [
+            "区块链",
+            "入门教程"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "新兴技能类",
+        "subcategory": "短视频运营",
+        "group": "新兴技能类 · 短视频运营",
+        "title": "短视频运营",
+        "description": "推荐课程: 我要自学网《短视频运营》",
+        "platform": "我要自学网",
+        "platformTag": "51zxw",
+        "imageUrl": "images/short-video-course.jpg",
+        "hours": "",
+        "tags": [
+            "短视频",
+            "运营技巧"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    },
+    {
+        "category": "新兴技能类",
+        "subcategory": "短视频运营",
+        "group": "新兴技能类 · 短视频运营",
+        "title": "抖音运营实战课",
+        "description": "推荐课程: B站《抖音运营实战课》",
+        "platform": "B站",
+        "platformTag": "bilibili",
+        "imageUrl": "images/douyin-course.jpg",
+        "hours": "",
+        "tags": [
+            "抖音运营",
+            "实战案例"
+        ],
+        "link": "https://www.coursera.org/learn/business-communication",
+        "isRecommended": true
+    }
+]
