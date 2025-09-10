@@ -1033,7 +1033,7 @@
     // ======================= 加载所有职位 =======================
     async function loadJobs() {
       try {
-        const res = await fetch('http://localhost:5000/api/jobs');
+        const res = await fetch('/api/jobs');
         if (!res.ok) throw new Error('职位列表加载失败');
         const jobs = await res.json();
 
