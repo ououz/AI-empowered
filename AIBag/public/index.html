@@ -1975,11 +1975,11 @@
                 { type: "bookmark_border", label: "收藏" },
                 { type: "share", label: "分享" },
                 { type: "event_available", label: "预约参加" },
-                { type: "watch_replay", label: "观看回放" },
+                { type: "play_circle", label: "观看回放" },
                 { type: "info", label: "立即了解" }
               ]
             ).map(a => {
-              // 映射接口返回的 type 到你希望的 Material Icon
+              // 映射接口返回的 type 到 Material Icon
               let iconType;
               switch (a.type) {
                 case 'bookmark':
@@ -1992,15 +1992,18 @@
                   break;
                 case 'bookNow':
                 case '预约':
+                case 'event_available':
                   iconType = 'event_available';
                   break;
                 case 'watchReplay':
                 case '观看':
-                  iconType = 'watch_replay';
+                case 'play_circle':       // ✅ 这里修改为数据库对应值
+                  iconType = 'play_circle';
+                  break;
                 case 'learnMore':
                 case '立即了解':
+                case 'info':
                   iconType = 'info';
-                  break;
                   break;
                 default:
                   iconType = a.type; // 保留原始 type
@@ -2014,6 +2017,7 @@
       `;
             }).join('')}
 </div>
+
 
   </div>
 `;
