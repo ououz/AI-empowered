@@ -286,8 +286,9 @@
                     <!-- 电话注册 -->
                     <div class="phone-input-group">
                         <span class="phone-prefix">+86</span>
-                        <input type="tel" id="phoneNumber" name="phone" class="form-input" pattern="1[3-9]\d{9}"
-                            placeholder="手机号码" required>
+                        <input type="tel" name="account" class="form-input" placeholder="请输入手机号" required
+                            pattern="1[3-9]\d{9}" title="请输入正确的11位手机号">
+
 
                     </div>
                     <!-- 邮箱注册 -->
@@ -322,7 +323,7 @@
 
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            const accountInput = this.elements.account.value.trim();
+            const phone = this.elements.account.value.trim();
             const passwordInput = this.elements.password.value;
 
             try {
@@ -330,8 +331,7 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        phone: /^1[3-9]\d{9}$/.test(accountInput) ? accountInput : undefined,
-
+                        phone,
                         password: passwordInput
                     })
                 });
@@ -342,8 +342,6 @@
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("userData", JSON.stringify(data.user));
                     localStorage.setItem("isLoggedIn", "true");
-
-                    // 登录成功后跳转
                     window.location.href = "/profile.html";
                 } else {
                     alert(data.error || "登录失败");
@@ -353,6 +351,7 @@
                 alert("网络错误，请稍后再试");
             }
         });
+
         // 处理注册
         document.getElementById('registerForm').addEventListener('submit', async function (e) {
             e.preventDefault();
