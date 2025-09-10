@@ -30,7 +30,6 @@ app.use("/api/favorite", require("./src/routes/favorite"));
 app.use("/api/jobs", require("./src/routes/job"));
 app.use("/api/ads", require("./src/routes/ad"));
 
-//app.use("/api/posts", require("./src/routes/posts"));
 
 app.get("/api/health", (_, res) => res.json({ ok: true }));
 
