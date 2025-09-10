@@ -8,7 +8,8 @@ const Course = require("../../src/models/Course");
 
 async function importCourses() {
     try {
-        const uri = process.env.MONGO_URI_LOCAL || process.env.MONGO_URI_ATLAS;
+        //const uri = process.env.MONGO_URI_LOCA
+        const uri = process.env.MONGO_URI_ATLAS;
         if (!uri) {
             throw new Error("❌ 未找到数据库连接字符串，请检查 .env 文件是否包含 MONGO_URI_LOCAL 或 MONGO_URI_ATLAS");
         }

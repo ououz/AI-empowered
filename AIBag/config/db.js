@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
     try {
-        const uri = process.env.MONGO_URI_LOCAL;
-        //const uri = process.env.MONGO_URI_ATLAS;
+        //const uri = process.env.MONGO_URI_LOCAL;
+        const uri = process.env.MONGO_URI_ATLAS;
         if (!uri) {
             console.error("❌ 未配置 MONGO_URI_ATLAS");
             process.exit(1);
