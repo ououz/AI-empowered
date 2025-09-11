@@ -16,18 +16,33 @@
       color: #333;
     }
 
+    .hero-image img {
+      width: 30%;
+      height: auto;
+      border-radius: 12px;
+      margin-left: 70%;
+      display: block;
+      max-width: 400px;
+      /* 最大不超过 400px */
+    }
+
     .navbar {
       height: 66px;
       position: fixed;
       width: 100%;
       top: 0;
       display: flex;
+      /* 保持弹性布局 */
       align-items: center;
       justify-content: space-between;
-      padding: 0 10px;
+      /* 子元素两端对齐 */
+      padding: 0 20px;
+      /* 增加内边距避免内容贴边 */
       background: white;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1002;
+      box-sizing: border-box;
+      /* 确保padding不影响总宽度 */
     }
 
     /* 滚动时阴影效果 */
@@ -38,7 +53,7 @@
     .navbar>div:first-child {
       margin-right: auto;
       /* 将标题推到最左侧 */
-      padding-left: 60px;
+      padding-left: 5vw;
       /* 增加左侧间距 */
     }
 
@@ -50,10 +65,6 @@
     }
 
 
-    .welcome-text {
-      order: 2;
-      /* 欢迎文字第二个 */
-    }
 
     .footer {
       background-color: #333;
@@ -66,6 +77,7 @@
     .main-content {
       margin-top: 60px;
       /* 顶栏高度 */
+      margin-left: 20px;
       padding: 20px;
     }
 
@@ -213,10 +225,8 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      position: static;
-      /* 移除绝对定位 */
-      order: 1;
-      /* 确保在flex容器中排在搜索框之后 */
+      white-space: nowrap;
+      /* 避免内容换行 */
     }
 
     .material-icons {
@@ -232,7 +242,6 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
-
     }
 
     .btn-login:hover::before {
@@ -256,8 +265,8 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
-      margin-left: 50px;
-      margin-right: 40px;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
     }
 
 
@@ -274,27 +283,26 @@
     }
 
     .search-container {
-      margin-right: 30px;
-      width: 300px;
+      position: relative;
+      margin-right: 0;
+      /* 移除固定右边距 */
+      width: 100%;
+      /* 占满父容器宽度 */
+      max-width: 800px;
+      /* 保留最大宽度限制 */
+      background: #f8f9fa;
+      border-radius: 25px;
+      padding: 8px 1%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
     }
 
 
     .search-input:focus {
       outline: none;
       box-shadow: none;
-    }
-
-    /* + 新增搜索框美化样式 */
-    .search-container {
-      position: relative;
-      margin-right: 100px;
-      width: 800px;
-      background: #f8f9fa;
-      border-radius: 25px;
-      padding: 8px 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
     }
 
     .search-input {
@@ -326,13 +334,15 @@
 
     /* + 调整个人中心位置 */
     .nav-dynamic {
+      position: static;
+      transform: none;
+      flex: 1;
+      margin: 0 20px;
+      min-width: 200px;
       display: flex;
       align-items: center;
-      gap: 20px;
-      position: absolute;
-      right: 200px;
-      top: 50%;
-      transform: translateY(-50%);
+      gap: 15vw;
+      /* 随页面缩放的间距 */
     }
 
 
@@ -386,15 +396,14 @@
       padding: 12px 18px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       position: relative;
-      margin-left: 20px;
     }
 
     .chat-message.bot::before {
       content: "🤖";
       position: absolute;
-      left: -20px;
+      left: -40px;
       top: 0;
-      font-size: 30px;
+      font-size: 24px;
     }
 
     /* 输入框美化 */
@@ -463,7 +472,7 @@
     }
 
     .data-header h1 {
-      font-size: 40px;
+      font-size: clamp(28px, 3vw, 40px);
       margin-bottom: 8px;
       margin-top: 1px;
       margin-left: 15px;
@@ -472,10 +481,187 @@
 
     .description {
       color: #666;
-      font-size: 14px;
+      font-size: clamp(12px, 1.2vw, 14px);
       line-height: 1.5;
       margin-left: 15px;
       max-width: 560px;
+    }
+
+    /* 统一图标样式，避免偏移 */
+    .profile-link .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .search-icon .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .post-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      /* 最小宽度，避免图标被挤压 */
+      min-height: 30px;
+      /* 最小高度，确保点击区域 */
+    }
+
+    @media (max-width: 768px) {
+
+      .navbar>div:first-child {
+        display: none;
+      }
+
+      .nav-dynamic {
+        gap: 1.5vw;
+        margin: 0 5px;
+        min-width: 150px;
+      }
+
+      .post-login {
+        min-width: 24px;
+        min-height: 24px;
+      }
+
+      .btn-login,
+      .btn-logout {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      .material-icons {
+        font-size: 1.2rem;
+      }
+
+      .search-container {
+        max-width: 180px;
+        padding: 6px 1%;
+        margin-left: 20%;
+      }
+
+      .sidebar.active {
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .sidebar.compact {
+        width: 60px;
+        height: auto;
+      }
+
+
+
+
+      .sidebar .nav-item {
+        display: none;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #f0f0f0;
+        align-items: center;
+      }
+
+
+      .sidebar.active .nav-item {
+        display: flex !important;
+
+      }
+
+      .sidebar .nav-item span:not(.material-icons) {
+        display: inline-block !important;
+        margin-left: 15px;
+      }
+
+      .sidebar .material-icons {
+        margin-right: 0;
+        font-size: 24px;
+      }
+
+
+
+      .sidebar.compact .material-icons {
+        margin: 0;
+        transform: none;
+      }
+
+
+      .navbar .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: #313131;
+        cursor: pointer;
+      }
+
+
+      /* 隐藏欢迎文字 */
+      .welcome-text {
+        display: none;
+      }
+
+      /* 遮罩层 */
+      .sidebar-overlay {
+        display: none;
+      }
+
+      .sidebar.active~.sidebar-overlay {
+        display: block;
+      }
+
+      /* main-content & 页特有部分 */
+      .main-content {
+        margin-top: 3.5rem;
+        padding: 1rem 0.5rem;
+        margin-left: 0;
+      }
+
+      .data-header h1 {
+        font-size: 28px;
+        margin-left: 0;
+      }
+
+      .description {
+        font-size: 11px;
+        margin-left: 0;
+        max-width: 100%;
+      }
+
+      .data-header>div:last-child {
+        justify-content: center;
+        min-width: unset;
+        width: 100%;
+      }
+
+      .data-header img {
+        width: 40%;
+        margin-right: 0;
+        margin-top: 10px;
+      }
+
+      .assessment-list {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 15px;
+        margin: 1.5rem auto;
+      }
+
+      .assessment-card {
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        min-height: 150px;
+      }
+
+      .footer {
+        margin-top: 1.5rem;
+        padding: 15px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -483,7 +669,6 @@
 <body>
   <div class="navbar">
     <div>大学生职业竞争力赋能平台</div>
-    <div class="user-controls" id="navAuth"></div>
     <div class="nav-dynamic" id="navDynamic">
       <div class="search-container">
         <input type="text" id="searchInput" placeholder="搜索" class="search-input">
@@ -497,6 +682,7 @@
         </a>
       </div>
     </div>
+    <div class="user-controls" id="navAuth"></div>
     <div class="sidebar compact">
       <div class="sidebar-header">
         <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -546,9 +732,8 @@
         <h1>AI智库</h1>
         <p class="description">基于深度学习的职业能力评估系统<br>解答你的疑惑，发现职业发展新可能。</p>
       </div>
-      <div style="flex: 1;">
-        <img src="images/courese.webp" alt="卡通狮子头像"
-          style="width: 25%; height: auto; border-radius: 8px;margin-left: 70%;">
+      <div class="hero-image" style="flex: 1;">
+        <img src="images/courese.webp" alt="大学生职业发展">
       </div>
 
     </div>
@@ -581,36 +766,6 @@
     </div>
   </div>
   <script>
-    const careers = [
-      { title: "软件开发工程师", description: "负责设计、开发和维护软件系统。" },
-      { title: "数据科学家", description: "通过数据分析为企业提供决策支持。" },
-      { title: "网络安全工程师", description: "保护企业网络系统免受攻击。" },
-      { title: "市场营销经理", description: "制定并执行市场推广策略。" },
-      { title: "品牌经理", description: "负责品牌建设和推广。" },
-      { title: "数字营销专家", description: "通过数字渠道进行营销推广。" },
-      { title: "项目经理", description: "负责项目的规划、执行和监控。" },
-      { title: "产品经理", description: "负责产品的全生命周期管理。" },
-      { title: "运营经理", description: "优化企业运营流程，提升效率。" },
-      { title: "投资银行家", description: "负责企业融资和并购业务。" },
-      { title: "财务分析师", description: "分析企业财务状况，提供决策支持。" },
-      { title: "风险管理师", description: "评估和管理企业风险。" },
-      { title: "保险精算师", description: "设计和管理保险产品。" },
-      { title: "税务顾问", description: "提供税务规划和咨询服务。" },
-      { title: "教师", description: "负责教学和学生学习指导。" },
-      { title: "教育顾问", description: "提供教育规划和咨询服务。" },
-      { title: "医生", description: "诊断和治疗疾病。" },
-      { title: "护士", description: "提供护理和健康管理服务。" },
-      { title: "药剂师", description: "负责药品的调配和管理。" },
-      { title: "平面设计师", description: "负责视觉设计和创意表达。" },
-      { title: "UI/UX设计师", description: "设计用户界面和用户体验。" },
-      { title: "摄影师", description: "拍摄和编辑照片。" },
-      { title: "机械工程师", description: "设计和维护机械设备。" },
-      { title: "电气工程师", description: "设计和维护电气系统。" },
-      { title: "律师", description: "提供法律咨询和代理服务。" },
-      { title: "法官", description: "审理案件并作出判决。" },
-      { title: "物流经理", description: "优化物流流程，降低成本。" },
-      { title: "供应链分析师", description: "分析供应链数据，提供优化建议。" }
-    ];
 
 
     // 修正后的切换函数
@@ -632,14 +787,18 @@
     function checkLoginStatus() {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       const navAuth = document.getElementById('navAuth');
-
       if (isLoggedIn) {
+
         navAuth.innerHTML = `
-      <span style="color:#666">欢迎回来！</span>
-      <button class="btn-logout" onclick="logout()">退出登录</button>
-    `;
+        <span style="color:#666" class="welcome-text">欢迎回来！</span>
+        <button class="btn-logout" onclick="logout()">退出登录</button>
+      `;
       } else {
-        navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
+
+        navAuth.innerHTML = `
+          <span style = "color:#666" class="welcome-text" > 登录了解更多</span>
+        <a href="login.html" class="btn-login">登录/注册</a>
+        `;
       }
     }
 

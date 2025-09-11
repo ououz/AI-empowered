@@ -20,10 +20,25 @@
       color: #333;
     }
 
+    .hero-image img {
+      width: 30%;
+      height: auto;
+      border-radius: 12px;
+      margin-left: 70%;
+      display: block;
+      max-width: 400px;
+      /* 最大不超过 400px */
+    }
+
     .main-content {
       margin-top: 60px;
       /* 顶栏高度 */
       padding: 20px;
+      margin-left: 20px;
+      overflow-x: hidden;
+      /* 保留：禁止横向滚动，避免横向滚动栏 */
+      /* 关键：删除任何 `height` 或 `overflow-y` 配置，让外层仅依赖浏览器默认滚动 */
+      margin-left: 40px;
     }
 
 
@@ -33,12 +48,17 @@
       width: 100%;
       top: 0;
       display: flex;
+      /* 保持弹性布局 */
       align-items: center;
       justify-content: space-between;
-      padding: 0 10px;
+      /* 子元素两端对齐 */
+      padding: 0 20px;
+      /* 增加内边距避免内容贴边 */
       background: white;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1002;
+      box-sizing: border-box;
+      /* 确保padding不影响总宽度 */
     }
 
     /* 滚动时阴影效果 */
@@ -49,7 +69,7 @@
     .navbar>div:first-child {
       margin-right: auto;
       /* 将标题推到最左侧 */
-      padding-left: 60px;
+      padding-left: 5vw;
       /* 增加左侧间距 */
     }
 
@@ -61,10 +81,6 @@
     }
 
 
-    .welcome-text {
-      order: 2;
-      /* 欢迎文字第二个 */
-    }
 
 
     .career-library-container {
@@ -80,7 +96,7 @@
 
     .career-category-sidebar {
       left: 0;
-      width: 20%;
+      width: 18%;
       position: sticky;
       top: 80px;
       /* 固定时的顶部距离 */
@@ -92,6 +108,7 @@
       background: white;
       z-index: 1000;
       padding: 1rem;
+      padding-right: 2rem;
     }
 
     .career-category-sidebar h2 {
@@ -125,8 +142,9 @@
 
     .career-content {
 
-      width: 80%;
-      padding: 0 2rem;
+      width: calc(100% - 17vw);
+      ;
+      padding: 0 0 0 1.5vw;
     }
 
 
@@ -158,9 +176,8 @@
     }
 
     .career-category {
-      margin-bottom: 15px;
+      margin-bottom: 2rem;
     }
-
 
     .career-category h2 {
       color: #000000;
@@ -168,25 +185,26 @@
     }
 
     .career-list {
-      overflow: hidden;
       display: flex;
-      flex-wrap: nowrap;
-      gap: 0.5rem;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      gap: 1.5vw;
+      /* 原1rem，改为1.5vw，随页面缩放 */
+      margin-right: -1.5vw;
+      /* 与gap匹配，避免内容溢出 */
+      padding-right: 1.5vw;
+      /* 补偿溢出距离，随页面缩放 */
     }
 
     .career-card {
       background: #f9f9f9;
       padding: 1rem;
       border-radius: 8px;
-      height: 180px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: calc(33.333% - 1vw);
+      /* 原-1rem/-0.8rem，改为1vw，随页面缩放 */
       text-align: center;
-      width: 250px;
-    }
-
-    .career-card:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-right: 0;
+      /* 移除固定margin，用gap控制间距 */
     }
 
     .career-card h3 {
@@ -343,10 +361,8 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      position: static;
-      /* 移除绝对定位 */
-      order: 1;
-      /* 确保在flex容器中排在搜索框之后 */
+      white-space: nowrap;
+      /* 避免内容换行 */
     }
 
     .material-icons {
@@ -362,7 +378,6 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
-
     }
 
     .btn-login:hover::before {
@@ -386,8 +401,8 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
-      margin-left: 50px;
-      margin-right: 40px;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
     }
 
 
@@ -403,11 +418,6 @@
       color: inherit;
     }
 
-    .search-container {
-      margin-right: 30px;
-      width: 300px;
-    }
-
 
     .search-input:focus {
       outline: none;
@@ -417,14 +427,19 @@
     /* + 新增搜索框美化样式 */
     .search-container {
       position: relative;
-      margin-right: 100px;
-      width: 800px;
+      margin-right: 0;
+      /* 移除固定右边距 */
+      width: 100%;
+      /* 占满父容器宽度 */
+      max-width: 800px;
+      /* 保留最大宽度限制 */
       background: #f8f9fa;
       border-radius: 25px;
-      padding: 8px 20px;
+      padding: 8px 1%;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       display: flex;
       align-items: center;
+      box-sizing: border-box;
     }
 
     .search-input {
@@ -456,13 +471,19 @@
 
     /* + 调整个人中心位置 */
     .nav-dynamic {
+      /* 移除绝对定位，使其参与弹性布局 */
+      position: static;
+      transform: none;
+      flex: 1;
+      /* 关键：填充剩余空间 */
+      margin: 0 20px;
+      /* 与两侧保持间距 */
+      min-width: 200px;
+      /* 最小宽度，避免过度压缩 */
       display: flex;
+      /* 内部元素也使用弹性布局 */
       align-items: center;
-      gap: 20px;
-      position: absolute;
-      right: 200px;
-      top: 50%;
-      transform: translateY(-50%);
+      gap: 15vw;
     }
 
 
@@ -472,19 +493,64 @@
     }
 
     .data-header h1 {
-      font-size: 40px;
+      font-size: clamp(28px, 3vw, 40px);
       margin-bottom: 8px;
       margin-top: 1px;
       margin-left: 15px;
       color: #1a1a1a;
     }
 
+    .data-header img {
+      width: 20vw;
+      /* 原25%，改为20vw，随视口宽度缩放 */
+      max-width: 400px;
+      height: auto;
+      border-radius: 8px;
+      margin-left: calc(100% - 22vw);
+      /* 动态计算左margin，随父容器宽度适配 */
+    }
+
     .description {
       color: #666;
-      font-size: 14px;
+      font-size: clamp(12px, 1.2vw, 14px);
       line-height: 1.5;
       margin-left: 15px;
       max-width: 560px;
+    }
+
+    /* 调整搜索结果容器，使其更靠右 */
+    .search-results {
+      margin-left: 1rem;
+      /* 向右移动搜索结果 */
+    }
+
+    /* 调整分类标题位置 */
+    .career-category h2 {
+      margin-left: 0.5rem;
+      /* 标题略微右移 */
+    }
+
+    .post-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      /* 最小宽度，避免图标被挤压 */
+      min-height: 30px;
+      /* 最小高度，确保点击区域 */
+    }
+
+    /* 统一图标样式，避免偏移 */
+    .profile-link .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .search-icon .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
     }
 
     /* 新增职位详情样式 */
@@ -707,13 +773,294 @@
       width: 2200px;
       border: none;
     }
+
+    /* 移动端适配样式 */
+    @media (max-width: 768px) {
+      .navbar {
+        gap: 8px;
+        justify-content: flex-start;
+        padding: 0 10px;
+      }
+
+      .navbar>div:first-child {
+        display: none;
+      }
+
+      .search-container {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 20%;
+      }
+
+      .material-icons {
+        font-size: 1.2rem;
+        margin-right: 0;
+      }
+
+      .search-input {
+        font-size: 12px;
+      }
+
+      .user-controls {
+        gap: 5px;
+        margin-right: 0;
+      }
+
+      .btn-logout,
+      .btn-login {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      .nav-dynamic {
+        gap: 3vw;
+        margin: 0 5px;
+        min-width: unset;
+      }
+
+      .post-login {
+        min-width: 24px;
+        min-height: 24px;
+      }
+
+      .main-content {
+        margin-top: 60px;
+        padding: 15px;
+        margin-left: 0;
+      }
+
+      .career-library-container {
+        flex-direction: column;
+        margin: 1rem auto;
+        padding: 0;
+      }
+
+      .career-category-sidebar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background: white;
+        border-radius: 8px;
+
+      }
+
+      .career-category-sidebar h2 {
+        display: none;
+      }
+
+      .career-category-sidebar ul {
+        display: none;
+      }
+
+      .mobile-category-dropdown {
+        display: block !important;
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e1e5e9;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        font-size: 15px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 40px;
+        box-sizing: border-box;
+      }
+
+      .mobile-category-dropdown:hover {
+        border-color: #0073e6;
+        box-shadow: 0 4px 12px rgba(0, 115, 230, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .mobile-category-dropdown:focus {
+        outline: none;
+        border-color: #0073e6;
+        box-shadow: 0 0 0 3px rgba(0, 115, 230, 0.1);
+      }
+
+      .mobile-category-dropdown option {
+        padding: 8px 12px;
+        background: white;
+        color: #333;
+        font-weight: 400;
+      }
+
+      .career-content {
+        width: 100%;
+        padding: 0;
+      }
+
+      .career-content .search-container {
+        width: 100% !important;
+        margin: 0 0 2rem !important;
+        padding: 8px 12px !important;
+        box-sizing: border-box;
+      }
+
+      .career-content .search-input {
+        max-width: 100% !important;
+        padding: 0 10px;
+        font-size: 14px !important;
+        background: transparent;
+        border: none;
+      }
+
+      .career-content .search-icon {
+        padding: 0 10px;
+        margin-left: 10px;
+        color: #666;
+        font-size: 20px;
+      }
+
+      .career-list {
+        flex-direction: column;
+        gap: 1rem;
+        margin-right: 0;
+        padding-right: 0;
+      }
+
+      .career-card {
+        width: 100% !important;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .data-header {
+        padding: 1rem 0.5rem;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .data-header h1 {
+        text-align: left !important;
+
+      }
+
+      .description {
+        margin-left: 15px;
+        font-size: 0.7rem;
+        text-align: left !important;
+      }
+
+      .data-header img {
+        width: 84px;
+        margin-left: 30%;
+      }
+
+      .footer {
+        margin-top: 2rem;
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .career-category h2 {
+        font-size: 1.3rem;
+        margin-left: 0;
+        text-align: center;
+      }
+
+      .search-result-card {
+        padding: 1rem;
+        margin: 0.8rem 0;
+      }
+
+      .sidebar.active {
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .sidebar.compact {
+        width: 60px;
+        height: auto;
+      }
+
+
+
+
+      .sidebar .nav-item {
+        display: none;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #f0f0f0;
+        align-items: center;
+      }
+
+
+      .sidebar.active .nav-item {
+        display: flex !important;
+
+      }
+
+      .sidebar .nav-item span:not(.material-icons) {
+        display: inline-block !important;
+        margin-left: 15px;
+      }
+
+      .sidebar .material-icons {
+        margin-right: 0;
+        font-size: 24px;
+      }
+
+
+
+      .sidebar.compact .material-icons {
+        margin: 0;
+        transform: none;
+      }
+
+
+      .navbar .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: #313131;
+        cursor: pointer;
+      }
+
+
+      /* 隐藏欢迎文字 */
+      .welcome-text {
+        display: none;
+      }
+
+      /* 遮罩层 */
+      .sidebar-overlay {
+        display: none;
+      }
+
+      .sidebar.active~.sidebar-overlay {
+        display: block;
+      }
+
+    }
+
+    /* 桌面端隐藏下拉框 */
+    @media (min-width: 769px) {
+      .mobile-category-dropdown {
+        display: none;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="navbar">
     <div>大学生职业竞争力赋能平台</div>
-    <div class="user-controls" id="navAuth"></div>
     <div class="nav-dynamic" id="navDynamic">
       <div class="search-container">
         <input type="text" id="searchInput" placeholder="搜索" class="search-input">
@@ -727,6 +1074,7 @@
         </a>
       </div>
     </div>
+    <div class="user-controls" id="navAuth"></div>
     <div class="sidebar compact">
       <div class="sidebar-header">
         <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -777,11 +1125,9 @@
         <h1>职业库</h1>
         <p class="description">覆盖2000+新兴职业数据库<br>获取最新职业需求信息，洞悉行业发展趋势</p>
       </div>
-      <div style="flex: 1;">
-        <img src="images/courese.webp" alt="卡通狮子头像"
-          style="width: 25%; height: auto; border-radius: 8px;margin-left: 70%;">
+      <div class="hero-image" style="flex: 1;">
+        <img src="images/courese.webp" alt="大学生职业发展">
       </div>
-
     </div>
     <div class="career-library-container ">
       <!-- 左侧职业分类栏 -->
@@ -947,363 +1293,366 @@
     <p>联系我们: info@careerempower.com</p>
   </div>
   </div>
-  <script>
-    let allJobs = []; // 全局保存所有职位数据
-
-    function toggleSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      const overlay = document.querySelector('.sidebar-overlay');
-      const isActive = sidebar.classList.toggle('active');
-      sidebar.classList.toggle('compact', !isActive);
-      overlay.style.display = isActive ? 'block' : 'none';
-    }
-
-    function checkLoginStatus() {
-      const token = localStorage.getItem('token');
-      const navAuth = document.getElementById('navAuth');
-      if (token) {
-        navAuth.innerHTML = `
-      <span style="color:#666">欢迎回来！</span>
-      <button class="btn-logout" onclick="logout()">退出登录</button>
-    `;
-      } else {
-        navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
-      }
-    }
-
-    function logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('isLoggedIn');
-      checkLoginStatus();
-      window.location.reload();
-    }
-
-    // 收藏职位函数
-    function favoriteJob(jobId) {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        alert('请先登录后再收藏！');
-        window.location.href = 'login.html';
-        return;
-      }
-      fetch(`/api/favorite/job/${jobId}`, {
-        method: "POST",
-        headers: {
-          "Authorization": "Bearer " + token,
-          "Content-Type": "application/json"
-        }
-      })
-        .then(async res => {
-          if (!res.ok) {
-            const text = await res.text();
-            alert("收藏失败：" + text);
-            return;
-          }
-          return res.json();
-        })
-        .then(data => {
-          if (data && data.success) {
-            alert("收藏成功！");
-          } else if (data && data.error) {
-            alert("收藏失败：" + data.error);
-          }
-        })
-        .catch(err => {
-          alert("收藏失败：" + err.message);
-        });
-    }
-
-    function handleSearch() {
-      const searchTerm = document.getElementById('searchInput').value;
-      const encodedTerm = encodeURIComponent(searchTerm);
-      window.location.href = `search.html?q=${encodedTerm}`;
-    }
-
-    document.getElementById('searchInput')
-      .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
-
-    document.querySelectorAll('.category-tag').forEach(tag => {
-      tag.addEventListener('click', function () {
-        document.querySelector('.category-tag.active').classList.remove('active');
-        this.classList.add('active');
-        // TODO: 分类筛选逻辑
-      });
-    });
-
-    // ======================= 加载所有职位 =======================
-    async function loadJobs() {
-      try {
-        const res = await fetch('/api/jobs');
-        if (!res.ok) throw new Error('职位列表加载失败');
-        const jobs = await res.json();
-
-        allJobs = jobs; // 缓存数据
-
-        renderJobLists(jobs);
-      } catch (err) {
-        console.error(err);
-        alert(err.message);
-      }
-    }
-
-    function renderJobLists(jobs) {
-      // 清空所有 career-list
-      const allLists = document.querySelectorAll('.career-list');
-      allLists.forEach(list => {
-        list.innerHTML = '';
-        if ($(list).hasClass('slick-initialized')) {
-          $(list).slick('unslick');
-        }
-      });
-
-      // 动态插入卡片
-      jobs.forEach(job => {
-        const categoryId = job.category.toLowerCase();
-        const categoryList = document.querySelector(`#${categoryId} .career-list`);
-        if (!categoryList) {
-          console.warn('找不到对应分类：', categoryId);
-          return;
-        }
-
-        const card = document.createElement('div');
-        card.className = 'career-card';
-        card.id = job.slug;
-        card.innerHTML = `
-        <h3>${job.title}</h3>
-        <p>${job.company} - ${job.location}</p>
-        <p>薪资：${job.salary}</p>
-      `;
-
-        categoryList.appendChild(card);
-        card.addEventListener('click', () => showJobDetails(job.slug));
-      });
-
-      // 初始化 slick
-      initCareerSlick();
-    }
-
-    function initCareerSlick() {
-      document.querySelectorAll('.career-list').forEach(list => {
-        const wrapper = list.closest('.career-category');
-        wrapper.style.display = '';
-
-        if (!$(list).hasClass('slick-initialized')) {
-          $(list).slick({
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            arrows: false,
-            responsive: [
-              { breakpoint: 1400, settings: { slidesToShow: 4 } },
-              { breakpoint: 1200, settings: { slidesToShow: 3 } },
-              { breakpoint: 768, settings: { slidesToShow: 2 } },
-              { breakpoint: 480, settings: { slidesToShow: 1 } }
-            ]
-          });
-
-          const prevBtn = wrapper.querySelector('.carousel-prev');
-          const nextBtn = wrapper.querySelector('.carousel-next');
-          if (prevBtn) prevBtn.addEventListener('click', () => $(list).slick('slickPrev'));
-          if (nextBtn) nextBtn.addEventListener('click', () => $(list).slick('slickNext'));
-        }
-      });
-    }
-
-    async function showJobDetails(jobId) {
-      console.log('showJobDetails 被调用，参数:', jobId);
-      const container = document.querySelector('.career-content');
-      try {
-        const res = await fetch(`/api/jobs/slug/${jobId}`);
-        if (!res.ok) throw new Error('职位详情加载失败');
-        const job = await res.json();
-
-        document.querySelectorAll('.career-category').forEach(cat => cat.style.display = 'none');
-        document.querySelectorAll('.shadow-line').forEach(line => line.style.display = 'none');
-        const searchResults = document.getElementById('searchResults');
-        if (searchResults) searchResults.style.display = 'none';
-
-        let detailDiv = document.getElementById('job-detail-view');
-        if (!detailDiv) {
-          detailDiv = document.createElement('div');
-          detailDiv.id = 'job-detail-view';
-          container.appendChild(detailDiv);
-        }
-
-        detailDiv.innerHTML = `
-      <div class="back-button" onclick="showCareerList()">
-        <span class="material-icons">arrow_back</span> 返回职位列表
-      </div>
-      <div class="job-details-container">
-        <div class="job-info-sidebar">
-          <h1 class="job-title">${job.title}</h1>
-          <div class="job-salary">${job.salary || ''}</div>
-          <div class="job-meta">
-            <span>${job.experience || ''}</span> · <span>${job.education || ''}</span>
-          </div>
-          <div class="job-company">
-            <img src="${job.companyLogo || 'images/company-logo.png'}" class="company-logo" alt="公司logo">
-            <div class="company-info">
-              <h3>${job.company || ''}</h3>
-              <p>${job.location || ''}</p>
-            </div>
-          </div>
-          <div class="action-buttons">
-            <button class="btn btn-primary">立即沟通</button>
-            <button class="btn btn-outline" id="favoriteJobBtn">收藏职位</button>
-          </div>
-        </div>
-        <div class="job-description">
-          <h2 class="section-title">职位描述</h2>
-          <pre class="job-description-content">${job.description || ''}</pre>
-          <h2 class="section-title">任职要求</h2>
-          <ul class="requirement-list">
-            ${job.requirements ? job.requirements.map(r => `<li class="requirement-item">${r}</li>`).join('') : ''}
-          </ul>
-        </div>
-      </div>
-    `;
-        detailDiv.style.display = 'block';
-        container.classList.add('job-details-active');
-        window.scrollTo(0, 0);
-
-        // 收藏按钮事件（务必每次渲染后都绑定）
-        const favoriteBtn = document.getElementById('favoriteJobBtn');
-        if (favoriteBtn) {
-          favoriteBtn.onclick = null; // 清除旧事件
-          favoriteBtn.onclick = function () {
-            let jobIdVal = job._id;
-            // 兼容 MongoDB _id 对象
-            if (typeof jobIdVal === 'object' && jobIdVal.$oid) jobIdVal = jobIdVal.$oid;
-
-            // 检查格式
-            if (!/^[a-f0-9]{24}$/.test(jobIdVal)) {
-              alert('收藏失败：ID格式不正确');
-              console.error('错误 jobId:', jobIdVal);
-              return;
-            }
-
-            const token = localStorage.getItem('token');
-            if (!token) {
-              alert('请先登录后再收藏！');
-              window.location.href = 'login.html';
-              return;
-            }
-
-            console.log('收藏岗位ID:', jobIdVal);
-            favoriteJob(jobIdVal);
-          };
-        }
-
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = `<p style="color:red;">职位详情加载失败，请稍后重试</p>`;
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      const careerContent = document.querySelector('.career-content');
-
-      if (careerContent) {
-        careerContent.addEventListener('click', async e => {
-          const card = e.target.closest('.career-card');
-          if (card) {
-            await showJobDetails(card.id);
-            window.history.pushState({ jobId: card.id }, '', `#${card.id}`);
-          }
-        });
-      }
-
-      window.addEventListener('popstate', event => {
-        if (event.state && event.state.jobId) {
-          showJobDetails(event.state.jobId);
-        } else {
-          showCareerList();
-        }
-      });
-
-      function autoSearch() {
-        const params = new URLSearchParams(window.location.search);
-        const term = params.get('q');
-        if (term) {
-          document.getElementById('careerSearchInput').value = term;
-          searchCareers(term);
-        }
-      }
-
-      if (typeof checkLoginStatus === 'function') checkLoginStatus();
-      if (typeof loadUserData === 'function') loadUserData();
-
-      loadJobs();
-
-      const searchInput = document.getElementById('searchInput');
-      if (searchInput) {
-        searchInput.addEventListener('keypress', e => {
-          if (e.key === 'Enter') handleSearch();
-        });
-      }
-
-      autoSearch();
-    });
-
-    function showCareerList() {
-      // 备注：当前“返回职位列表”直接刷新页面，后续可优化为无刷新切换
-      window.location.reload();
-    }
-
-    function searchCareers(term) {
-      const input = term || document.getElementById("careerSearchInput").value.trim().toLowerCase();
-      const resultsContainer = document.getElementById("searchResults");
-      if (!resultsContainer) return;
-
-      // 搜索匹配职位
-      const results = allJobs.filter(job =>
-        job.title.toLowerCase().includes(input) ||
-        (job.description && job.description.toLowerCase().includes(input))
-      );
-
-      resultsContainer.innerHTML = "";
-      if (results.length === 0) {
-        resultsContainer.innerHTML = `
-      <div class="no-results">
-        <span class="material-icons">search_off</span>
-        <p>没有找到相关职业，请尝试其他关键词</p>
-      </div>`;
-        return;
-      }
-
-      // 渲染所有匹配的职业卡片（美观样式）
-      results.forEach(job => {
-        const card = document.createElement("div");
-        card.className = "search-result-card";
-        card.style.border = "1px solid #e0e0e0";
-        card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
-        card.style.marginBottom = "20px";
-        card.style.padding = "1.5rem";
-        card.style.borderRadius = "12px";
-        card.innerHTML = `
-      <h3 style="margin-bottom:8px;color:#0073e6;">${job.title}</h3>
-      <div style="color:#666;margin-bottom:6px;">${job.company || ''} ${job.location ? ' - ' + job.location : ''}</div>
-      <div style="color:#0073e6;margin-bottom:6px;">${job.salary ? '薪资：' + job.salary : ''}</div>
-      <div style="font-size:13px;color:#888;margin-bottom:10px;">${job.description || ''}</div>
-      <a href="javascript:void(0);" class="view-link" data-slug="${job.slug}" style="color:#0073e6;font-weight:bold;">查看详情 <span class="material-icons" style="font-size:18px;vertical-align:middle;">arrow_forward</span></a>
-    `;
-        // 点击“查看详情”跳转到详情卡片
-        card.querySelector('.view-link').addEventListener('click', function () {
-          showJobDetails(job.slug);
-          window.history.pushState({ jobId: job.slug }, '', `#${job.slug}`);
-        });
-        resultsContainer.appendChild(card);
-      });
-
-      // 同步更新URL
-      if (history.replaceState) {
-        const newurl = `${window.location.pathname}?q=${encodeURIComponent(input)}`;
-        window.history.replaceState({ path: newurl }, '', newurl);
-      }
-    }
-  </script>
-
-
 
 </body>
+<script>
+  let allJobs = []; // 全局保存所有职位数据
+
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const isActive = sidebar.classList.toggle('active');
+    sidebar.classList.toggle('compact', !isActive);
+    overlay.style.display = isActive ? 'block' : 'none';
+  }
+
+  function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const navAuth = document.getElementById('navAuth');
+    if (isLoggedIn) {
+
+      navAuth.innerHTML = `
+        <span style="color:#666" class="welcome-text">欢迎回来！</span>
+        <button class="btn-logout" onclick="logout()">退出登录</button>
+      `;
+    } else {
+
+      navAuth.innerHTML = `
+          <span style = "color:#666" class="welcome-text" > 登录了解更多</span>
+        <a href="login.html" class="btn-login">登录/注册</a>
+        `;
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('isLoggedIn');
+    checkLoginStatus();
+    window.location.reload();
+  }
+
+  // 收藏职位函数
+  function favoriteJob(jobId) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('请先登录后再收藏！');
+      window.location.href = 'login.html';
+      return;
+    }
+    fetch(`/api/favorite/job/${jobId}`, {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(async res => {
+        if (!res.ok) {
+          const text = await res.text();
+          alert("收藏失败：" + text);
+          return;
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.success) {
+          alert("收藏成功！");
+        } else if (data && data.error) {
+          alert("收藏失败：" + data.error);
+        }
+      })
+      .catch(err => {
+        alert("收藏失败：" + err.message);
+      });
+  }
+
+  function handleSearch() {
+    const searchTerm = document.getElementById('searchInput').value;
+    const encodedTerm = encodeURIComponent(searchTerm);
+    window.location.href = `search.html?q=${encodedTerm}`;
+  }
+
+  document.getElementById('searchInput')
+    .addEventListener('keypress', e => e.key === 'Enter' && handleSearch());
+
+  document.querySelectorAll('.category-tag').forEach(tag => {
+    tag.addEventListener('click', function () {
+      document.querySelector('.category-tag.active').classList.remove('active');
+      this.classList.add('active');
+      // TODO: 分类筛选逻辑
+    });
+  });
+
+  // ======================= 加载所有职位 =======================
+  async function loadJobs() {
+    try {
+      const res = await fetch('/api/jobs');
+      if (!res.ok) throw new Error('职位列表加载失败');
+      const jobs = await res.json();
+
+      allJobs = jobs; // 缓存数据
+
+      renderJobLists(jobs);
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }
+
+  function renderJobLists(jobs) {
+    // 清空所有 career-list
+    const allLists = document.querySelectorAll('.career-list');
+    allLists.forEach(list => {
+      list.innerHTML = '';
+      if ($(list).hasClass('slick-initialized')) {
+        $(list).slick('unslick');
+      }
+    });
+
+    // 动态插入卡片
+    jobs.forEach(job => {
+      const categoryId = job.category.toLowerCase();
+      const categoryList = document.querySelector(`#${categoryId} .career-list`);
+      if (!categoryList) {
+        console.warn('找不到对应分类：', categoryId);
+        return;
+      }
+
+      const card = document.createElement('div');
+      card.className = 'career-card';
+      card.id = job.slug;
+      card.innerHTML = `
+          <h3>${job.title}</h3>
+          <p>${job.company} - ${job.location}</p>
+          <p>薪资：${job.salary}</p>
+        `;
+
+      categoryList.appendChild(card);
+      card.addEventListener('click', () => showJobDetails(job.slug));
+    });
+
+    // 初始化 slick
+    initCareerSlick();
+  }
+
+  function initCareerSlick() {
+    document.querySelectorAll('.career-list').forEach(list => {
+      const wrapper = list.closest('.career-category');
+      wrapper.style.display = '';
+
+      if (!$(list).hasClass('slick-initialized')) {
+        $(list).slick({
+          infinite: true,
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          arrows: false,
+          responsive: [
+            { breakpoint: 1400, settings: { slidesToShow: 4 } },
+            { breakpoint: 1200, settings: { slidesToShow: 3 } },
+            { breakpoint: 768, settings: { slidesToShow: 2 } },
+            { breakpoint: 480, settings: { slidesToShow: 1 } }
+          ]
+        });
+
+        const prevBtn = wrapper.querySelector('.carousel-prev');
+        const nextBtn = wrapper.querySelector('.carousel-next');
+        if (prevBtn) prevBtn.addEventListener('click', () => $(list).slick('slickPrev'));
+        if (nextBtn) nextBtn.addEventListener('click', () => $(list).slick('slickNext'));
+      }
+    });
+  }
+
+  async function showJobDetails(jobId) {
+    console.log('showJobDetails 被调用，参数:', jobId);
+    const container = document.querySelector('.career-content');
+    try {
+      const res = await fetch(`/api/jobs/slug/${jobId}`);
+      if (!res.ok) throw new Error('职位详情加载失败');
+      const job = await res.json();
+
+      document.querySelectorAll('.career-category').forEach(cat => cat.style.display = 'none');
+      document.querySelectorAll('.shadow-line').forEach(line => line.style.display = 'none');
+      const searchResults = document.getElementById('searchResults');
+      if (searchResults) searchResults.style.display = 'none';
+
+      let detailDiv = document.getElementById('job-detail-view');
+      if (!detailDiv) {
+        detailDiv = document.createElement('div');
+        detailDiv.id = 'job-detail-view';
+        container.appendChild(detailDiv);
+      }
+
+      detailDiv.innerHTML = `
+        <div class="back-button" onclick="showCareerList()">
+          <span class="material-icons">arrow_back</span> 返回职位列表
+        </div>
+        <div class="job-details-container">
+          <div class="job-info-sidebar">
+            <h1 class="job-title">${job.title}</h1>
+            <div class="job-salary">${job.salary || ''}</div>
+            <div class="job-meta">
+              <span>${job.experience || ''}</span> · <span>${job.education || ''}</span>
+            </div>
+            <div class="job-company">
+              <img src="${job.companyLogo || 'images/company-logo.png'}" class="company-logo" alt="公司logo">
+              <div class="company-info">
+                <h3>${job.company || ''}</h3>
+                <p>${job.location || ''}</p>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button class="btn btn-primary">立即沟通</button>
+              <button class="btn btn-outline" id="favoriteJobBtn">收藏职位</button>
+            </div>
+          </div>
+          <div class="job-description">
+            <h2 class="section-title">职位描述</h2>
+            <pre class="job-description-content">${job.description || ''}</pre>
+            <h2 class="section-title">任职要求</h2>
+            <ul class="requirement-list">
+              ${job.requirements ? job.requirements.map(r => `<li class="requirement-item">${r}</li>`).join('') : ''}
+            </ul>
+          </div>
+        </div>
+      `;
+      detailDiv.style.display = 'block';
+      container.classList.add('job-details-active');
+      window.scrollTo(0, 0);
+
+      // 收藏按钮事件（务必每次渲染后都绑定）
+      const favoriteBtn = document.getElementById('favoriteJobBtn');
+      if (favoriteBtn) {
+        favoriteBtn.onclick = null; // 清除旧事件
+        favoriteBtn.onclick = function () {
+          let jobIdVal = job._id;
+          // 兼容 MongoDB _id 对象
+          if (typeof jobIdVal === 'object' && jobIdVal.$oid) jobIdVal = jobIdVal.$oid;
+
+          // 检查格式
+          if (!/^[a-f0-9]{24}$/.test(jobIdVal)) {
+            alert('收藏失败：ID格式不正确');
+            console.error('错误 jobId:', jobIdVal);
+            return;
+          }
+
+          const token = localStorage.getItem('token');
+          if (!token) {
+            alert('请先登录后再收藏！');
+            window.location.href = 'login.html';
+            return;
+          }
+
+          console.log('收藏岗位ID:', jobIdVal);
+          favoriteJob(jobIdVal);
+        };
+      }
+
+    } catch (err) {
+      console.error(err);
+      container.innerHTML = `<p style="color:red;">职位详情加载失败，请稍后重试</p>`;
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const careerContent = document.querySelector('.career-content');
+
+    if (careerContent) {
+      careerContent.addEventListener('click', async e => {
+        const card = e.target.closest('.career-card');
+        if (card) {
+          await showJobDetails(card.id);
+          window.history.pushState({ jobId: card.id }, '', `#${card.id}`);
+        }
+      });
+    }
+
+    window.addEventListener('popstate', event => {
+      if (event.state && event.state.jobId) {
+        showJobDetails(event.state.jobId);
+      } else {
+        showCareerList();
+      }
+    });
+
+    function autoSearch() {
+      const params = new URLSearchParams(window.location.search);
+      const term = params.get('q');
+      if (term) {
+        document.getElementById('careerSearchInput').value = term;
+        searchCareers(term);
+      }
+    }
+
+    if (typeof checkLoginStatus === 'function') checkLoginStatus();
+    if (typeof loadUserData === 'function') loadUserData();
+
+    loadJobs();
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') handleSearch();
+      });
+    }
+
+    autoSearch();
+  });
+
+  function showCareerList() {
+    // 备注：当前“返回职位列表”直接刷新页面，后续可优化为无刷新切换
+    window.location.reload();
+  }
+
+  function searchCareers(term) {
+    const input = term || document.getElementById("careerSearchInput").value.trim().toLowerCase();
+    const resultsContainer = document.getElementById("searchResults");
+    if (!resultsContainer) return;
+
+    // 搜索匹配职位
+    const results = allJobs.filter(job =>
+      job.title.toLowerCase().includes(input) ||
+      (job.description && job.description.toLowerCase().includes(input))
+    );
+
+    resultsContainer.innerHTML = "";
+    if (results.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="no-results">
+          <span class="material-icons">search_off</span>
+          <p>没有找到相关职业，请尝试其他关键词</p>
+        </div>`;
+      return;
+    }
+
+    // 渲染所有匹配的职业卡片（美观样式）
+    results.forEach(job => {
+      const card = document.createElement("div");
+      card.className = "search-result-card";
+      card.style.border = "1px solid #e0e0e0";
+      card.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+      card.style.marginBottom = "20px";
+      card.style.padding = "1.5rem";
+      card.style.borderRadius = "12px";
+      card.innerHTML = `
+        <h3 style="margin-bottom:8px;color:#0073e6;">${job.title}</h3>
+        <div style="color:#666;margin-bottom:6px;">${job.company || ''} ${job.location ? ' - ' + job.location : ''}</div>
+        <div style="color:#0073e6;margin-bottom:6px;">${job.salary ? '薪资：' + job.salary : ''}</div>
+        <div style="font-size:13px;color:#888;margin-bottom:10px;">${job.description || ''}</div>
+        <a href="javascript:void(0);" class="view-link" data-slug="${job.slug}" style="color:#0073e6;font-weight:bold;">查看详情 <span class="material-icons" style="font-size:18px;vertical-align:middle;">arrow_forward</span></a>
+      `;
+      // 点击“查看详情”跳转到详情卡片
+      card.querySelector('.view-link').addEventListener('click', function () {
+        showJobDetails(job.slug);
+        window.history.pushState({ jobId: job.slug }, '', `#${job.slug}`);
+      });
+      resultsContainer.appendChild(card);
+    });
+
+    // 同步更新URL
+    if (history.replaceState) {
+      const newurl = `${window.location.pathname}?q=${encodeURIComponent(input)}`;
+      window.history.replaceState({ path: newurl }, '', newurl);
+    }
+  }
+</script>
 
 </html>

@@ -22,13 +22,19 @@
       width: 100%;
       top: 0;
       display: flex;
+      /* 保持弹性布局 */
       align-items: center;
       justify-content: space-between;
-      padding: 0 10px;
+      /* 子元素两端对齐 */
+      padding: 0 20px;
+      /* 增加内边距避免内容贴边 */
       background: white;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1002;
+      box-sizing: border-box;
+      /* 确保padding不影响总宽度 */
     }
+
 
     /* 滚动时阴影效果 */
     .navbar.scrolled {
@@ -50,13 +56,20 @@
 
 
     .profile-container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 2rem;
+      max-width: 90vw;
+      /* 原 1000px → 改为 90vw，随视口缩放 */
+      margin: 1.25rem auto;
+      /* 原 2rem → 20px（1.25rem），更紧凑 */
+      padding: 1.25rem;
+      /* 原 2rem → 1.25rem */
       background: white;
-      border-radius: 8px;
+      border-radius: 0.5rem;
+      /* 原 8px → 0.5rem */
       margin-bottom: 0;
+      /* 新增：防止内容溢出 */
+      box-sizing: border-box;
     }
+
 
 
     /* 头像容器样式 */
@@ -95,10 +108,7 @@
       margin-left: 100px;
     }
 
-    .welcome-text {
-      order: 2;
-      /* 欢迎文字第二个 */
-    }
+
 
     .btn-logout {
       order: 3;
@@ -172,11 +182,12 @@
       color: #666;
     }
 
+
     /* 新增动画相关样式 */
     .layout-container {
       display: flex;
       min-height: 100vh;
-      margin-top: 60px;
+      margin-top: 3.75rem;
     }
 
     .navbar .sidebar-toggle {
@@ -195,16 +206,22 @@
       display: none;
     }
 
+    /* 主内容区（弹性栅格，随视口宽度缩放） */
     .main-content {
-      margin-top: 0px;
-      margin-left: 3rem;
-      padding: 10px;
+      margin-top: 0;
+      padding: 0.625rem;
+      /* 原 10px → 0.625rem */
       display: grid;
-      grid-template-columns: 1fr 360px;
-      /* 同步调整栅格比例 */
-      gap: 10px;
-      /* 增加间距 */
+      /* 栅格比例：主内容占 2fr，工具箱占 1fr（随视口缩放） */
+      grid-template-columns: 2fr 1fr;
+      gap: 0.625rem;
+      /* 原 10px → 0.625rem */
       align-items: start;
+      /* 新增：主内容区最大宽度（避免过宽）+ 居中 */
+      max-width: 100%;
+      margin-right: 0;
+      margin-left: calc(2rem + 1rem);
+      /* 侧边栏宽度 + 左间距 */
     }
 
     /* 新增侧边栏图标样式 */
@@ -261,14 +278,23 @@
       display: none !important;
     }
 
+
     .toolbox-container {
       background: white;
-      border-radius: 12px;
-      padding: 20px;
-      width: 300px;
+      border-radius: 0.75rem;
+      /* 原 12px → 0.75rem */
+      padding: 1.25rem;
+      /* 原 20px → 1.25rem */
+      width: 100%;
+      /* 原 300px → 改为 100%，随栅格缩放 */
+      max-width: 22.5rem;
+      /* 最大宽度限制（360px → 22.5rem），避免过宽 */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       position: sticky;
-      top: 80px;
+      top: 5rem;
+      margin-left: 20px;
+
+      box-sizing: border-box;
     }
 
     .user-card {
@@ -546,8 +572,12 @@
       opacity: 1;
       transform: translateY(0);
       transition: all 0.4s ease;
-      width: 900px;
-      margin-left: 30px;
+      width: 100%;
+      /* 原 900px → 改为 100%，随父容器缩放 */
+      margin-left: 0;
+      /* 移除固定左间距，随主内容区居中 */
+      /* 新增：功能容器内边距（避免内容贴边） */
+      padding: 0 0.5rem;
     }
 
     .function-container.hidden {
@@ -568,10 +598,8 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      position: static;
-      /* 移除绝对定位 */
-      order: 1;
-      /* 确保在flex容器中排在搜索框之后 */
+      white-space: nowrap;
+      /* 避免内容换行 */
     }
 
     .material-icons {
@@ -628,29 +656,27 @@
       color: inherit;
     }
 
-    .search-container {
-      margin-right: 30px;
-      width: 300px;
-    }
 
+    .search-container {
+      position: relative;
+      margin-right: 0;
+      /* 移除固定右边距 */
+      width: 100%;
+      /* 占满父容器宽度 */
+      max-width: 800px;
+      /* 保留最大宽度限制 */
+      background: #f8f9fa;
+      border-radius: 25px;
+      padding: 8px 1%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
 
     .search-input:focus {
       outline: none;
       box-shadow: none;
-    }
-
-    /* + 新增搜索框美化样式 */
-    .search-container {
-      position: relative;
-      margin-right: 100px;
-      width: 800px;
-      background: #f8f9fa;
-      border-radius: 25px;
-      padding: 8px 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
-      border: none !important;
     }
 
     .search-input {
@@ -682,13 +708,15 @@
 
     /* + 调整个人中心位置 */
     .nav-dynamic {
+      position: static;
+      transform: none;
+      flex: 1;
+      margin: 0 20px;
+      min-width: 200px;
       display: flex;
       align-items: center;
-      gap: 20px;
-      position: absolute;
-      right: 200px;
-      top: 50%;
-      transform: translateY(-50%);
+      gap: 15vw;
+      /* 随页面缩放的间距 */
     }
 
     /* 新增样式 */
@@ -886,6 +914,14 @@
       font-size: 0.95rem;
     }
 
+    .search-container .search-input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+
     /* 输入控件样式 */
     input[type="text"],
     input[type="email"],
@@ -1050,6 +1086,29 @@
       padding-top: 1.5rem;
     }
 
+    /* 统一图标样式，避免偏移 */
+    .profile-link .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .search-icon .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .post-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      /* 最小宽度，避免图标被挤压 */
+      min-height: 30px;
+      /* 最小高度，确保点击区域 */
+    }
+
     .settings .material-icons {
       margin-right: auto;
       font-size: 12px;
@@ -1091,30 +1150,294 @@
     .cancel-button:hover {
       background: #e2e8f0;
     }
+
+    .toolbox-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    #functionContainer,
+    #toolboxContainer {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+
+
+      .sidebar.active {
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .sidebar.compact {
+        width: 60px;
+        height: auto;
+      }
+
+      .search-container {
+        display: none;
+      }
+
+
+      .profile-link .material-icons {
+        display: none;
+      }
+
+      .navbar>div:first-child {
+        display: none;
+      }
+
+      .material-icons {
+        font-size: 1.2rem;
+      }
+
+      .sidebar .nav-item {
+        display: none;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #f0f0f0;
+        align-items: center;
+      }
+
+
+      .sidebar.active .nav-item {
+        display: flex !important;
+
+      }
+
+      .sidebar .nav-item span:not(.material-icons) {
+        display: inline-block !important;
+        margin-left: 15px;
+      }
+
+      .sidebar .material-icons {
+        margin-right: 0;
+        font-size: 24px;
+      }
+
+
+
+      .sidebar.compact .material-icons {
+        margin: 0;
+        transform: none;
+      }
+
+
+      .navbar .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: #313131;
+        cursor: pointer;
+      }
+
+
+      /* 隐藏欢迎文字 */
+      .welcome-text {}
+
+      /* 遮罩层 */
+      .sidebar-overlay {
+        display: none;
+      }
+
+      .sidebar.active~.sidebar-overlay {
+        display: block;
+      }
+
+      .navbar {
+        padding: 0 10px;
+        justify-content: flex-start;
+        gap: 8px;
+      }
+
+      .welcome-text {
+        margin-left: 50%;
+      }
+
+      .user-container {
+        margin-top: 18px;
+      }
+
+      .nav-dynamic {
+        gap: 0.5rem;
+        margin: 0 0.3125rem;
+        min-width: auto;
+        flex: none;
+      }
+
+      .tab-container {
+        gap: 10px;
+        display: flex;
+      }
+
+
+
+      /* 移动端主内容区域适配 */
+      .main-content {
+        margin-top: 0;
+        margin-left: 0;
+        padding: 10px;
+        grid-template-columns: 1fr;
+        /* 移除右侧边栏 */
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* 功能容器适配 */
+      .function-container {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .toolbox-toggle {
+        display: block;
+      }
+
+      /* 工具箱容器隐藏 */
+      .toolbox-container {
+        display: none;
+        /* 移动端隐藏工具箱 */
+      }
+
+      /* 个人资料容器适配 */
+      .profile-container {
+        padding: 1rem;
+        padding-bottom: 0;
+        margin: 1rem auto;
+        margin-bottom: 0;
+      }
+
+      /* 选项卡适配 */
+      .tab-container {
+
+        gap: 10px;
+      }
+
+      .tab-item {
+        padding: 10px;
+        text-align: center;
+      }
+
+      /* 竞争力区域适配 */
+      .competency-section {
+        padding: 10px;
+        text-align: center;
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+      }
+
+      /* 进度区域适配 */
+      .progress-section {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+      }
+
+      /* 表单模态框适配 */
+      .form-modal {
+        width: 95%;
+        padding: 1.5rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 登录提示区域适配 */
+      .login-prompt {
+        padding: 20px 15px;
+        margin: 20px auto;
+      }
+
+      /* 用户信息区域适配 */
+      .user-container {
+        text-align: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 改为3列布局 */
+        gap: 5px;
+        font-size: 11px;
+      }
+
+      /* 按钮适配 */
+      .btn-login,
+      .btn-logout {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        margin: 5px;
+      }
+
+      /* 搜索框适配 */
+      .search-container {
+        max-width: 120px;
+        padding: 5px 8px;
+      }
+
+      .search-input {
+        font-size: 12px;
+        padding: 0 5px;
+      }
+
+      .toolbox-container {
+        display: block;
+        /* 恢复显示 */
+        width: 100%;
+        margin: 1rem auto;
+        position: static;
+        order: 2;
+        /* 确保在profile-header后面 */
+      }
+
+      .function-container {
+        order: 1;
+      }
+
+      .toolbox-toggle {
+        font-size: 11px;
+        color: inherit;
+      }
+
+      .toolbox-toggle .material-icons {
+        margin-right: auto;
+        font-size: 12px;
+        vertical-align: middle;
+        color: inherit;
+      }
+
+      #functionContainer {
+        display: block;
+      }
+
+      #toolboxContainer {
+        display: none;
+      }
+    }
   </style>
 </head>
 
 <body onload="checkLoginStatus()">
   <div class="navbar">
     <div>大学生职业竞争力赋能平台</div>
-    <div class="user-controls" id="navAuth"></div>
-    <!-- 动态导航区域（根据图片2简化结构） -->
     <div class="nav-dynamic" id="navDynamic">
-      <!-- 公共搜索框（始终显示） -->
       <div class="search-container">
-        <input type="text1" id="searchInput" placeholder="搜索" class="search-input">
+        <input type="text" id="searchInput" placeholder="搜索" class="search-input">
         <button class="search-icon" onclick="handleSearch()">
           <span class="material-icons">search</span>
         </button>
       </div>
-
-      <!-- 登录后状态（根据图片1简化） -->
       <div class="post-login" id="postLogin">
         <a href="profile.html" class="profile-link">
           <span class="material-icons">person</span>
         </a>
       </div>
     </div>
+    <div class="user-controls" id="navAuth"></div>
     <div class="sidebar compact">
       <div class="sidebar-header">
         <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -1194,10 +1517,14 @@
             <div>帖子 </div>
             <div>获赞</div>
             <div>学习时长 </div>
+
             <div class="settings" onclick="openSettings()">
               <span class="material-icons">设置 settings</span>
-
             </div>
+
+            <button class="toolbox-toggle" onclick="toggleToolbox()">
+              <span class="material-icons">工具箱 business_center </span>
+            </button>
 
           </div>
         </div>
@@ -1214,6 +1541,7 @@
         <div class="tab-item active" onclick="switchTab('profile')">资料完善</div>
         <div class="tab-item" onclick="switchTab('favorites')">岗位收藏</div>
         <div class="tab-item" onclick="switchTab('reports')">历史报告</div>
+
       </div>
 
       <!-- 资料完善部分 -->
@@ -1813,7 +2141,10 @@
       loginPrompt.style.display = "block";
       functionContainer.style.display = "none";
       toolboxContainer.style.display = "none";
-      navAuth.innerHTML = '<a href="login.html">登录/注册</a>';
+      navAuth.innerHTML = `
+        <span style="color:#666" class="welcome-text">登录了解更多</span> |
+        <a href="login.html">登录/注册</a> 
+        `;
       return;
     }
 
@@ -1837,17 +2168,18 @@
         // 显示头像
         document.getElementById("userAvatar").src = user.avatar || "images/profile/actor.jpg";
         navAuth.innerHTML = `
-            <span style="color:#666">欢迎，${user.username}</span>
+            <span class="welcome-text" style="color:#666">欢迎，${user.username}</span>
             <button onclick="logout()"
             style="background:transparent;
             color:#0073e6;
             border:1px solid #0073e6;
-            padding:8px 16px;
-                   padding:6px 12px;
+            padding:0.4rem 0.8rem;
+            front-size:0.8rem;
+            transition:all 0.3s;
                    border-radius:8px;
                    cursor:pointer;
-                   margin-left:10px;"
-                   margin-right:40px>
+                   margin-right:10px;
+                   margin-left:1.5vw;">
                    退出登录</button>
           `;
 
@@ -2010,6 +2342,22 @@
     } catch (err) {
       console.error("请求出错:", err);
       alert("请求失败，请稍后再试");
+    }
+  }
+
+  function toggleToolbox() {
+    const functionContainer = document.getElementById("functionContainer");
+    const toolboxContainer = document.getElementById("toolboxContainer");
+
+    // 判断是否是移动端
+    if (window.innerWidth <= 768) {
+      if (functionContainer.style.display !== "none") {
+        functionContainer.style.display = "none";
+        toolboxContainer.style.display = "block";
+      } else {
+        functionContainer.style.display = "block";
+        toolboxContainer.style.display = "none";
+      }
     }
   }
 

@@ -20,6 +20,16 @@
       color: #333;
     }
 
+    .hero-image img {
+      width: 30%;
+      height: auto;
+      border-radius: 12px;
+      margin-left: 70%;
+      display: block;
+      max-width: 400px;
+      /* 最大不超过 400px */
+    }
+
     .navbar {
       height: 66px;
       position: fixed;
@@ -28,10 +38,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 10px;
+      padding: 0 20px;
       background: white;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1002;
+      box-sizing: border-box;
     }
 
     /* 滚动时阴影效果 */
@@ -42,7 +53,7 @@
     .navbar>div:first-child {
       margin-right: auto;
       /* 将标题推到最左侧 */
-      padding-left: 60px;
+      padding-left: 5vw;
       /* 增加左侧间距 */
     }
 
@@ -54,10 +65,7 @@
     }
 
 
-    .welcome-text {
-      order: 2;
-      /* 欢迎文字第二个 */
-    }
+
 
     .community-list {
       display: flex;
@@ -83,11 +91,17 @@
       margin-top: 2rem;
     }
 
+
     .main-content {
       margin-top: 60px;
-      /* 顶栏高度 */
+      /* 顶栏高度，避免内容被导航栏遮挡 */
       padding: 20px;
+      overflow-x: hidden;
+      /* 保留：禁止横向滚动，避免横向滚动栏 */
+      /* 关键：删除任何 `height` 或 `overflow-y` 配置，让外层仅依赖浏览器默认滚动 */
+      margin-left: 40px;
     }
+
 
 
 
@@ -234,10 +248,8 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      position: static;
-      /* 移除绝对定位 */
-      order: 1;
-      /* 确保在flex容器中排在搜索框之后 */
+      white-space: nowrap;
+      /* 避免内容换行 */
     }
 
     .material-icons {
@@ -277,8 +289,8 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
-      margin-left: 50px;
-      margin-right: 40px;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
     }
 
 
@@ -295,27 +307,26 @@
     }
 
     .search-container {
-      margin-right: 30px;
-      width: 300px;
+      position: relative;
+      margin-right: 0;
+      /* 移除固定右边距 */
+      width: 100%;
+      /* 占满父容器宽度 */
+      max-width: 800px;
+      /* 保留最大宽度限制 */
+      background: #f8f9fa;
+      border-radius: 25px;
+      padding: 8px 1%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
     }
 
 
     .search-input:focus {
       outline: none;
       box-shadow: none;
-    }
-
-    /* + 新增搜索框美化样式 */
-    .search-container {
-      position: relative;
-      margin-right: 100px;
-      width: 800px;
-      background: #f8f9fa;
-      border-radius: 25px;
-      padding: 8px 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
     }
 
     .search-input {
@@ -347,23 +358,19 @@
 
     /* + 调整个人中心位置 */
     .nav-dynamic {
+      position: static;
+      transform: none;
+      flex: 1;
+      margin: 0 20px;
+      min-width: 200px;
       display: flex;
       align-items: center;
-      gap: 20px;
-      position: absolute;
-      right: 200px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-
-    .data-header {
-      padding: 32px 5% 16px;
-      border-bottom: none;
+      gap: 15vw;
+      /* 随页面缩放的间距 */
     }
 
     .data-header h1 {
-      font-size: 40px;
+      font-size: clamp(28px, 3vw, 40px);
       margin-bottom: 8px;
       margin-top: 1px;
       margin-left: 15px;
@@ -372,11 +379,13 @@
 
     .description {
       color: #666;
-      font-size: 14px;
+      font-size: clamp(12px, 1.2vw, 14px);
       line-height: 1.5;
       margin-left: 15px;
       max-width: 560px;
     }
+
+
 
     /* 主色调定义 */
     :root {
@@ -396,58 +405,59 @@
       max-width: 1280px;
       margin: 30px auto 20px;
       display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 30px;
+      /* 原 grid-template-columns: 1fr 300px; 改为自适应列宽 */
+      grid-template-columns: 1fr minmax(250px, 20vw);
+      /* 右侧边栏最小250px，最大20vw */
+      gap: 2vw;
+      /* 原30px，改为2vw，随页面缩放 */
       align-items: start;
-      /* 保证侧边栏对齐顶部 */
     }
 
     /* 右侧边栏容器 */
     .community-container>aside {
       position: sticky;
       top: 100px;
-      /* 从顶部导航栏下方开始 */
+      /* 随页面滚动时，固定在导航栏下方 */
       align-self: flex-start;
-      height: calc(100vh - 120px);
-      /* 视口高度减去顶部和底部间距 */
+      max-height: calc(100vh - 120px);
+      /* 最大高度=视口高度-导航栏高度，避免超出屏幕 */
       overflow-y: auto;
+      /* 仅当边栏内容超出最大高度时，才显示局部滚动（无多余内容则不显示） */
     }
 
 
     /* 分类导航 */
     .category-nav {
       display: flex;
-      gap: 15px;
+      gap: 1vw;
+      /* 原15px，改为1vw，随页面缩放 */
+      margin-bottom: 2vw;
+      /* 原30px，改为2vw */
       flex-wrap: wrap;
       position: sticky;
       top: 60px;
-      /* 根据导航栏高度调整 */
       background: white;
       z-index: 100;
-      padding: 20px;
-      margin: 0;
-      /* 去掉 margin-left */
-      width: 100%;
-      /* 占满 main 的宽度 */
-      box-shadow: 0 3px 1px rgba(0, 0, 0, 0.05);
-      box-sizing: border-box;
-      /* 避免 padding 撑破宽度 */
+      padding: 15px 0;
+      margin-bottom: 15px !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     }
 
+    /* 分类标签内边距：固定→相对 */
     .category-tag {
       flex-shrink: 0;
-      padding: 6px 16px;
+      padding: 0.5vw 1.5vw;
+      /* 原6px 16px，改为vw单位 */
       color: #666;
       border-radius: 16px;
       background: #f5f5f5;
-      font-size: 13px;
+      font-size: clamp(12px, 1vw, 13px);
+      /* 字体大小自适应 */
       white-space: nowrap;
       text-decoration: none;
-      /* 新增过渡动画 */
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       border: 1px solid transparent;
-      /* 为边框变化做准备 */
     }
 
     .category-tag.active {
@@ -468,23 +478,34 @@
     .post-card {
       background: white;
       border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 30px;
-
+      padding: 1.5vw;
+      /* 原20px，改为1.5vw */
+      margin-bottom: 2vw;
+      /* 原30px，改为2vw */
       transition: transform 0.2s;
     }
 
+    /* 帖子头部间距：固定→相对 */
     .post-header {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 1vw;
+      /* 原15px，改为1vw */
     }
 
+    /* 用户头像：固定尺寸→相对尺寸 */
     .user-avatar {
-      width: 40px;
-      height: 40px;
+      width: 3vw;
+      /* 原40px，改为3vw */
+      height: 3vw;
+      /* 原40px，改为3vw */
+      min-width: 30px;
+      /* 最小宽度，避免小屏过小 */
+      min-height: 30px;
+      /* 最小高度 */
       border-radius: 50%;
-      margin-right: 12px;
+      margin-right: 1vw;
+      /* 原12px，改为1vw */
     }
 
     .user-info {
@@ -525,8 +546,10 @@
     .sidebar-widget {
       background: white;
       border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
+      padding: 1.5vw;
+      /* 原20px，改为1.5vw */
+      margin-bottom: 1.5vw;
+      /* 原20px，改为1.5vw */
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     }
 
@@ -534,11 +557,11 @@
     .fixed-sidebar {
       position: fixed;
       top: 100px;
-      /* 根据导航栏高度调整 */
-      right: 20px;
-      width: 300px;
+      right: 2vw;
+      /* 原20px，改为2vw，随页面缩放 */
+      width: minmax(250px, 20vw);
+      /* 与社区容器右侧列宽一致 */
       height: calc(100vh - 120px);
-      /* 留出上下边距 */
       overflow-y: auto;
       background: white;
       border-radius: 12px;
@@ -553,10 +576,10 @@
 
     .hot-post-item {
       display: flex;
-      padding: 6px 10px;
-      margin-bottom: 4px;
+      align-items: center;
+      padding: 0.8vw;
+      /* 原10px，改为0.8vw */
       transition: background 0.3s;
-      border: none;
       border-bottom: 1px solid #EDF2F7;
     }
 
@@ -578,6 +601,10 @@
       color: #666;
     }
 
+    .data-header {
+      padding: 32px 5% 16px;
+    }
+
     .hot-post-item:hover {
       background: #f8f9fa;
     }
@@ -585,23 +612,25 @@
     /* 发帖按钮 - 美化版 */
     .create-post-btn {
       position: fixed;
-      bottom: 40px;
-      right: 40px;
-      background: linear-gradient(135deg,
-          var(--primary-blue) 20%,
-          var(--secondary-blue) 80%);
+      bottom: 3vw;
+      /* 原40px，改为3vw */
+      right: 3vw;
+      /* 原40px，改为3vw */
+      background: linear-gradient(135deg, var(--primary-blue) 20%, var(--secondary-blue) 80%);
       color: white;
-      padding: 16px 32px;
+      padding: 1vw 2vw;
+      /* 原16px 32px，改为vw单位 */
       border-radius: 35px;
       box-shadow: 0 8px 24px rgba(42, 92, 170, 0.3);
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 1vw;
+      /* 原12px，改为1vw */
       font-weight: 600;
-      font-size: 17px;
+      font-size: clamp(14px, 1.2vw, 17px);
+      /* 字体大小自适应 */
       cursor: pointer;
       border: none;
-
     }
 
 
@@ -612,6 +641,7 @@
       gap: 8px;
       margin-top: 15px;
     }
+
 
     .tag {
       padding: 4px 12px;
@@ -649,13 +679,250 @@
       color: #512DA8;
     }
 
-
     .shadow-line {
       height: 1px;
       background-color: #e0e0e0;
-      margin: 60px 0;
-      width: 1000px;
+      margin: 2vw 0;
+      /* 原60px，改为2vw，随页面缩放 */
+      width: 80%;
+      /* 原1000px，改为80%，适应父容器宽度 */
       border: none;
+    }
+
+    /* 统一图标样式，避免偏移 */
+    .profile-link .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .search-icon .material-icons {
+      margin-right: 0;
+      /* 清除全局 .material-icons 的负边距（原代码有 margin-right: -40px，会导致图标偏移） */
+      /*font-size: 1.5rem; /* 可选：调整图标大小，与导航栏比例匹配 */
+    }
+
+    .post-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      /* 最小宽度，避免图标被挤压 */
+      min-height: 30px;
+      /* 最小高度，确保点击区域 */
+    }
+
+    @media (max-width: 768px) {
+      .material-icons {
+        font-size: 1.2rem;
+        margin-right: 0;
+      }
+
+      /* 导航栏样式 */
+      .navbar {
+        gap: 8px;
+        justify-content: flex-start;
+        padding: 0 10px;
+      }
+
+      .navbar>div:first-child {
+        display: none;
+      }
+
+      /* 搜索区域 */
+      .search-container {
+        max-width: 180px;
+        margin-left: 20%;
+        padding: 6px 10px;
+      }
+
+
+
+      .search-input {
+        font-size: 12px;
+      }
+
+      /* 用户控制区域 */
+      .user-controls {
+        gap: 5px;
+        margin-right: 0;
+      }
+
+      .btn-logout,
+      .btn-login {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      /* 导航动态区域 */
+      .nav-dynamic {
+        gap: 3vw;
+        margin: 0 5px;
+        min-width: unset;
+      }
+
+      .post-login {
+        min-width: 24px;
+        min-height: 24px;
+      }
+
+      /* 主内容区域 */
+      .main-content {
+        margin-top: 60px;
+        padding: 15px;
+        margin-left: 0;
+      }
+
+      /* 数据头部 */
+      .data-header {
+        padding: 20px 15px 10px;
+
+        gap: 15px;
+      }
+
+      .data-header h1 {
+        font-size: 24px;
+        margin-left: 0;
+      }
+
+      .description {
+        font-size: 13px;
+        margin-left: 0;
+        max-width: 100%;
+      }
+
+      .data-header>div:last-child {
+        justify-content: center;
+        min-width: unset;
+        width: 100%;
+      }
+
+      .data-header img {
+        width: 40%;
+        margin-right: 0;
+        margin-top: 10px;
+      }
+
+      /* 社区容器 */
+      .community-container {
+        grid-template-columns: 1fr !important;
+        padding: 0 5px !important;
+      }
+
+      /* 右侧边栏 */
+      .community-container>aside {
+        position: static !important;
+        max-height: none !important;
+        margin-top: 20px !important;
+        padding-bottom: 80px !important;
+      }
+
+      /* 分类标签 */
+      .category-tag {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+      }
+
+      /* 帖子卡片 */
+      .post-card {
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+      }
+
+      /* 用户头像 */
+      .user-avatar {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      /* 发布按钮 */
+      .create-post-btn {
+        bottom: 60px !important;
+        right: 20px !important;
+        padding: 12px 24px !important;
+        font-size: 14px !important;
+        z-index: 1000 !important;
+      }
+
+
+      .sidebar.active {
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .sidebar.compact {
+        width: 60px;
+        height: auto;
+      }
+
+
+
+
+      .sidebar .nav-item {
+        display: none;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #f0f0f0;
+        align-items: center;
+      }
+
+
+      .sidebar.active .nav-item {
+        display: flex !important;
+
+      }
+
+      .sidebar .nav-item span:not(.material-icons) {
+        display: inline-block !important;
+        margin-left: 15px;
+      }
+
+      .sidebar .material-icons {
+        margin-right: 0;
+        font-size: 24px;
+      }
+
+
+
+      .sidebar.compact .material-icons {
+        margin: 0;
+        transform: none;
+      }
+
+
+      .navbar .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: #313131;
+        cursor: pointer;
+      }
+
+
+      /* 隐藏欢迎文字 */
+      .welcome-text {
+        display: none;
+      }
+
+      /* 遮罩层 */
+      .sidebar-overlay {
+        display: none;
+      }
+
+      .sidebar.active~.sidebar-overlay {
+        display: block;
+      }
+
+      /* 页脚 */
+      .footer {
+        margin-top: 1.5rem;
+        padding: 15px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -663,7 +930,6 @@
 <body>
   <div class="navbar">
     <div>大学生职业竞争力赋能平台</div>
-    <div class="user-controls" id="navAuth"></div>
     <div class="nav-dynamic" id="navDynamic">
       <div class="search-container">
         <input type="text" id="searchInput" placeholder="搜索" class="search-input">
@@ -677,6 +943,7 @@
         </a>
       </div>
     </div>
+    <div class="user-controls" id="navAuth"></div>
     <div class="sidebar compact">
       <div class="sidebar-header">
         <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -726,9 +993,8 @@
         <h1>社区</h1>
         <p class="description">探索、交流和分享职业洞见<br>了解社区动态、参与讨论及获取行业资讯的更多信息。</p>
       </div>
-      <div style="flex: 1;">
-        <img src="images/courese.webp" alt="卡通狮子头像"
-          style="width: 25%; height: auto; border-radius: 8px;margin-left: 70%;">
+      <div class="hero-image" style="flex: 1;">
+        <img src="images/courese.webp" alt="大学生职业发展">
       </div>
 
     </div>
@@ -814,14 +1080,18 @@
   function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const navAuth = document.getElementById('navAuth');
-
     if (isLoggedIn) {
+
       navAuth.innerHTML = `
-        <span style="color:#666">欢迎回来！</span>
+        <span style="color:#666" class="welcome-text">欢迎回来！</span>
         <button class="btn-logout" onclick="logout()">退出登录</button>
       `;
     } else {
-      navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
+
+      navAuth.innerHTML = `
+          <span style = "color:#666" class="welcome-text" > 登录了解更多</span>
+        <a href="login.html" class="btn-login">登录/注册</a>
+        `;
     }
   }
 

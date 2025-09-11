@@ -18,7 +18,14 @@
       color: #333;
     }
 
+    .hero-image img {
+      width: 100%;
 
+      height: auto;
+      border-radius: 12px;
+      margin: 0 auto;
+      display: block;
+    }
 
     .navbar {
       height: 66px;
@@ -26,12 +33,18 @@
       width: 100%;
       top: 0;
       display: flex;
+      /* 保持弹性布局 */
       align-items: center;
       justify-content: space-between;
-      padding: 0 10px;
+      /* 子元素两端对齐 */
+      padding: 0 20px;
+      /* 增加内边距避免内容贴边 */
       background: white;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       z-index: 1002;
+      box-sizing: border-box;
+      /* 确保padding不影响总宽度 */
+      overflow: hidden;
     }
 
     /* 滚动时阴影效果 */
@@ -42,17 +55,15 @@
     .navbar>div:first-child {
       margin-right: auto;
       /* 将标题推到最左侧 */
-      padding-left: 60px;
+      padding-left: 5vw;
       /* 增加左侧间距 */
     }
-
 
     .navbar a {
       color: rgb(110, 105, 105);
       text-decoration: none;
       margin: 0 1rem;
     }
-
 
     /* 新增轮播卡片样式 */
     .featured-card {
@@ -113,10 +124,10 @@
       background-color: #333;
       color: white;
       text-align: center;
-      padding: 1rem;
+      padding: 1rem 0 1rem;
       margin-top: 2rem;
+      padding-left: 40px;
     }
-
 
     .nav-item {
       display: block;
@@ -133,8 +144,6 @@
       background: #0073e610;
       transform: translateX(5px);
     }
-
-
 
     /* 修正侧边栏样式 */
     .sidebar {
@@ -165,7 +174,6 @@
     .sidebar.active+.navbar {
       transform: translateX(280px);
     }
-
 
     .sidebar-close {
       position: absolute;
@@ -199,12 +207,14 @@
       display: none;
     }
 
-
-
     .main-content {
       margin-top: 10px;
       /* 顶栏高度 */
       padding: 40px;
+      padding-right: 2%;
+      box-sizing: border-box;
+      /* 新增：确保padding不溢出容器 */
+      padding-left: 55px;
     }
 
     /* 新增侧边栏图标样式 */
@@ -235,7 +245,6 @@
       /* 新增水平居中 */
     }
 
-
     /* 修复紧凑模式图标显示 */
     .sidebar.compact .material-icons {
       margin: 0 auto;
@@ -244,12 +253,10 @@
       transform: scale(1.2);
     }
 
-
     /* 新增精确控制 */
     .sidebar.compact .nav-item span:not(.material-icons) {
       display: none !important;
     }
-
 
     /* 展开状态下的图标定位 */
     .sidebar:not(.compact) .material-icons {
@@ -266,10 +273,8 @@
       display: flex;
       align-items: center;
       gap: 15px;
-      position: static;
-      /* 移除绝对定位 */
-      order: 1;
-      /* 确保在flex容器中排在搜索框之后 */
+      white-space: nowrap;
+      /* 避免内容换行 */
     }
 
     .material-icons {
@@ -319,15 +324,13 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s;
-      margin-left: 50px;
-      margin-right: 40px;
+      margin-left: 1.5vw;
+      margin-right: 1.5vw;
     }
-
 
     .btn-logout:hover {
       background: #0073e610;
     }
-
 
     /* 新增 Material Icons 样式 */
     .material-icons {
@@ -337,27 +340,25 @@
     }
 
     .search-container {
-      margin-right: 30px;
-      width: 300px;
+      position: relative;
+      margin-right: 0;
+      /* 移除固定右边距 */
+      width: 100%;
+      /* 占满父容器宽度 */
+      max-width: 800px;
+      /* 保留最大宽度限制 */
+      background: #f8f9fa;
+      border-radius: 25px;
+      padding: 8px 1%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
     }
-
 
     .search-input:focus {
       outline: none;
       box-shadow: none;
-    }
-
-    /* + 新增搜索框美化样式 */
-    .search-container {
-      position: relative;
-      margin-right: 100px;
-      width: 800px;
-      background: #f8f9fa;
-      border-radius: 25px;
-      padding: 8px 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      display: flex;
-      align-items: center;
     }
 
     .search-input {
@@ -389,13 +390,15 @@
 
     /* + 调整个人中心位置 */
     .nav-dynamic {
+      position: static;
+      transform: none;
+      flex: 1;
+      margin: 0 20px;
+      min-width: 200px;
       display: flex;
       align-items: center;
-      gap: 20px;
-      position: absolute;
-      right: 200px;
-      top: 50%;
-      transform: translateY(-50%);
+      gap: 15vw;
+      /* 随页面缩放的间距 */
     }
 
     /* + 调整个人中心位置 */
@@ -411,25 +414,35 @@
       margin-bottom: 20px;
     }
 
+    /* 1. 分隔线：固定2200px → 百分比+最大宽度 */
     .shadow-line {
       height: 1px;
       background-color: #e0e0e0;
-      /* 稍深一点的灰色 */
       margin: 20px 0;
-      /* 调整间距 */
-      width: 2200px;
+      width: 90%;
+      /* 随页面缩放 */
+      max-width: 1200px;
+      /* 最大宽度限制 */
       border: none;
+      margin-left: auto;
+      /* 水平居中 */
+      margin-right: auto;
     }
 
+    /* 2. 功能卡片：固定1200px → 百分比+最大宽度，修复宽度冲突 */
     .function-card {
-      width: calc(33.33% - 20px);
-      margin-bottom: 40px;
+      width: 100%;
+      /* 替换固定1200px，占满父容器 */
+
+      /* 保留最大宽度限制 */
+      margin: 0 auto 40px;
+      /* 水平居中+底部间距 */
       background: white;
       border-radius: 40px;
-      width: 1200px;
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
       transition: transform 0.3s, box-shadow 0.3s;
+      box-sizing: border-box;
     }
 
     /*动态*/
@@ -480,7 +493,6 @@
       margin-right: 8px;
     }
 
-
     .function-link {
       color: #666;
       text-decoration: none;
@@ -494,66 +506,60 @@
       text-decoration: underline;
     }
 
-    /* 左侧内容区域 */
+    /* 3. 左侧面板：固定宽度+内边距 → 响应式内边距，占满宽度 */
     .left-panel {
-      width: 35%;
-      padding: 50px;
+      width: 100%;
+      /* 占满父容器 */
+      padding: 3vw;
+      /* 响应式内边距，替换固定50px */
       background-color: white;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
       display: flex;
-      width: 100%;
       margin-bottom: 35px;
       opacity: 0;
-      /* 初始状态不可见 */
       transform: translateY(50px);
-      /* 初始位置下移50px */
       transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
-      /* 平滑的缓动效果 */
+      box-sizing: border-box;
+      /* 关键：设置换行触发条件，确保图片在窄屏时换行 */
+      flex-wrap: wrap;
+      /* 关键：设置最小宽度阈值，低于该宽度则换行 */
+      min-width: 320px;
     }
 
     .left-panel.animate {
       opacity: 1;
-      /* 动画结束时完全可见 */
       transform: translateY(0);
-      /* 动画结束时回到原位 */
     }
 
-
     .main-title {
-      font-size: 2.2rem;
+      font-size: clamp(22px, 3vw, 2.5rem);
+      /* 响应式字体大小 */
       font-weight: 600;
       margin-bottom: 25px;
       line-height: 1.3;
     }
 
     .description {
-      font-size: 1.1rem;
+      font-size: clamp(14px, 1.2vw, 1.1rem);
+      /* 响应式字体大小 */
       color: #666;
       margin-bottom: 50px;
       line-height: 1.6;
     }
 
+    /* 4. 左侧内容：固定35% → 响应式宽度，小屏幕自动调整 */
     .left-content {
-      width: 35%;
-      padding: 30px;
+      width: 40%;
+      /* 替换固定35%，更合理比例 */
+      /* 关键：设置最小宽度，低于该宽度时不再收缩，触发换行 */
+      min-width: 300px;
+      padding: 2vw;
+      /* 响应式内边距，替换固定30px */
       display: flex;
       flex-direction: column;
       justify-content: center;
       transition: opacity 250ms ease-in 0s, margin-bottom 250ms ease-in 0s;
-    }
-
-    .main-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #2B2B2B;
-      margin-bottom: 20px;
-    }
-
-    .description {
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 40px;
-      line-height: 1.6;
+      box-sizing: border-box;
     }
 
     .stats {
@@ -566,44 +572,61 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      /* 小屏幕自动换行 */
+      gap: 15px;
+      /* 间距，避免拥挤 */
     }
 
     .stat-item {
       text-align: center;
       flex: 1;
+      min-width: 100px;
+      /* 最小宽度，避免内容挤压 */
       margin: 0 10px;
     }
 
     .stat-number {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      /* 响应式字体大小 */
       font-weight: 600;
       color: #2B2B2B;
     }
 
     .stat-label {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 1vw, 0.9rem);
+      /* 响应式字体大小 */
       color: #666;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-top: 5px;
     }
 
-    /* 右侧图片区域 */
+    /* 5. 右侧图片区域（含right-panel-image）：控制收缩与换行 */
     .right-panel {
-      width: 65%;
+      width: 60%;
+      /* 替换固定65%，与左侧内容比例协调 */
+      /* 关键：设置最小宽度，低于该宽度时不再收缩，触发换行 */
+      min-width: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px;
+      padding: 2vw;
+      /* 响应式内边距，替换固定30px */
+      box-sizing: border-box;
     }
 
+    /* 关键：控制图片收缩逻辑，仅在父容器宽度足够时跟随收缩，不足时触发换行 */
     .right-panel-image {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 4px;
-      /* 确保图片没有动画 */
       transition: none !important;
+      /* 禁止图片超出父容器，确保收缩生效 */
+      max-width: 100%;
+      /* 移除任何可能阻止收缩的固定尺寸 */
+      min-width: 0;
     }
 
     /* 用户类型展示区样式 */
@@ -611,12 +634,13 @@
       max-width: 1200px;
       margin: 40px auto;
       background: white;
-      padding: 2rem;
+      /* padding: 2rem; */
       border-radius: 8px;
     }
 
     .user-types-title {
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 2vw, 1.8rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin-bottom: 30px;
       text-align: center;
@@ -626,10 +650,16 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      gap: 20px;
+      /* 间距，避免拥挤 */
     }
 
+    /* 6. 用户类型卡片：固定30% → 响应式宽度，小屏幕自动换行 */
     .user-type-card {
-      width: 30%;
+      width: calc(33.33% - 20px);
+      /* 保留原有比例，添加间距补偿 */
+      min-width: 280px;
+      /* 最小宽度限制 */
       margin-bottom: 30px;
       display: flex;
       align-items: flex-start;
@@ -676,22 +706,18 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      /* 确保图片不会超出圆形边界 */
     }
 
     .user-avatar {
       width: 100%;
-      /* 图片宽度填满容器 */
       height: 100%;
-      /* 图片高度填满容器 */
       object-fit: cover;
-      /* 保持图片比例同时填满容器 */
       border-radius: 50%;
-      /* 确保图片也是圆形 */
     }
 
     .user-type-info h3 {
-      font-size: 1.3rem;
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin-bottom: 10px;
     }
@@ -710,15 +736,22 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      gap: 20px;
+      /* 间距，避免拥挤 */
     }
 
+    /* 7. 详情列：固定30% → 响应式宽度，小屏幕自动换行 */
     .detail-column {
-      width: 30%;
+      width: calc(33.33% - 20px);
+      /* 保留原有比例，添加间距补偿 */
+      min-width: 250px;
+      /* 最小宽度限制 */
       padding: 0 15px;
     }
 
     .detail-title {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+      /* 响应式字体大小 */
       margin-bottom: 15px;
       border-bottom: 1px solid #eee;
       padding-bottom: 10px;
@@ -762,7 +795,6 @@
       font-weight: 500;
       align-items: center;
       margin-left: auto;
-      /* 将元素推到右侧 */
     }
 
     .toggle-details-btn i {
@@ -787,7 +819,8 @@
     }
 
     .section-header h2 {
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 2vw, 1.8rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin-right: 10px;
     }
@@ -806,10 +839,12 @@
       border-radius: 8px;
     }
 
-
     /* 卡片基础样式 */
     .featured-card {
-      min-width: 350px;
+      min-width: 300px;
+      /* 降低最小宽度，适配窄屏 */
+      max-width: 400px;
+      /* 增加最大宽度限制 */
       scroll-snap-align: start;
       background: white;
       border-radius: 12px;
@@ -836,23 +871,19 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
-    /* 添加到.news-feed相关样式中 */
+    /* 修复新闻卡片中的图标偏移 */
     .news-meta .material-icons,
     .news-actions .material-icons,
     .item-meta .material-icons {
       margin-right: 0 !important;
-      /* 重置负margin */
       position: relative;
-      left: 40px;
-      /* 精确偏移 */
+      left: 0;
+      /* 修正异常偏移 */
       vertical-align: middle;
-      /* 确保垂直对齐 */
     }
 
-    /* 修复新闻卡片中的图标 */
     .news-item .material-icons {
       margin-right: 8px !important;
-      /* 改为正常间距 */
       left: 0;
     }
 
@@ -864,7 +895,8 @@
     }
 
     .carousel-header h2 {
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 2vw, 1.8rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin: 0;
     }
@@ -901,7 +933,6 @@
       padding-bottom: 20px;
       scroll-snap-type: x mandatory;
     }
-
 
     /* 卡片徽章 */
     .card-badge {
@@ -964,7 +995,8 @@
     }
 
     .card-content h3 {
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+      /* 响应式字体大小 */
       margin: 0 0 15px;
       color: #2B2B2B;
     }
@@ -1024,23 +1056,21 @@
 
     .carousel-controls .material-icons {
       margin-right: 0 !important;
-      /* 清除-40px的影响 */
       font-size: 1.8rem;
-      /* 匹配图片中的箭头大小 */
       color: #666;
-      /* 匹配图片中的灰色 */
       vertical-align: middle;
-      /* 保持垂直居中 */
     }
 
     /* 职业发展动态卡片样式 */
     .news-feed {
       max-width: 1200px;
       margin: 40px auto;
-      padding: 30px;
+      padding: 2vw;
+      /* 响应式内边距 */
       background: white;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
     }
 
     .news-header {
@@ -1048,10 +1078,19 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 30px;
+      padding: 0 5px;
+      /* 增加内边距，避免内容贴边 */
+      min-width: 300px;
+      /* 最小宽度，避免过度压缩 */
+      overflow: hidden;
+      /* 极端情况隐藏溢出内容，避免破坏布局 */
+      gap: 15px;
+      /* 增加左右区域间距，避免拥挤 */
     }
 
     .news-header h2 {
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 2vw, 1.8rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin: 0;
       font-weight: 600;
@@ -1060,6 +1099,7 @@
     .view-all {
       display: flex;
       align-items: center;
+      white-space: nowrap;
     }
 
     .view-all a {
@@ -1070,6 +1110,10 @@
     }
 
     .view-all .material-icons {
+      margin-right: 0 !important;
+      /* 彻底清除全局负边距影响 */
+      position: static !important;
+      /* 清除可能的定位偏移 */
       color: #0073e6;
       font-size: 1.2rem;
     }
@@ -1077,23 +1121,26 @@
     /* 主新闻卡片样式 */
     .main-news {
       display: flex;
-      gap: 30px;
+      gap: 2vw;
+      /* 响应式间距 */
       margin-bottom: 30px;
       background: white;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      flex-wrap: wrap;
+      /* 小屏幕自动换行 */
     }
 
     .main-news:hover {
-
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
     .news-image {
       flex: 1;
       min-width: 300px;
+      /* 最小宽度限制 */
       position: relative;
       overflow: hidden;
     }
@@ -1123,9 +1170,12 @@
 
     .news-content {
       flex: 1;
+      min-width: 300px;
+      /* 最小宽度限制 */
       padding: 25px;
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
     }
 
     .news-meta {
@@ -1144,7 +1194,8 @@
     }
 
     .news-content h3 {
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin: 0 0 15px;
       line-height: 1.4;
@@ -1161,6 +1212,8 @@
       display: flex;
       gap: 15px;
       margin-top: auto;
+      flex-wrap: wrap;
+      /* 小屏幕自动换行 */
     }
 
     .action-button {
@@ -1198,6 +1251,7 @@
     .secondary-news {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      /* 响应式网格布局 */
       gap: 25px;
     }
 
@@ -1216,26 +1270,18 @@
     /* 修复新闻卡片中的图标偏移 */
     .carousel-header.material-icons {
       left: 0 !important;
-      /* 清除异常偏移 */
       position: relative;
-      /* 确保定位正常 */
     }
 
     .news-actions .material-icons,
     .news-meta .material-icons {
       color: #666;
       margin-right: 8px !important;
-      /* 改为图片中显示的标准间距 */
       left: 0 !important;
-      /* 清除异常偏移 */
       position: relative;
-      /* 确保定位正常 */
       vertical-align: middle;
-      /* 保持垂直居中 */
       font-size: 0.95rem !important;
-      /* 匹配图片中的图标大小 */
     }
-
 
     .item-image {
       position: relative;
@@ -1252,7 +1298,6 @@
 
     .news-item:hover .item-image img {
       transform: scale(1.05);
-
     }
 
     .item-tag {
@@ -1271,7 +1316,8 @@
     }
 
     .item-content h4 {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+      /* 响应式字体大小 */
       color: #2B2B2B;
       margin: 0 0 10px;
       line-height: 1.4;
@@ -1313,13 +1359,217 @@
     .item-link:hover .material-icons {
       transform: translateX(3px);
     }
+
+    /* 统一图标样式，避免偏移 */
+    .profile-link .material-icons {
+      margin-right: 0;
+    }
+
+    .search-icon .material-icons {
+      margin-right: 0;
+    }
+
+    .post-login {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      /* 最小宽度，避免图标被挤压 */
+      min-height: 30px;
+      /* 最小高度，确保点击区域 */
+    }
+
+    @media (max-width: 768px) {
+
+      .main-content {
+        margin-top: 10px;
+        padding: 1rem 0.5rem;
+        margin-left: 0;
+      }
+
+      .nav-dynamic {
+        gap: 0.5rem;
+        margin: 0 0.3125rem;
+        min-width: auto;
+        flex: none;
+      }
+
+
+      .post-login {
+        min-width: 24px;
+        min-height: 24px;
+      }
+
+      .left-panel,
+      .right-panel {
+        width: 100%;
+      }
+
+      .navbar {
+        padding: 0 10px;
+        justify-content: flex-start;
+        gap: 8px;
+      }
+
+
+
+
+      .featured-card {
+        min-width: 200px;
+        max-width: 400px;
+        scroll-snap-align: start;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .carousel-container {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .data-header {
+        padding: 32px 5% 16px;
+        border-bottom: none;
+      }
+
+      .data-header h1 {
+        margin-left: 0;
+        font-size: 28px;
+      }
+
+      .description {
+        margin-left: 0;
+        font-size: 11px;
+
+      }
+
+      .data-header img {
+        width: 40%;
+        margin-right: 0;
+      }
+
+      .navbar>div:first-child {
+        display: none;
+      }
+
+
+      .search-container {
+        max-width: 180px;
+        padding: 6px 1%;
+        margin-left: 20%;
+      }
+
+      .search-input {
+        font-size: 0.8rem;
+      }
+
+      /* post-login - 统一成第一个 */
+      .post-login {
+        min-width: 24px;
+        min-height: 24px;
+      }
+
+      .material-icons {
+        font-size: 1.2rem;
+        margin-right: 0;
+      }
+
+      .user-controls {
+        gap: 0.5rem;
+      }
+
+      .btn-login,
+      .btn-logout {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+
+
+
+      .sidebar.active {
+        height: auto;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .sidebar.compact {
+        width: 60px;
+        height: auto;
+      }
+
+
+
+
+      .sidebar .nav-item {
+        display: none;
+        padding: 15px 20px !important;
+        border-bottom: 1px solid #f0f0f0;
+        align-items: center;
+      }
+
+
+      .sidebar.active .nav-item {
+        display: flex !important;
+
+      }
+
+      .sidebar .nav-item span:not(.material-icons) {
+        display: inline-block !important;
+        margin-left: 15px;
+      }
+
+      .sidebar .material-icons {
+        margin-right: 0;
+        font-size: 24px;
+      }
+
+
+
+      .sidebar.compact .material-icons {
+        margin: 0;
+        transform: none;
+      }
+
+
+      .navbar .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 1.5rem;
+        color: #313131;
+        cursor: pointer;
+      }
+
+
+
+      /* 遮罩层 */
+      .sidebar-overlay {
+        display: none;
+      }
+
+      .sidebar.active~.sidebar-overlay {
+        display: block;
+      }
+
+      /* 隐藏欢迎文字 */
+      .welcome-text {
+        display: none;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="navbar">
     <div>大学生职业竞争力赋能平台</div>
-    <div class="user-controls" id="navAuth"></div>
     <div class="nav-dynamic" id="navDynamic">
       <div class="search-container">
         <input type="text" id="searchInput" placeholder="搜索" class="search-input">
@@ -1333,6 +1583,7 @@
         </a>
       </div>
     </div>
+    <div class="user-controls" id="navAuth"></div>
     <div class="sidebar compact">
       <div class="sidebar-header">
         <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -1383,16 +1634,17 @@
       style="margin: 20px auto; max-width: 1200px; background: white; padding: 2rem; border-radius: 8px; ">
       <div style="display: flex; align-items: center; gap: 40px;">
         <div style="flex: 1;">
-          <h1 style="font-size: 2.5rem; font-weight: 700; color: #2B2B2B; margin-bottom: 20px;">大学生职业竞争力赋能平台
+          <h1 style="font-size: clamp(28px,3vw,40px); font-weight: 700; color: #2B2B2B; margin-bottom: 20px;">
+            大学生职业竞争力赋能平台
           </h1>
-          <p style="font-size: 1.1rem; color: #666; margin-bottom: 30px; line-height: 1.6;">
+          <p style="font-size: clamp(12px,1.2vw,14px); color: #666; margin-bottom: 30px; line-height: 1.6;">
             赋能大学生职业发展，提供全面的职业能力评估、技能提升课程和职业规划指导。<br>
             助力您从校园到职场的顺利过渡，提升就业竞争力。
           </p>
 
         </div>
-        <div style="flex: 1;">
-          <img src="images/main-head-image.jpg" alt="大学生职业发展" style="width: 100%; height: auto; border-radius: 8px;">
+        <div class="hero-image" style="flex: 1;">
+          <img src="images/main-head-image.jpg" alt="大学生职业发展">
         </div>
       </div>
 
@@ -1880,12 +2132,17 @@
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       const navAuth = document.getElementById('navAuth');
       if (isLoggedIn) {
+
         navAuth.innerHTML = `
-        <span style="color:#666">欢迎回来！</span>
+        <span style="color:#666" class="welcome-text">欢迎回来！</span>
         <button class="btn-logout" onclick="logout()">退出登录</button>
       `;
       } else {
-        navAuth.innerHTML = '<a href="login.html" class="btn-login">登录/注册</a>';
+
+        navAuth.innerHTML = `
+          <span style = "color:#666" class="welcome-text" > 登录了解更多</span>
+        <a href="login.html" class="btn-login">登录/注册</a>
+        `;
       }
     }
 
