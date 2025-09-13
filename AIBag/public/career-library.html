@@ -578,14 +578,14 @@
     }
 
     .job-title {
-      font-size: 24px;
+      font-size: clamp(20px, 3vw, 20px);
       margin: 0;
       color: #333;
     }
 
     .job-salary {
       color: #0073e6;
-      font-size: 18px;
+      font-size: clamp(15px, 3vw, 15px);
       margin: 8px 0;
     }
 
@@ -619,9 +619,11 @@
     }
 
     .action-buttons {
-      margin: 20px 0;
-      display: flex;
+      margin: 20% 0;
+      flex-direction: column;
       gap: 12px;
+      display: flex;
+      width: 55%;
     }
 
     .btn {
@@ -926,16 +928,24 @@
       }
 
       .career-list {
-        flex-direction: column;
+        flex-direction: unset !important;
         gap: 1rem;
         margin-right: 0;
         padding-right: 0;
       }
 
       .career-card {
-        width: 100% !important;
+        width: auto !important;
         margin: 0;
         box-sizing: border-box;
+      }
+
+      .career-card h3 {
+        font-size: clamp(17px, 3vw, 32px);
+      }
+
+      .career-card p {
+        font-size: clamp(12px, 2.5vw, 16px);
       }
 
       .data-header {
@@ -1047,12 +1057,44 @@
         display: block;
       }
 
+      .action-buttons {
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .btn-primary,
+      .btn-outline {
+
+        height: 40px;
+        width: 120px;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .btn {
+        padding: 0 !important;
+      }
+
+      .job-details-container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+      }
+
+      .job-info-sidebar {
+        flex-direction: row;
+        width: 100%;
+        height: 300px;
+      }
+
+
     }
 
     /* 桌面端隐藏下拉框 */
     @media (min-width: 769px) {
       .mobile-category-dropdown {
         display: none;
+
       }
     }
   </style>
