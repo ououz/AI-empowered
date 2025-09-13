@@ -1338,14 +1338,7 @@
         margin-bottom: 0.8rem;
       }
 
-      /* 表单模态框适配 */
-      .form-modal {
-        width: 95%;
-        padding: 1.5rem;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+
 
       /* 登录提示区域适配 */
       .login-prompt {
@@ -1416,6 +1409,16 @@
 
       #toolboxContainer {
         display: none;
+      }
+
+      /* 表单模态框适配 */
+      .form-modal {
+        width: 300px;
+        padding: 2rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 1rem auto;
       }
     }
   </style>
@@ -1880,7 +1883,7 @@
     <label>用户名：</label>
     <input type="text" id="newUsername" placeholder="请输入新用户名"><br><br>
     <label>上传头像：</label>
-    <input type="file" id="avatarFile" accept="image/*"><br><br>
+    <input class="file-upload" type="file" id="avatarFile" accept="image/*"><br><br>
 
 
     <!-- 按钮组靠右 -->

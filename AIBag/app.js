@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 // 初始化 express
 const app = express();
@@ -44,6 +45,7 @@ app.use("/api/favorite", require("./src/routes/favorite"));
 app.use("/api/jobs", require("./src/routes/job"));
 app.use("/api/ads", require("./src/routes/ad"));
 app.use("/api/courses", require("./src/routes/course"));
+app.use("/api", require("./src/routes/ai"));
 
 // 健康检查
 app.get("/api/health", (_, res) => res.json({ ok: true }));

@@ -401,7 +401,7 @@
     .chat-message.bot::before {
       content: "🤖";
       position: absolute;
-      left: -40px;
+      left: -20px;
       top: 0;
       font-size: 24px;
     }
@@ -756,7 +756,7 @@
         <input type="text" id="chatInput" placeholder="请输入您的问题（例如：如何准备数据分析师面试？）">
         <button onclick="sendMessage()">
           <span class="material-icons">send</span>
-          发送
+
         </button>
       </div>
     </div>
@@ -768,6 +768,47 @@
   </div>
   <script>
 
+    async function loadUserData() {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return; // 没登录直接退出
+
+        const res = await fetch('/api/user/me', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error('未登录或获取失败');
+        const user = await res.json();
+
+        // 更新头像
+        const avatarEl = document.querySelector('.user-profile .user-avatar');
+        if (avatarEl) {
+          avatarEl.src = user.avatar || '/uploads/default_avatar.png';
+        }
+
+        // 更新用户名
+        const nameEl = document.querySelector('.user-profile h4');
+        if (nameEl) {
+          nameEl.textContent = user.username;
+        }
+
+        // 更新等级
+        const levelEl = document.querySelector('.user-profile .user-level');
+        if (levelEl) {
+          const level = Math.floor((user.likes || 0) / 10) + 1;
+          levelEl.textContent = `Lv.${level}`;
+        }
+
+        // 更新积分、帖子数、粉丝数
+        const statsEl = document.querySelectorAll('.user-profile .user-stats div');
+        if (statsEl.length >= 3) {
+          statsEl[0].textContent = `积分：${user.likes || 0}`;
+          statsEl[1].textContent = `帖子：${user.postsCount || 0}`;
+          statsEl[2].textContent = `粉丝：${user.followers || 0}`;
+        }
+      } catch (err) {
+        console.error('加载用户数据失败:', err);
+      }
+    }
 
     // 修正后的切换函数
     function toggleSidebar() {
