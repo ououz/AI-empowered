@@ -14,19 +14,15 @@ router.post("/:type/:id", auth, async (req, res) => {
     console.log("收到收藏请求:", type, id);
     console.log("当前登录用户:", req.user);
 
-    // 转换 type 为大写（和 FavoriteSchema.enum 一致）
-    const typeMap = {
-        job: "Job",
-        post: "Post",
-        report: "Report"
-    };
+    const typeMap = { job: "Job", post: "Post", report: "Report" };
     const ModelType = typeMap[type];
     if (!ModelType) return res.status(400).json({ error: "类型错误" });
 
     let objectId;
     try {
         if (mongoose.Types.ObjectId.isValid(id)) {
-            objectId = id;
+            objectId = new mongoose.Types.ObjectId(id); // ✅ 转 ObjectId
+            console.log("转换后的ObjectId:", objectId);
         } else {
             let Model;
             if (type === "job") Model = Job;
@@ -35,7 +31,7 @@ router.post("/:type/:id", auth, async (req, res) => {
 
             const target = await Model.findOne({ slug: id });
             if (!target) return res.status(400).json({ error: "找不到对应对象" });
-            objectId = target._id;
+            objectId = target._id; // ✅ 使用 target 的 _id
         }
     } catch (e) {
         console.error("ObjectId转换失败:", e);
@@ -43,34 +39,33 @@ router.post("/:type/:id", auth, async (req, res) => {
     }
 
     try {
+        const userId = new mongoose.Types.ObjectId(req.user._id); // ✅ 转 ObjectId
+        console.log("转换后的UserId:", userId);
         const exists = await Favorite.findOne({
-            user: req.user._id,
+            user: userId,
             type: ModelType,
             target: objectId
         });
         if (exists) return res.json({ success: true, message: "已收藏" });
 
         await Favorite.create({
-            user: req.user._id,
+            user: userId,
             type: ModelType,
             target: objectId
         });
 
-        res.json({ success: true });
+        res.json({ success: true, message: "收藏成功" });
     } catch (err) {
         console.error("收藏失败:", err);
         res.status(500).json({ error: "收藏失败" });
     }
+
 });
 
 // ======================= 获取收藏列表 =======================
 router.get("/:type", auth, async (req, res) => {
     const { type } = req.params;
-    const typeMap = {
-        job: "Job",
-        post: "Post",
-        report: "Report"
-    };
+    const typeMap = { job: "Job", post: "Post", report: "Report" };
     const ModelType = typeMap[type];
     if (!ModelType) return res.status(400).json({ error: "类型错误" });
 

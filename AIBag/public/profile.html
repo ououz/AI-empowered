@@ -602,9 +602,6 @@
       /* 避免内容换行 */
     }
 
-    .material-icons {
-      margin-right: -40px;
-    }
 
     /* 登录按钮美化 */
     .btn-login {
@@ -837,7 +834,7 @@
     }
 
     .report-item button {
-      background: #9bc8df;
+      background: #94bee9;
       color: white;
       border: none;
       padding: 8px 20px;
@@ -1598,10 +1595,8 @@
 
       <!-- 测评报告 -->
       <div id="reportsTab" style="display: none;">
-        <div class="report-item">
-          <h4>2025职业竞争力测评</h4>
-          <p>完成时间：2025-08-20</p>
-          <button onclick="viewReport()">查看报告</button>
+        <div id="reportListContainer">
+          <!-- 动态生成报告内容 -->
         </div>
       </div>
 
@@ -1900,7 +1895,16 @@
 
 
   </div>
+  <!-- 查看报告模态框 -->
+  <div id="reportModal" class="form-modal" style="display:none;">
+    <div class="modal-header">
+      <h3>测评报告</h3>
 
+      <div id="reportModalContent">
+        <!-- 这里会动态填充报告内容 -->
+      </div>
+    </div>
+  </div>
 
   <div class="footer">
     <p>&copy; 2023 大学生职业竞争力赋能平台. 保留所有权利.</p>
@@ -2236,9 +2240,7 @@
       document.getElementById("contact").value = profile.contact || "";
       document.getElementById("bio").value = profile.bio || "";
 
-      // TODO: 如果你有多个教育经历/工作经历表单，可以循环填充
-      // profile.education.forEach(...)
-      // profile.experience.forEach(...)
+
     } catch (err) {
       console.error("加载用户资料失败:", err);
     }
@@ -2275,6 +2277,132 @@
       container.appendChild(card);
     });
   }
+  async function loadUserReports() {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const res = await fetch("/api/report", {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (!res.ok) throw new Error("获取报告失败");
+
+      const data = await res.json();
+      const container = document.getElementById("reportListContainer");
+      container.innerHTML = "";
+
+      if (!data.reports || data.reports.length === 0) {
+        container.innerHTML = "<p>暂无测评报告</p>";
+        return;
+      }
+
+      data.reports.forEach(report => {
+        const top3TypesDisplay = Array.isArray(report.top3Types)
+          ? report.top3Types.join(", ")
+          : report.top3Types;
+
+        const div = document.createElement("div");
+        div.className = "report-item";
+        div.style.border = "1px solid #e0e0e0";
+        div.style.padding = "1rem";
+        div.style.marginBottom = "12px";
+        div.style.borderRadius = "8px";
+        div.innerHTML = `
+        <h4> 职业测评——${top3TypesDisplay}</h4>
+        <p>完成时间：${new Date(report.createdAt).toLocaleDateString()}</p>
+    
+        <p>推荐职业：${report.jobRecommendations.join(", ")}</p>
+        <button onclick="viewReport('${report._id}')">查看报告</button>
+      `;
+        container.appendChild(div);
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function viewReport(reportId) {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`/api/report/${reportId}`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error("获取报告失败");
+
+      const report = await res.json();
+
+      // 处理 top3Types 显示
+      const top3TypesDisplay = Array.isArray(report.top3Types)
+        ? report.top3Types.join(", ")
+        : report.top3Types;
+
+      // 创建各类型分数表格行
+      let scoresRows = "";
+      let i = 0;
+      for (const [type, score] of Object.entries(report.scores)) {
+        scoresRows += `
+        <tr style="background:${i % 2 === 0 ? '#fff' : '#f9f9f9'};">
+          <td style="border:1px solid #ccc; padding:8px; font-weight:bold;">${type}</td>
+          <td style="border:1px solid #ccc; padding:8px;">${score}</td>
+        </tr>
+      `;
+        i++;
+      }
+
+      // 完整表格 HTML
+      const modalContent = `
+      <table style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-bottom:10px;">
+        <tr style="background:#cfdbea; color:white; text-align:center;">
+          <th colspan="2" style="padding:10px; font-size:1.2em;">RIASEA 报告</th>
+        </tr>
+
+        <tr>
+          <td style="border:1px solid #ccc; padding:8px; font-weight:bold;">完成时间</td>
+          <td style="border:1px solid #ccc; padding:8px;">${new Date(report.createdAt).toLocaleString()}</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #ccc; padding:8px; font-weight:bold;">最高类型</td>
+          <td style="border:1px solid #ccc; padding:8px;">${report.topType}</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #ccc; padding:8px; font-weight:bold;">前三类型</td>
+          <td style="border:1px solid #ccc; padding:8px;">${top3TypesDisplay}</td>
+        </tr>
+
+        <tr style="background:#f0f0f0; text-align:center;">
+          <td colspan="2" style="border:1px solid #ccc; padding:8px;"><strong>各类型分数</strong></td>
+        </tr>
+        ${scoresRows}
+
+        <tr>
+          <td style="border:1px solid #ccc; padding:8px; font-weight:bold;">推荐岗位</td>
+          <td style="border:1px solid #ccc; padding:8px;">${report.jobRecommendations.join(", ")}</td>
+        </tr>
+      </table>
+
+     <button onclick="closeReportModal()" class="cancel-button"> 
+      <span class="material-icons" ;">cancel</span>
+      关闭 </button>
+    `;
+
+      document.getElementById("reportModalContent").innerHTML = modalContent;
+      document.getElementById("reportModal").style.display = "block";
+
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }
+
+
+  // 关闭弹窗
+  function closeReportModal() {
+    document.getElementById("reportModal").style.display = "none";
+  }
+
+  // 页面加载时调用
+  loadUserReports();
 
   // 页面加载时调用
   loadFavoriteJobs();

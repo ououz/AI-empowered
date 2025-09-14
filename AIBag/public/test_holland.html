@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>霍兰德职业兴趣测评 - 自动测试</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .option {
+            padding: 10px 18px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .option.selected {
+            background: #0073e6;
+            color: white;
+            border-color: #0073e6;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #0073e6;
+            color: white;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            height: 100%;
+            background: #0073e6;
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        #resultContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .result-type {
+            font-size: 24px;
+            color: #0073e6;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>霍兰德职业兴趣测评 - 自动测试</h1>
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <div id="questionContainer"></div>
+        <div style="text-align:center">
+            <button class="btn btn-secondary" id="prevBtn">上一页</button>
+            <button class="btn btn-secondary" id="nextBtn">下一页</button>
+            <button class="btn btn-primary" id="submitBtn" style="display:none;">提交</button>
+        </div>
+        <div id="resultContainer">
+            <h2>测评结果</h2>
+            <div class="result-type" id="resultType"></div>
+            <div class="result-description" id="resultDescription"></div>
+            <div class="job-recommendations" id="jobRecommendations"></div>
+            <table id="scoreTable">
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>得分</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div style="margin-top:15px; text-align:center;">
+                <button id="favoriteBtn" class="btn btn-warning">收藏结果</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 简化版问题（只做测试用，实际可替换为完整 90 题）
+        const questions = Array.from({ length: 90 }, (_, i) => ({
+            id: i + 1,
+            text: `测试问题 ${i + 1}`,
+            type: ['R', 'I', 'A', 'S', 'E', 'C'][i % 6]
+        }));
+
+        const typeNames = { R: "现实型", I: "研究型", A: "艺术型", S: "社会型", E: "企业型", C: "常规型" };
+        const personalityTypes = { R: { jobs: ["工程师", "技师"] }, I: { jobs: ["科研人员", "数据分析师"] }, A: { jobs: ["设计师", "作家"] }, S: { jobs: ["教师", "心理咨询师"] }, E: { jobs: ["企业管理者", "销售经理"] }, C: { jobs: ["会计", "行政助理"] } };
+
+        const answers = {};
+        let currentPage = 1;
+        const perPage = 10;
+        const totalPages = Math.ceil(questions.length / perPage);
+
+        function renderPage() {
+            const container = document.getElementById('questionContainer');
+            container.innerHTML = '';
+            const start = (currentPage - 1) * perPage;
+            const pageQuestions = questions.slice(start, start + perPage);
+            pageQuestions.forEach(q => {
+                const div = document.createElement('div');
+                div.className = 'question';
+                div.innerHTML = `<h3>第 ${q.id} 题</h3><p>${q.text}</p><div class="options"><div class="option" data-value="0">否</div><div class="option" data-value="1">是</div></div>`;
+                container.appendChild(div);
+            });
+            document.getElementById('prevBtn').style.display = currentPage > 1 ? 'inline-block' : 'none';
+            document.getElementById('nextBtn').style.display = currentPage < totalPages ? 'inline-block' : 'none';
+            document.getElementById('submitBtn').style.display = currentPage === totalPages ? 'inline-block' : 'none';
+        }
+
+        function updateProgress() {
+            const progress = (Object.keys(answers).length / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + "%";
+        }
+
+        function showResults() {
+            const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+            Object.values(answers).forEach(ans => { scores[ans.type] += ans.value; });
+            const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+            const top3 = sorted.slice(0, 3).map(x => x[0]).join('');
+            const resultType = sorted[0][0];
+
+            document.getElementById('resultType').textContent = `你的兴趣代码为：${top3}`;
+            document.getElementById('resultDescription').textContent = `最高得分类型：${typeNames[resultType]}`;
+            document.getElementById('jobRecommendations').innerHTML = `<ul>${personalityTypes[resultType].jobs.map(j => `<li>${j}</li>`).join('')}</ul>`;
+
+            const tbody = document.querySelector('#scoreTable tbody');
+            tbody.innerHTML = '';
+            sorted.forEach(([type, score]) => { tbody.innerHTML += `<tr><td>${typeNames[type]}</td><td>${score}</td></tr>`; });
+
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('prevBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+        }
+
+        // 自动随机填充答案
+        function autoFillAnswers() {
+            questions.forEach(q => {
+                answers[q.id] = { value: Math.random() < 0.5 ? 0 : 1, type: q.type };
+            });
+            updateProgress();
+            showResults();
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderPage(); } });
+        document.getElementById('nextBtn').addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderPage(); } });
+        document.getElementById('submitBtn').addEventListener('click', () => { showResults(); });
+
+        autoFillAnswers();
+
+
+        async function saveReport(answers, scores, topType, top3Types, jobRecommendations = []) {
+            try {
+                const token = localStorage.getItem("token"); // 如果接口需要鉴权
+                const res = await fetch("/api/report", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ answers, scores, topType, top3Types, jobRecommendations }),
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "保存报告失败");
+                return data.report._id; // 返回 MongoDB _id
+            } catch (err) {
+                console.error(err);
+                alert("保存报告失败：" + err.message);
+                return null;
+            }
+        }
+        // 收藏报告函数
+        async function favoriteReport(reportId) {
+            try {
+                const token = localStorage.getItem("token");
+                const res = await fetch(`/api/favorite/report/${reportId}`, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "收藏失败");
+                alert("收藏成功！");
+            } catch (err) {
+                console.error(err);
+                alert("收藏失败：" + err.message);
+            }
+        }
+
+        // 保存并收藏
+        async function saveAndFavoriteReport(answers, scores, topType, top3Types, jobRecommendations = []) {
+            const reportId = await saveReport(answers, scores, topType, top3Types, jobRecommendations);
+            if (!reportId) return;
+            await favoriteReport(reportId);
+        }
+
+        document.getElementById('favoriteBtn').addEventListener('click', async () => {
+            // 计算分数和结果
+            const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+            Object.values(answers).forEach(ans => { scores[ans.type] += ans.value; });
+            const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+            const topType = sorted[0][0];
+            const top3Types = sorted.slice(0, 3).map(x => x[0]).join('');
+            const jobRecommendations = personalityTypes[topType].jobs;
+
+            await saveAndFavoriteReport(answers, scores, topType, top3Types, jobRecommendations);
+        });
+
+        renderPage();
+    </script>
+</body>
+
+</html>
