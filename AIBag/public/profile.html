@@ -2426,7 +2426,7 @@
   }
 
   async function updateProfile() {
-    const username = document.getElementById("newUsername").value.trim();
+    const username = document.getElementById("newUsername")?.value.trim();
     const fileInput = document.getElementById("avatarFile");
     const token = localStorage.getItem("token");
 
@@ -2435,15 +2435,16 @@
       return;
     }
 
+    // 构建 FormData
     const formData = new FormData();
-    if (fileInput.files.length) {
-      formData.append("avatar", fileInput.files[0]); // 有文件才加
+    if (fileInput && fileInput.files.length) {
+      formData.append("avatar", fileInput.files[0]);
     }
     if (username) {
-      formData.append("username", username); // 有用户名才加
+      formData.append("username", username);
     }
 
-    if (!fileInput.files.length && !username) {
+    if ((!fileInput || !fileInput.files.length) && !username) {
       alert("请输入用户名或选择头像");
       return;
     }
@@ -2458,24 +2459,29 @@
       });
 
       const data = await res.json();
-      if (res.ok) {
-        alert("修改成功！");
-        if (data.user.username) {
-          document.getElementById("userNickname").innerText = data.user.username;
-        }
-        if (data.user.avatar) {
-          document.getElementById("userAvatar").src = data.user.avatar;
-        }
-        closeSettings();
-      } else {
+
+      // 判断请求状态和返回的 user 对象
+      if (!res.ok || !data.user) {
         alert("修改失败: " + (data.msg || "未知错误"));
+        console.error("修改失败原因:", data);
+        return;
       }
+
+      // 更新页面显示
+      alert("修改成功！");
+      if (data.user.username) {
+        document.getElementById("userNickname").innerText = data.user.username;
+      }
+      if (data.user.avatar) {
+        document.getElementById("userAvatar").src = data.user.avatar;
+      }
+
+      closeSettings();
     } catch (err) {
       console.error("请求出错:", err);
       alert("请求失败，请稍后再试");
     }
   }
-
   function toggleToolbox() {
     const functionContainer = document.getElementById("functionContainer");
     const toolboxContainer = document.getElementById("toolboxContainer");
