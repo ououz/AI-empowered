@@ -7,7 +7,7 @@ module.exports = function auth(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "your_jwt_secret_key");
-        req.user = { _id: decoded.userId };
+        req.user = { id: decoded.userId };
         next();
     } catch {
         return res.status(401).json({ msg: "Token 无效或已过期" });
