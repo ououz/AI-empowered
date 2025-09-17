@@ -31,7 +31,13 @@ router.get("/", async (req, res) => {
 // 发布
 router.post("/", auth, async (req, res) => {
     const { title, content, tags = [], images = [] } = req.body;
-    const post = await Post.create({ userId: req.user.id, title, content, tags, images });
+    const post = await Post.create({
+        userId: req.user._id,
+        title,
+        content,
+        tags,
+        images
+    });
     res.json(post);
 });
 
