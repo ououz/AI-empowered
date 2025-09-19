@@ -115,19 +115,23 @@ router.post("/upload-avatar", auth, upload.single("avatar"), async (req, res) =>
         }
 
         if (Object.keys(updateData).length === 0) {
-            return res.status(400).json({ msg: "请至少上传头像或填写用户名" });
+            return res.status(400).json({ success: false, msg: "请至少上传头像或填写用户名" });
         }
 
         const user = await User.findByIdAndUpdate(
-            req.user.id,
+            req.user._id,
             { $set: updateData },
             { new: true }
         ).select("username avatar");
 
-        res.json({ msg: "资料更新成功", user });
+        if (!user) {
+            return res.status(404).json({ success: false, msg: "用户不存在或更新失败" });
+        }
+
+        res.json({ success: true, msg: "资料更新成功", user });
     } catch (err) {
         console.error("资料更新失败:", err);
-        res.status(500).json({ msg: "服务器错误" });
+        res.status(500).json({ success: false, msg: "服务器错误", error: err.message });
     }
 });
 
